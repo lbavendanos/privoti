@@ -8,6 +8,7 @@ import BaseNavbar from '@/layouts/base/components/BaseNavbar'
 import BaseFooter from '@/layouts/base/components/BaseFooter'
 import BaseOptions from '@/layouts/base/components/BaseOptions'
 import 'styles/app.css'
+import Separator from '@/common/components/Separator'
 
 const roboto = Roboto_Mono({
   subsets: ['latin'],
@@ -72,6 +73,7 @@ export default function RootLayout({
           </Container>
         </header>
         <main className="grow">{children}</main>
+        <Separator />
         <BaseFooter />
       </body>
     </html>
