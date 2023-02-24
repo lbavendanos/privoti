@@ -1,9 +1,5 @@
-import Container from '@/common/components/Container'
+import HomeModule from '@/modules/home/HomeModule'
 
 export default function Home() {
-  return (
-    <Container className="my-10">
-      <h1 className="text-2xl text-black font-bold">Home</h1>
-    </Container>
-  )
+  return <HomeModule />
 }

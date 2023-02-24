@@ -1,10 +1,12 @@
-import { url } from '@/lib/utils/url'
-import { config } from '@/lib/utils/helpers'
+import { url } from 'lib/utils/url'
+import { config } from 'lib/utils/helpers'
 import { Metadata } from 'next'
 import { Roboto_Mono } from '@next/font/google'
-import Link from 'next/link'
+import BaseLogo from '@/layouts/base/components/BaseLogo'
 import Container from '@/common/components/Container'
-import '@/styles/app.css'
+import BaseNavbar from '@/layouts/base/components/BaseNavbar'
+import BaseFooter from '@/layouts/base/components/BaseFooter'
+import 'styles/app.css'
 
 const roboto = Roboto_Mono({
   subsets: ['latin'],
@@ -54,35 +56,19 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  const appName = config<string>('app.name')
-
   return (
     <html lang="en" className={roboto.className}>
-      <body className="flex flex-col min-h-screen">
-        <header className="border-b bg-white">
+      <body className="flex flex-col min-h-screen bg-white">
+        <header className="border-b border-zinc-800">
           <Container>
-            <div className="flex justify-between -ml-4">
-              <nav>
-                <ul className="flex">
-                  <li className="p-4">
-                    <Link href="/" className="text-black">
-                      Home
-                    </Link>
-                  </li>
-                </ul>
-              </nav>
+            <div className="flex items-center space-x-4">
+              <BaseLogo />
+              <BaseNavbar />
             </div>
           </Container>
         </header>
         <main className="grow">{children}</main>
-        <footer className="flex justify-center items-center h-10 border-t bg-white">
-          <Container>
-            <div className="flex text-sm">
-              <div className="flex-1 text-left">{appName.toUpperCase()}</div>
-              <div className="flex-1 text-right">2023</div>
-            </div>
-          </Container>
-        </footer>
+        <BaseFooter />
       </body>
     </html>
   )
