@@ -61,7 +61,7 @@ export default function RootLayout({
       <body className="flex flex-col min-h-screen bg-white">
         <header className="border-b border-zinc-800">
           <Container>
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-8">
               <BaseLogo />
               <BaseNavbar />
             </div>
