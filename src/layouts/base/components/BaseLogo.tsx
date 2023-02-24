@@ -5,10 +5,7 @@ export default function BaseLogo() {
   const appName = config('app.name')
 
   return (
-    <Link
-      href="/"
-      className="text-zinc-900 text-2xl uppercase font-bold tracking-tight"
-    >
+    <Link href="/" className="text-2xl uppercase font-bold tracking-tight">
       {appName}
     </Link>
   )
