@@ -6,6 +6,7 @@ import BaseLogo from '@/layouts/base/components/BaseLogo'
 import Container from '@/common/components/Container'
 import BaseNavbar from '@/layouts/base/components/BaseNavbar'
 import BaseFooter from '@/layouts/base/components/BaseFooter'
+import BaseOptions from '@/layouts/base/components/BaseOptions'
 import 'styles/app.css'
 
 const roboto = Roboto_Mono({
@@ -61,9 +62,12 @@ export default function RootLayout({
       <body className="flex flex-col min-h-screen bg-white">
         <header className="border-b border-zinc-800">
           <Container>
-            <div className="flex items-center space-x-8">
-              <BaseLogo />
-              <BaseNavbar />
+            <div className="flex justify-between items-center">
+              <div className="flex items-center space-x-8">
+                <BaseLogo />
+                <BaseNavbar />
+              </div>
+              <BaseOptions />
             </div>
           </Container>
         </header>
