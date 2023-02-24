@@ -1,3 +1,4 @@
+import { config } from '@/lib/utils/helpers'
 import { Metadata } from 'next'
 import { Roboto_Mono } from '@next/font/google'
 import Link from 'next/link'
@@ -11,10 +12,10 @@ const roboto = Roboto_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Privoti',
-    template: '%s | Privoti',
+    default: config('app.name'),
+    template: `%s | ${config('app.name')}`,
   },
-  description: 'Welcome to Privoti',
+  description: `Welcome to ${config('app.name')}`,
   robots: {
     index: false,
     follow: true,
@@ -38,6 +39,8 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  const appName = config<string>('app.name')
+
   return (
     <html lang="en" className={roboto.className}>
       <body className="flex flex-col min-h-screen">
@@ -59,8 +62,8 @@ export default function RootLayout({
         <main className="grow">{children}</main>
         <footer className="flex justify-center items-center h-10 border-t bg-white">
           <Container>
-            <div className="flex">
-              <div className="flex-1 text-left text-sm">PRIVOTI</div>
+            <div className="flex text-sm">
+              <div className="flex-1 text-left">{appName.toUpperCase()}</div>
               <div className="flex-1 text-right">2023</div>
             </div>
           </Container>
