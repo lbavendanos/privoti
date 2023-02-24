@@ -1,3 +1,4 @@
+import { url } from '@/lib/utils/url'
 import { config } from '@/lib/utils/helpers'
 import { Metadata } from 'next'
 import { Roboto_Mono } from '@next/font/google'
@@ -10,28 +11,42 @@ const roboto = Roboto_Mono({
   display: 'swap',
 })
 
-export const metadata: Metadata = {
-  title: {
-    default: config('app.name'),
-    template: `%s | ${config('app.name')}`,
-  },
-  description: `Welcome to ${config('app.name')}`,
-  robots: {
-    index: false,
-    follow: true,
-    nocache: true,
-    googleBot: {
-      index: true,
-      follow: false,
-      noimageindex: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
+export async function generateMetadata(): Promise<Metadata> {
+  const appName = config('app.name')
+  const description = `Welcome to ${appName}`
+
+  return {
+    title: {
+      default: appName,
+      template: `%s | ${appName}`,
     },
-  },
-  icons: {
-    icon: '/favicon.ico',
-  },
+    description: description,
+    openGraph: {
+      title: {
+        default: appName,
+        template: `%s | ${appName}`,
+      },
+      description: description,
+      type: 'website',
+      url: url(),
+    },
+    robots: {
+      index: false,
+      follow: true,
+      nocache: true,
+      googleBot: {
+        index: true,
+        follow: false,
+        noimageindex: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
+    },
+    icons: {
+      icon: '/favicon.ico',
+    },
+  }
 }
 
 export default function RootLayout({
