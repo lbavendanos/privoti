@@ -1,9 +1,16 @@
+import { cn } from 'lib/utils/helpers'
 import BaseNavbarLink from './BaseNavbarLink'
 
-export default function BaseNavbar() {
+interface BaseNavbarDesktopProps
+  extends React.ComponentPropsWithoutRef<'nav'> {}
+
+export default function BaseNavbarDesktop({
+  className,
+  ...props
+}: BaseNavbarDesktopProps) {
   return (
-    <nav className="flex justify-between items-center py-4">
-      <ul className="flex -ml-3">
+    <nav {...props} className={cn('w-full py-4', className)}>
+      <ul className="flex justify-between items-center">
         <li>
           <BaseNavbarLink href="/">Home</BaseNavbarLink>
         </li>

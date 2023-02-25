@@ -4,11 +4,12 @@ import { Metadata } from 'next'
 import { Roboto_Mono } from '@next/font/google'
 import BaseLogo from '@/layouts/base/components/BaseLogo'
 import Container from '@/common/components/Container'
-import BaseNavbar from '@/layouts/base/components/BaseNavbar'
+import Separator from '@/common/components/Separator'
 import BaseFooter from '@/layouts/base/components/BaseFooter'
 import BaseOptions from '@/layouts/base/components/BaseOptions'
+import BaseNavbarDesktop from '@/layouts/base/components/BaseNavbarDesktop'
+import BaseNavbarMobile from '@/layouts/base/components/BaseNavbarMobile'
 import 'styles/app.css'
-import Separator from '@/common/components/Separator'
 
 const roboto = Roboto_Mono({
   subsets: ['latin'],
@@ -61,12 +62,13 @@ export default function RootLayout({
   return (
     <html lang="en" className={roboto.className}>
       <body className="flex flex-col min-h-screen bg-white text-zinc-800">
-        <header className="border-b border-zinc-800">
+        <header className="border-b border-zinc-800 py-3 md:py-2">
           <Container>
             <div className="flex justify-between items-center">
+              <BaseNavbarMobile className="block md:hidden" />
               <div className="flex items-center space-x-8">
                 <BaseLogo />
-                <BaseNavbar />
+                <BaseNavbarDesktop className="hidden md:block" />
               </div>
               <BaseOptions />
             </div>

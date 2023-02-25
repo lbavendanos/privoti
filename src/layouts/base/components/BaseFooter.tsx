@@ -12,7 +12,7 @@ export default function BaseFooter() {
         <div className="flex flex-col justify-center items-center space-y-6">
           <BaseFooterSubscribe />
           <BaseFooterSocial />
-          <p className="font-light text-xs uppercase">
+          <p className="font-light text-xs uppercase text-center">
             <span className="text-base">©</span> 2023 {appName} All Rights
             Reserved
           </p>

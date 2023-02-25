@@ -3,7 +3,7 @@ import { KeyboardArrowRightIcon } from '@/common/components/Icons'
 
 export default function BaseFooterSubscribe() {
   return (
-    <div className="flex flex-col items-center justify-center space-y-2">
+    <div className="flex flex-col items-center justify-center space-y-2 text-center">
       <p className="font-medium tracking-tight uppercase">
         Subscribe to our emails
       </p>
