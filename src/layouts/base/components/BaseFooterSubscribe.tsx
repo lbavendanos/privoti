@@ -9,6 +9,9 @@ export default function BaseFooterSubscribe() {
       </p>
       <div className="relative w-full flex border border-zinc-800 max-w-[400px] text-xs">
         <input
+          id="email"
+          type="email"
+          name="email"
           className="w-full h-8 px-3 outline-none placeholder:uppercase placeholder:tracking-tight text-zinc-500"
           placeholder="Enter phone number"
         />

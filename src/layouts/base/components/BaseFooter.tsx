@@ -5,6 +5,7 @@ import BaseFooterSubscribe from './BaseFooterSubscribe'
 
 export default function BaseFooter() {
   const appName = config<string>('app.name')
+  const year = new Date().getFullYear()
 
   return (
     <footer>
@@ -13,7 +14,7 @@ export default function BaseFooter() {
           <BaseFooterSubscribe />
           <BaseFooterSocial />
           <p className="font-light text-xs uppercase text-center">
-            <span className="text-base">©</span> 2023 {appName} All Rights
+            <span className="text-base">©</span> {year} {appName} All Rights
             Reserved
           </p>
         </div>
