@@ -64,13 +64,13 @@ export default function RootLayout({
       <body className="flex flex-col min-h-screen bg-white text-zinc-800">
         <header className="border-b border-zinc-800 py-3 md:py-2">
           <Container>
-            <div className="flex justify-between items-center">
-              <BaseNavbarMobile className="block md:hidden" />
-              <div className="flex items-center space-x-8">
+            <div className="grid grid-cols-3 md:grid-cols-2 items-center">
+              <BaseNavbarMobile className="block md:hidden justify-self-start" />
+              <div className="flex items-center space-x-8 justify-self-center md:justify-self-start">
                 <BaseLogo />
                 <BaseNavbarDesktop className="hidden md:block" />
               </div>
-              <BaseOptions />
+              <BaseOptions className="justify-self-end" />
             </div>
           </Container>
         </header>
