@@ -1,3 +1,8 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss/base';
+
+@import 'tailwindcss/components';
+@import './common/fade.css';
+@import './common/button.css';
+@import './common/offcanvas.css';
+
+@import 'tailwindcss/utilities';

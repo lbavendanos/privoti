@@ -8,7 +8,7 @@ import Separator from '@/common/components/Separator'
 import BaseFooter from '@/layouts/base/components/BaseFooter'
 import BaseOptions from '@/layouts/base/components/BaseOptions'
 import BaseNavbarDesktop from '@/layouts/base/components/BaseNavbarDesktop'
-import BaseNavbarMobile from '@/layouts/base/components/BaseNavbarMobile'
+import BaseNavbarMobileToggle from '@/layouts/base/components/BaseNavbarMobileToggle'
 import 'styles/app.css'
 
 const roboto = Roboto_Mono({
@@ -65,7 +65,7 @@ export default function RootLayout({
         <header className="border-b border-zinc-800 py-3 md:py-2">
           <Container>
             <div className="grid grid-cols-3 md:grid-cols-2 items-center">
-              <BaseNavbarMobile className="block md:hidden justify-self-start" />
+              <BaseNavbarMobileToggle className="block md:hidden justify-self-start" />
               <div className="flex items-center space-x-8 justify-self-center md:justify-self-start">
                 <BaseLogo />
                 <BaseNavbarDesktop className="hidden md:block" />

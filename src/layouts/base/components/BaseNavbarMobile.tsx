@@ -1,13 +1,22 @@
-import { MenuIcon } from '@/common/components/Icons'
+'use client'
 
-interface BaseNavbarMobileProps extends React.ComponentPropsWithoutRef<'nav'> {}
+import Offcanvas, { OffcanvasProps } from '@/common/components/Offcanvas'
+import OffcanvasBody from '@/common/components/OffcanvasBody'
+import OffcanvasTitle from '@/common/components/OffcanvasTitle'
+import OffcanvasHeader from '@/common/components/OffcanvasHeader'
+
+interface BaseNavbarMobileProps extends OffcanvasProps {}
 
 export default function BaseNavbarMobile(props: BaseNavbarMobileProps) {
   return (
-    <div {...props}>
-      <button type="button">
-        <MenuIcon className="w-6 h-6" />
-      </button>
-    </div>
+    <Offcanvas {...props}>
+      <OffcanvasHeader closeButton>
+        <OffcanvasTitle>Offcanvas</OffcanvasTitle>
+      </OffcanvasHeader>
+      <OffcanvasBody>
+        Some text as placeholder. In real life you can have the elements you
+        have chosen. Like, text, images, lists, etc.
+      </OffcanvasBody>
+    </Offcanvas>
   )
 }
