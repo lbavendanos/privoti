@@ -3,10 +3,12 @@ import Link, { LinkProps } from 'next/link'
 
 interface BaseNavbarLinkProps extends LinkProps {
   children?: React.ReactNode
+  className?: string
 }
 
 export default function BaseNavbarLink({
   href,
+  className,
   ...props
 }: BaseNavbarLinkProps) {
   return (
@@ -14,8 +16,8 @@ export default function BaseNavbarLink({
       {...props}
       href={href}
       className={cn(
-        'px-3 py-2',
-        'font-normal hover:font-semibold text-sm uppercase tracking-tight'
+        'font-normal hover:font-semibold text-sm uppercase tracking-tight',
+        className
       )}
     />
   )
