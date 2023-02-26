@@ -3,6 +3,7 @@
 @import 'tailwindcss/components';
 @import './common/fade.css';
 @import './common/button.css';
+@import './common/modal.css';
 @import './common/offcanvas.css';
 
 @import 'tailwindcss/utilities';

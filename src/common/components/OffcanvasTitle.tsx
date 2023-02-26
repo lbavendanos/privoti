@@ -9,5 +9,5 @@ export default function OffcanvasTitle({
   className,
   ...props
 }: OffcanvasTitleProps) {
-  return <h5 {...props} className={cn('offcanvas-title', className)}></h5>
+  return <h5 {...props} className={cn('offcanvas-title', className)} />
 }
