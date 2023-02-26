@@ -13,7 +13,7 @@ export default function BaseFooterSubscribe() {
           type="email"
           name="email"
           className="w-full h-8 px-3 outline-none placeholder:uppercase placeholder:tracking-tight text-zinc-500"
-          placeholder="Enter phone number"
+          placeholder="Enter email"
         />
         <button
           className={cn(
