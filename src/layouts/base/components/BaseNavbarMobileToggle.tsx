@@ -14,23 +14,17 @@ interface BaseNavbarMobileToggleProps
 export default function BaseNavbarMobileToggle(
   props: BaseNavbarMobileToggleProps
 ) {
-  const [isFirstAttempt, setIsFirstAttempt] = useState(false)
   const [show, setShow] = useState(false)
 
   const handleClose = () => setShow(false)
-  const handleShow = () => {
-    setIsFirstAttempt(true)
-    setShow(true)
-  }
+  const handleShow = () => setShow(true)
 
   return (
     <>
       <button {...props} type="button" onClick={handleShow}>
         <MenuIcon className="w-6 h-6" />
       </button>
-      {(show || isFirstAttempt) && (
-        <BaseNavbarMobile show={show} onHide={handleClose} />
-      )}
+      <BaseNavbarMobile show={show} onHide={handleClose} />
     </>
   )
 }

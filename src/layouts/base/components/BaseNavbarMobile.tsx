@@ -8,16 +8,20 @@ import BaseNavbar from './BaseNavbar'
 
 interface BaseNavbarMobileProps extends OffcanvasProps {}
 
-export default function BaseNavbarMobile(props: BaseNavbarMobileProps) {
+export default function BaseNavbarMobile({
+  onHide,
+  ...props
+}: BaseNavbarMobileProps) {
   return (
-    <Offcanvas {...props}>
+    <Offcanvas {...props} onHide={onHide}>
       <OffcanvasHeader closeButton>
-        <BaseLogo />
+        <BaseLogo onClick={onHide} />
       </OffcanvasHeader>
       <OffcanvasBody>
         <BaseNavbar
           menuClassName="flex flex-col space-y-2"
-          linkClassName="text-lg font-medium"
+          linkClassName="font-normal uppercase tracking-tight text-base"
+          onChange={onHide}
         />
       </OffcanvasBody>
     </Offcanvas>

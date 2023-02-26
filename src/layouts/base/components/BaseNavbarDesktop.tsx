@@ -1,8 +1,7 @@
 import { cn } from 'lib/utils/helpers'
-import BaseNavbar from './BaseNavbar'
+import BaseNavbar, { BaseNavbarProps } from './BaseNavbar'
 
-interface BaseNavbarDesktopProps
-  extends React.ComponentPropsWithoutRef<'nav'> {}
+interface BaseNavbarDesktopProps extends BaseNavbarProps {}
 
 export default function BaseNavbarDesktop({
   className,
@@ -13,7 +12,10 @@ export default function BaseNavbarDesktop({
       {...props}
       className={cn('w-full py-4', className)}
       menuClassName="flex justify-between items-center"
-      linkClassName="px-3 py-2"
+      linkClassName={cn(
+        'px-3 py-2',
+        'font-normal hover:font-semibold text-sm uppercase tracking-tight'
+      )}
     />
   )
 }
