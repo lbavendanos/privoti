@@ -6,7 +6,7 @@ import BaseLogo from '@/layouts/base/components/BaseLogo'
 import Container from '@/common/components/Container'
 import Separator from '@/common/components/Separator'
 import BaseFooter from '@/layouts/base/components/BaseFooter'
-import BaseOptions from '@/layouts/base/components/BaseOptions'
+import BaseNavbarOptions from '@/layouts/base/components/BaseNavbarOptions'
 import BaseNavbarDesktop from '@/layouts/base/components/BaseNavbarDesktop'
 import BaseNavbarMobileToggle from '@/layouts/base/components/BaseNavbarMobileToggle'
 import 'styles/app.css'
@@ -70,7 +70,7 @@ export default function RootLayout({
                 <BaseLogo />
                 <BaseNavbarDesktop className="hidden md:block" />
               </div>
-              <BaseOptions className="justify-self-end" />
+              <BaseNavbarOptions className="justify-self-end" />
             </div>
           </Container>
         </header>
