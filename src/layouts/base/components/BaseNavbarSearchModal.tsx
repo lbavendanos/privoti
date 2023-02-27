@@ -18,11 +18,12 @@ export default function BaseNavbarSearchModal({
         <div className="flex items-center space-x-2">
           <div className="relative w-full flex border border-zinc-800 text-xs">
             <input
-              id="email"
-              type="email"
-              name="email"
+              id="search"
+              type="search"
+              name="search"
               className="w-full h-8 px-3 outline-none placeholder:uppercase placeholder:tracking-tight text-zinc-500"
               placeholder="Search"
+              autoComplete="off"
             />
             <button
               className={cn(
