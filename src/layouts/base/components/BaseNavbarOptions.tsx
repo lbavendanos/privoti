@@ -1,5 +1,5 @@
 import { cn } from 'lib/utils/helpers'
-import { ShoppingIcon } from '@/common/components/Icons'
+import BaseNavbarCart from './BaseNavbarCart'
 import BaseNavbarSearch from './BaseNavbarSearch'
 
 interface BaseNavbarOptionsProps
@@ -12,9 +12,7 @@ export default function BaseNavbarOptions({
   return (
     <div {...props} className={cn('flex space-x-4', className)}>
       <BaseNavbarSearch />
-      <button type="button" className="text-zinc-800">
-        <ShoppingIcon className="w-6 h-6" />
-      </button>
+      <BaseNavbarCart />
     </div>
   )
 }

@@ -6,7 +6,7 @@
   .offcanvas-md,
   .offcanvas-sm {
     --bs-offcanvas-zindex: 1045;
-    --bs-offcanvas-width: 340px;
+    --bs-offcanvas-width: 300px;
     --bs-offcanvas-height: 30vh;
     --bs-offcanvas-padding-x: 1rem;
     --bs-offcanvas-padding-y: 1rem;
@@ -45,7 +45,7 @@
     .offcanvas-sm.offcanvas-start {
       top: 0;
       left: 0;
-      width: var(--bs-offcanvas-width);
+      min-width: var(--bs-offcanvas-width);
       border-right: var(--bs-offcanvas-border-width) solid
         var(--bs-offcanvas-border-color);
       transform: translateX(-100%);
@@ -55,7 +55,7 @@
     .offcanvas-sm.offcanvas-end {
       top: 0;
       right: 0;
-      width: var(--bs-offcanvas-width);
+      min-width: var(--bs-offcanvas-width);
       border-left: var(--bs-offcanvas-border-width) solid
         var(--bs-offcanvas-border-color);
       transform: translateX(100%);
@@ -140,7 +140,7 @@
     .offcanvas-md.offcanvas-start {
       top: 0;
       left: 0;
-      width: var(--bs-offcanvas-width);
+      min-width: var(--bs-offcanvas-width);
       border-right: var(--bs-offcanvas-border-width) solid
         var(--bs-offcanvas-border-color);
       transform: translateX(-100%);
@@ -150,7 +150,7 @@
     .offcanvas-md.offcanvas-end {
       top: 0;
       right: 0;
-      width: var(--bs-offcanvas-width);
+      min-width: var(--bs-offcanvas-width);
       border-left: var(--bs-offcanvas-border-width) solid
         var(--bs-offcanvas-border-color);
       transform: translateX(100%);
@@ -235,7 +235,7 @@
     .offcanvas-lg.offcanvas-start {
       top: 0;
       left: 0;
-      width: var(--bs-offcanvas-width);
+      min-width: var(--bs-offcanvas-width);
       border-right: var(--bs-offcanvas-border-width) solid
         var(--bs-offcanvas-border-color);
       transform: translateX(-100%);
@@ -245,7 +245,7 @@
     .offcanvas-lg.offcanvas-end {
       top: 0;
       right: 0;
-      width: var(--bs-offcanvas-width);
+      min-width: var(--bs-offcanvas-width);
       border-left: var(--bs-offcanvas-border-width) solid
         var(--bs-offcanvas-border-color);
       transform: translateX(100%);
@@ -330,7 +330,7 @@
     .offcanvas-xl.offcanvas-start {
       top: 0;
       left: 0;
-      width: var(--bs-offcanvas-width);
+      min-width: var(--bs-offcanvas-width);
       border-right: var(--bs-offcanvas-border-width) solid
         var(--bs-offcanvas-border-color);
       transform: translateX(-100%);
@@ -340,7 +340,7 @@
     .offcanvas-xl.offcanvas-end {
       top: 0;
       right: 0;
-      width: var(--bs-offcanvas-width);
+      min-width: var(--bs-offcanvas-width);
       border-left: var(--bs-offcanvas-border-width) solid
         var(--bs-offcanvas-border-color);
       transform: translateX(100%);
@@ -425,7 +425,7 @@
     .offcanvas-xxl.offcanvas-start {
       top: 0;
       left: 0;
-      width: var(--bs-offcanvas-width);
+      min-width: var(--bs-offcanvas-width);
       border-right: var(--bs-offcanvas-border-width) solid
         var(--bs-offcanvas-border-color);
       transform: translateX(-100%);
@@ -435,7 +435,7 @@
     .offcanvas-xxl.offcanvas-end {
       top: 0;
       right: 0;
-      width: var(--bs-offcanvas-width);
+      min-width: var(--bs-offcanvas-width);
       border-left: var(--bs-offcanvas-border-width) solid
         var(--bs-offcanvas-border-color);
       transform: translateX(100%);
@@ -517,7 +517,7 @@
   .offcanvas.offcanvas-start {
     top: 0;
     left: 0;
-    width: var(--bs-offcanvas-width);
+    min-width: var(--bs-offcanvas-width);
     border-right: var(--bs-offcanvas-border-width) solid
       var(--bs-offcanvas-border-color);
     transform: translateX(-100%);
@@ -525,7 +525,7 @@
   .offcanvas.offcanvas-end {
     top: 0;
     right: 0;
-    width: var(--bs-offcanvas-width);
+    min-width: var(--bs-offcanvas-width);
     border-left: var(--bs-offcanvas-border-width) solid
       var(--bs-offcanvas-border-color);
     transform: translateX(100%);

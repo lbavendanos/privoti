@@ -168,9 +168,12 @@ const Offcanvas = React.forwardRef<ModalHandle, OffcanvasProps>(
         {...dialogProps}
         {...props}
         className={cn(
-          className,
           responsive ? `offcanvas-${responsive}` : 'offcanvas',
-          `offcanvas-${placement}`
+          placement === 'start' && 'offcanvas-start',
+          placement === 'end' && 'offcanvas-end',
+          placement === 'top' && 'offcanvas-top',
+          placement === 'bottom' && 'offcanvas-bottom',
+          className
         )}
         aria-labelledby={ariaLabelledby}
       >
