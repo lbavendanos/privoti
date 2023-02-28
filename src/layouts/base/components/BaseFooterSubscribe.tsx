@@ -1,5 +1,6 @@
 import { cn } from 'lib/utils/helpers'
 import { KeyboardArrowRightIcon } from '@/common/components/Icons'
+import FormControl from '@/common/components/FormControl'
 
 export default function BaseFooterSubscribe() {
   return (
@@ -7,19 +8,20 @@ export default function BaseFooterSubscribe() {
       <p className="font-medium tracking-tight uppercase">
         Subscribe to our emails
       </p>
-      <div className="relative w-full flex border border-zinc-800 max-w-[400px] text-xs">
-        <input
+      <div className="flex justify-center w-full">
+        <FormControl
           id="email"
           type="email"
           name="email"
-          className="w-full h-8 px-3 outline-none placeholder:uppercase placeholder:tracking-tight text-zinc-500"
           placeholder="Enter email"
+          className="shrink py-0 max-w-[350px]"
         />
         <button
           className={cn(
-            'absolute right-0 w-8 h-8',
+            'grow-0 shrink-0',
+            'w-10 h-8',
             'flex justify-center items-center',
-            'text-white bg-zinc-800 '
+            'text-white bg-zinc-800'
           )}
         >
           <KeyboardArrowRightIcon />
