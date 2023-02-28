@@ -13,6 +13,7 @@ const FormControl = React.forwardRef<any, any>(
     const formControlClassName = [
       'w-full h-auto p-2.5',
       'border border-zinc-800 outline-none rounded-none',
+      'bg-white appearance-none',
       'text-xs text-zinc-500 tracking-tight',
       'placeholder:uppercase placeholder:tracking-tight',
     ]
