@@ -1,6 +1,7 @@
 import { cn } from 'lib/utils/helpers'
 import { KeyboardArrowRightIcon } from '@/common/components/Icons'
 import FormControl from '@/common/components/FormControl'
+import Button from '@/common/components/Button'
 
 export default function BaseFooterSubscribe() {
   return (
@@ -14,18 +15,11 @@ export default function BaseFooterSubscribe() {
           type="email"
           name="email"
           placeholder="Enter email"
-          className="shrink py-2 max-w-[350px]"
+          className="shrink py-2 max-w-[350px] border-r-0"
         />
-        <button
-          className={cn(
-            'grow-0 shrink-0',
-            'w-10 h-auto',
-            'flex justify-center items-center',
-            'text-white bg-zinc-800'
-          )}
-        >
+        <Button type="button">
           <KeyboardArrowRightIcon />
-        </button>
+        </Button>
       </div>
       <p className="text-xs uppercase font-light">
         Stay informed of all the launches of our products.

@@ -1,8 +1,8 @@
 'use client'
 
-import { cn } from 'lib/utils/helpers'
 import { SearchIcon } from '@/common/components/Icons'
 import Modal, { ModalProps } from '@/common/components/Modal'
+import Button from '@/common/components/Button'
 import ModalBody from '@/common/components/ModalBody'
 import CloseButton from '@/common/components/CloseButton'
 import FormControl from '@/common/components/FormControl'
@@ -23,18 +23,11 @@ export default function BaseNavbarSearchModal({
               type="search"
               name="search"
               placeholder="Enter search"
-              className="shrink"
+              className="shrink border-r-0"
             />
-            <button
-              className={cn(
-                'grow-0 shrink-0',
-                'w-10 h-auto',
-                'flex justify-center items-center',
-                'text-white bg-zinc-800'
-              )}
-            >
+            <Button type="button">
               <SearchIcon />
-            </button>
+            </Button>
           </div>
           <CloseButton onClick={onHide} />
         </div>
