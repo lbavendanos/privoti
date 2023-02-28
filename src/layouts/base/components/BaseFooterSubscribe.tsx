@@ -14,12 +14,12 @@ export default function BaseFooterSubscribe() {
           type="email"
           name="email"
           placeholder="Enter email"
-          className="shrink py-0 max-w-[350px]"
+          className="shrink py-2 max-w-[350px]"
         />
         <button
           className={cn(
             'grow-0 shrink-0',
-            'w-10 h-8',
+            'w-10 h-auto',
             'flex justify-center items-center',
             'text-white bg-zinc-800'
           )}

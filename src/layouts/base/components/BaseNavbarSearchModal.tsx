@@ -5,6 +5,7 @@ import { SearchIcon } from '@/common/components/Icons'
 import Modal, { ModalProps } from '@/common/components/Modal'
 import ModalBody from '@/common/components/ModalBody'
 import CloseButton from '@/common/components/CloseButton'
+import FormControl from '@/common/components/FormControl'
 
 interface BaseNavbarSearchModalProps extends ModalProps {}
 
@@ -16,20 +17,20 @@ export default function BaseNavbarSearchModal({
     <Modal {...props} onHide={onHide} size="lg">
       <ModalBody>
         <div className="flex items-center space-x-2">
-          <div className="relative w-full flex border border-zinc-800 text-xs">
-            <input
+          <div className="flex justify-center w-full">
+            <FormControl
               id="search"
               type="search"
               name="search"
-              className="w-full h-8 px-3 outline-none placeholder:uppercase placeholder:tracking-tight text-zinc-500"
-              placeholder="Search"
-              autoComplete="off"
+              placeholder="Enter search"
+              className="shrink"
             />
             <button
               className={cn(
-                'absolute right-0 w-8 h-8',
+                'grow-0 shrink-0',
+                'w-10 h-auto',
                 'flex justify-center items-center',
-                'text-white bg-zinc-800 '
+                'text-white bg-zinc-800'
               )}
             >
               <SearchIcon />

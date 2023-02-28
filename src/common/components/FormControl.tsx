@@ -10,7 +10,7 @@ const FormControl = React.forwardRef<any, any>(
   ({ className, multiline, ...props }, ref) => {
     const formControlClassName = [
       'w-full h-auto p-2.5',
-      'border border-zinc-800 outline-none',
+      'border border-zinc-800 outline-none rounded-none',
       'text-xs text-zinc-500 tracking-tight',
       'placeholder:uppercase placeholder:tracking-tight',
     ]
