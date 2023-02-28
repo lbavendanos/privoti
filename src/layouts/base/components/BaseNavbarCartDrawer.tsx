@@ -1,10 +1,10 @@
 import CloseButton from '@/common/components/CloseButton'
 import { ShoppingIcon } from '@/common/components/Icons'
+import Link from 'next/link'
+import Separator from '@/common/components/Separator'
 import Offcanvas, { OffcanvasProps } from '@/common/components/Offcanvas'
 import OffcanvasBody from '@/common/components/OffcanvasBody'
 import OffcanvasHeader from '@/common/components/OffcanvasHeader'
-import Separator from '@/common/components/Separator'
-import Link from 'next/link'
 
 interface BaseNavbarCartDrawerProps extends OffcanvasProps {}
 
@@ -24,6 +24,7 @@ export default function BaseNavbarCartDrawer({
         <Link
           href="/cart"
           className="text-xl md:text-2xl uppercase font-semibold tracking-tight hover:underline"
+          onClick={onHide}
         >
           Cart
         </Link>
