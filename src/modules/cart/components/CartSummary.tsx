@@ -1,9 +1,18 @@
+import { cn } from 'lib/utils/helpers'
 import Button from '@/common/components/Button'
 import Heading from '@/common/components/Heading'
 
-export default function CartSummary() {
+interface CartSummaryProps extends React.ComponentPropsWithoutRef<'aside'> {}
+
+export default function CartSummary({ className, ...props }: CartSummaryProps) {
   return (
-    <div className="flex flex-col p-4 border border-zinc-800 space-y-4">
+    <aside
+      {...props}
+      className={cn(
+        'flex flex-col p-4 border border-zinc-800 space-y-4',
+        className
+      )}
+    >
       <Heading as="h3" className="text-center">
         Order summary
       </Heading>
@@ -29,6 +38,6 @@ export default function CartSummary() {
         Taxes and shipping costs are calculated on the checkout screen
       </p>
       <Button type="button">Checkout</Button>
-    </div>
+    </aside>
   )
 }

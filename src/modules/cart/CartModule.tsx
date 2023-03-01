@@ -26,7 +26,7 @@ export default function CartModule() {
               </div>
             </div>
             <div className="w-full lg:w-4/12 p-0 lg:pl-4">
-              <CartSummary />
+              <CartSummary className="relative lg:sticky lg:top-0" />
             </div>
           </div>
         </div>
