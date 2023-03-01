@@ -6,6 +6,7 @@ import BaseLogo from '@/layouts/base/components/BaseLogo'
 import Container from '@/common/components/Container'
 import Separator from '@/common/components/Separator'
 import BaseFooter from '@/layouts/base/components/BaseFooter'
+import SSRProvider from '@/common/components/SSRProvider'
 import BaseNavbarOptions from '@/layouts/base/components/BaseNavbarOptions'
 import BaseNavbarDesktop from '@/layouts/base/components/BaseNavbarDesktop'
 import BaseNavbarMobileToggle from '@/layouts/base/components/BaseNavbarMobileToggle'
@@ -67,21 +68,23 @@ export default function RootLayout({
   return (
     <html lang="en" className={roboto.className}>
       <body className="flex flex-col min-h-screen bg-white text-zinc-800">
-        <header className="border-b border-zinc-800 py-3 md:py-2">
-          <Container>
-            <div className="grid grid-cols-3 md:grid-cols-2 items-center">
-              <BaseNavbarMobileToggle className="block md:hidden justify-self-start" />
-              <div className="flex items-center space-x-8 justify-self-center md:justify-self-start">
-                <BaseLogo />
-                <BaseNavbarDesktop className="hidden md:block" />
+        <SSRProvider>
+          <header className="border-b border-zinc-800 py-3 md:py-2">
+            <Container>
+              <div className="grid grid-cols-3 md:grid-cols-2 items-center">
+                <BaseNavbarMobileToggle className="block md:hidden justify-self-start" />
+                <div className="flex items-center space-x-8 justify-self-center md:justify-self-start">
+                  <BaseLogo />
+                  <BaseNavbarDesktop className="hidden md:block" />
+                </div>
+                <BaseNavbarOptions className="justify-self-end" />
               </div>
-              <BaseNavbarOptions className="justify-self-end" />
-            </div>
-          </Container>
-        </header>
-        <main className="grow">{children}</main>
-        <Separator />
-        <BaseFooter />
+            </Container>
+          </header>
+          <main className="grow">{children}</main>
+          <Separator />
+          <BaseFooter />
+        </SSRProvider>
       </body>
     </html>
   )
