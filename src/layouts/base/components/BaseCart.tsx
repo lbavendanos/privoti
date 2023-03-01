@@ -7,6 +7,7 @@ import Separator from '@/common/components/Separator'
 import CloseButton from '@/common/components/CloseButton'
 import OffcanvasBody from '@/common/components/OffcanvasBody'
 import OffcanvasHeader from '@/common/components/OffcanvasHeader'
+import BaseCartSummary from './BaseCartSummary'
 
 const items: Items = [
   {
@@ -32,12 +33,9 @@ const items: Items = [
   },
 ]
 
-interface BaseNavbarCartDrawerProps extends OffcanvasProps {}
+interface BaseCartProps extends OffcanvasProps {}
 
-export default function BaseNavbarCartDrawer({
-  onHide,
-  ...props
-}: BaseNavbarCartDrawerProps) {
+export default function BaseCart({ onHide, ...props }: BaseCartProps) {
   const hasProducts = true
 
   return (
@@ -61,7 +59,11 @@ export default function BaseNavbarCartDrawer({
       <Separator />
       <OffcanvasBody>
         {hasProducts ? (
-          <CartItemList items={items} />
+          <div className="flex flex-col space-y-4">
+            <CartItemList items={items} />
+            <Separator className="!px-0 opacity-30" />
+            <BaseCartSummary className="sticky bottom-0" />
+          </div>
         ) : (
           <p className="uppercase font-normal tracking-tight text-center">
             your cart is currently empty! <br /> let&apos;s fix that
