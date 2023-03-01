@@ -15,7 +15,7 @@ export default function CartModule() {
         <div className="flex flex-col space-y-4">
           <Heading as="h1">Cart</Heading>
           <div className="flex flex-wrap gap-y-6">
-            <div className="w-full lg:w-8/12 xl:w-9/12 p-0 lg:pr-4">
+            <div className="w-full lg:w-8/12 p-0 lg:pr-4">
               <div className="flex flex-col space-y-4">
                 {Array.from({ length: 3 }, (_, i) => (
                   <React.Fragment key={i}>
@@ -25,7 +25,7 @@ export default function CartModule() {
                 ))}
               </div>
             </div>
-            <div className="w-full lg:w-4/12 xl:w-3/12 p-0 lg:pl-4">
+            <div className="w-full lg:w-4/12 p-0 lg:pl-4">
               <CartSummary />
             </div>
           </div>

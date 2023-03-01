@@ -20,7 +20,7 @@ export default function HomeModule() {
               '2xl:grid-cols-6'
             )}
           >
-            {Array.from({ length: 24 }, (_, i) => (
+            {Array.from({ length: 18 }, (_, i) => (
               <ProductCard key={i} />
             ))}
           </div>
