@@ -4,7 +4,7 @@ import { cn } from 'lib/utils/helpers'
 import React from 'react'
 
 export interface ButtonProps extends React.ComponentPropsWithRef<'button'> {
-  variant?: 'primary' | 'secondary'
+  variant?: 'primary' | 'secondary' | 'tertiary'
   size?: 'sm' | 'md' | 'lg'
 }
 
@@ -27,6 +27,9 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const btnSecondaryClassName =
       'bg-secondary-200 hover:bg-secondary-300 active:bg-secondary-300 focus-visible:bg-secondary-300'
 
+    const btnTertiaryClassName =
+      'bg-tertiary-200 hover:bg-tertiary-300 active:bg-tertiary-300 focus-visible:bg-tertiary-300'
+
     return (
       <button
         {...props}
@@ -35,6 +38,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           btnClassName,
           variant === 'primary' && btnPrimaryClassName,
           variant === 'secondary' && btnSecondaryClassName,
+          variant === 'tertiary' && btnTertiaryClassName,
           size === 'sm' && btnSizeSmClassName,
           size === 'md' && btnSizeMdClassName,
           size === 'lg' && btnSizeLgClassName,

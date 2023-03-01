@@ -1,5 +1,6 @@
 import { cn } from 'lib/utils/helpers'
 import React from 'react'
+import Button from '@/common/components/Button'
 import Heading from '@/common/components/Heading'
 import CartItem from './components/CartItem'
 import Container from '@/common/components/Container'
@@ -30,7 +31,12 @@ export default function CartModule() {
           </div>
         </div>
         <div className="flex flex-col space-y-3">
-          <Heading as="h2">Featured collection</Heading>
+          <div className="flex justify-between">
+            <Heading as="h2">Featured collection</Heading>
+            <Button variant="tertiary" size="sm">
+              See more
+            </Button>
+          </div>
           <div
             className={cn(
               'grid grid-cols-2 gap-4',
