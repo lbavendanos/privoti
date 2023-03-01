@@ -1,12 +1,35 @@
 import { cn } from 'lib/utils/helpers'
+import CartItemList, { Items } from '@/common/components/CartItemList'
 import React from 'react'
 import Button from '@/common/components/Button'
 import Heading from '@/common/components/Heading'
-import CartItem from './components/CartItem'
 import Container from '@/common/components/Container'
-import Separator from '@/common/components/Separator'
 import CartSummary from './components/CartSummary'
 import ProductCard from '@/common/components/ProductCard'
+
+const items: Items = [
+  {
+    name: 'Marida top pink',
+    size: 'Extra small',
+    color: 'Black',
+    amount: 1,
+    price: 'S/. 179.80 PEN',
+  },
+  {
+    name: 'Marida top pink',
+    size: 'Extra small',
+    color: 'Black',
+    amount: 2,
+    price: 'S/. 179.80 PEN',
+  },
+  {
+    name: 'Marida top pink',
+    size: 'Extra small',
+    color: 'Black',
+    amount: 3,
+    price: 'S/. 179.80 PEN',
+  },
+]
 
 export default function CartModule() {
   return (
@@ -16,14 +39,7 @@ export default function CartModule() {
           <Heading as="h1">Cart</Heading>
           <div className="flex flex-wrap gap-y-6">
             <div className="w-full lg:w-8/12 p-0 lg:pr-4">
-              <div className="flex flex-col space-y-4">
-                {Array.from({ length: 3 }, (_, i) => (
-                  <React.Fragment key={i}>
-                    <CartItem />
-                    {i !== 2 && <Separator className="!px-0 opacity-30" />}
-                  </React.Fragment>
-                ))}
-              </div>
+              <CartItemList items={items} />
             </div>
             <div className="w-full lg:w-4/12 p-0 lg:pl-4">
               <CartSummary className="relative lg:sticky lg:top-0" />
