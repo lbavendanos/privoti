@@ -1,4 +1,5 @@
 import Button from '@/common/components/Button'
+import Heading from '@/common/components/Heading'
 import Container from '@/common/components/Container'
 import FormLabel from '@/common/components/FormLabel'
 import FormControl from '@/common/components/FormControl'
@@ -7,11 +8,11 @@ export default function ContactModule() {
   return (
     <Container className="my-10">
       <div className="flex flex-col w-full max-w-[600px] mx-auto space-y-4">
-        <h1 className="uppercase font-semibold tracking-tight text-xl md:text-2xl text-center">
+        <Heading as="h2" className="text-center">
           Contact
-        </h1>
+        </Heading>
         <form className="flex flex-col items-center space-y-3 border border-zinc-800 p-4">
-          <p className="uppercase font-light text-sm tracking-tight frac">
+          <p className="uppercase font-light text-sm tracking-tight">
             If you have any questions, please write us a message and we will
             answer you as soon as possible.
           </p>

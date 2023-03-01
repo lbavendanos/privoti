@@ -1,7 +1,8 @@
 import { cn } from 'lib/utils/helpers'
+import Heading from '@/common/components/Heading'
 import Container from '@/common/components/Container'
 import HomeBanner from './components/HomeBanner'
-import HomeProduct from './components/HomeProduct'
+import ProductCard from '@/common/components/ProductCard'
 
 export default function HomeModule() {
   return (
@@ -9,9 +10,7 @@ export default function HomeModule() {
       <HomeBanner />
       <Container className="my-10">
         <div className="flex flex-col space-y-3">
-          <h2 className="uppercase font-semibold tracking-tight text-xl md:text-2xl">
-            Featured products
-          </h2>
+          <Heading as="h2">Featured products</Heading>
           <div
             className={cn(
               'grid grid-cols-2 gap-4',
@@ -22,7 +21,7 @@ export default function HomeModule() {
             )}
           >
             {Array.from({ length: 24 }, (_, i) => (
-              <HomeProduct key={i} />
+              <ProductCard key={i} />
             ))}
           </div>
         </div>

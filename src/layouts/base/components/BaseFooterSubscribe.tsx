@@ -1,4 +1,3 @@
-import { cn } from 'lib/utils/helpers'
 import { KeyboardArrowRightIcon } from '@/common/components/Icons'
 import FormControl from '@/common/components/FormControl'
 import Button from '@/common/components/Button'
@@ -21,7 +20,7 @@ export default function BaseFooterSubscribe() {
           <KeyboardArrowRightIcon />
         </Button>
       </div>
-      <p className="text-xs uppercase font-light">
+      <p className="text-xs uppercase font-light tracking-tight">
         Stay informed of all the launches of our products.
       </p>
     </div>

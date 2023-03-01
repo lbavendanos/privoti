@@ -1,7 +1,7 @@
 import { cn } from 'lib/utils/helpers'
 import Link from 'next/link'
 
-export default function HomeProduct() {
+export default function ProductCard() {
   return (
     <Link href="/" className="flex flex-col">
       <div className="bg-gray-300 w-full h-[240px] sm:h-[300px] md:h-[350px]"></div>
