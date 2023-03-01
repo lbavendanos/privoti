@@ -1,11 +1,11 @@
 'use client'
 
 import BaseLogo from './BaseLogo'
-import Offcanvas, { OffcanvasProps } from '@/common/components/Offcanvas'
+import Separator from '@/common/components/Separator'
+import BaseNavbar from './BaseNavbar'
 import OffcanvasBody from '@/common/components/OffcanvasBody'
 import OffcanvasHeader from '@/common/components/OffcanvasHeader'
-import BaseNavbar from './BaseNavbar'
-import Separator from '@/common/components/Separator'
+import Offcanvas, { OffcanvasProps } from '@/common/components/Offcanvas'
 
 interface BaseNavbarMobileProps extends OffcanvasProps {}
 
