@@ -1,6 +1,7 @@
 import { cn } from 'lib/utils/helpers'
 import { LineIcon, PlusIcon } from '@/common/components/Icons'
 import Button from '@/common/components/Button'
+import Paragraph from '@/common/components/Paragraph'
 
 export default function CartItem() {
   return (
@@ -16,12 +17,12 @@ export default function CartItem() {
           >
             Marida top pink
           </a>
-          <p className="text-xs uppercase font-light tracking-tight">
+          <Paragraph size="xs" weight="light">
             Size: <strong>Extra small</strong>
-          </p>
-          <p className="text-xs uppercase font-light tracking-tight">
+          </Paragraph>
+          <Paragraph size="xs" weight="light">
             Color: <strong>Black</strong>
-          </p>
+          </Paragraph>
           <a
             href="#"
             className={cn(
@@ -43,9 +44,13 @@ export default function CartItem() {
             <PlusIcon className="w-3 h-3" />
           </Button>
         </div>
-        <p className="w-full lg:w-3/12 uppercase font-light tracking-tight text-xs md:text-sm text-left lg:text-right">
+        <Paragraph
+          size="sm"
+          weight="light"
+          className="w-full lg:w-3/12 text-left lg:text-right"
+        >
           <strong>S/. 179.80 PEN</strong>
-        </p>
+        </Paragraph>
         <div className="w-full block lg:hidden">
           <a
             href="#"

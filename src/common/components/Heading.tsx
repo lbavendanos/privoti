@@ -12,25 +12,18 @@ const Heading = React.forwardRef<HTMLHeadingElement, HeadingProps>(
     const headingClassName =
       'uppercase font-semibold tracking-tight text-zinc-800'
 
-    const h1ClassName = 'text-2xl md:text-3xl'
-    const h2ClassName = 'text-xl md:text-2xl'
-    const h3ClassName = 'text-lg md:text-xl'
-    const h4ClassName = 'text-base md:text-lg'
-    const h5ClassName = 'text-sm md:text-base'
-    const h6ClassName = 'text-xs md:text-sm'
-
     return (
       <Component
         {...props}
         ref={ref}
         className={cn(
           headingClassName,
-          as === 'h1' && h1ClassName,
-          as === 'h2' && h2ClassName,
-          as === 'h3' && h3ClassName,
-          as === 'h4' && h4ClassName,
-          as === 'h5' && h5ClassName,
-          as === 'h6' && h6ClassName,
+          as === 'h1' && 'text-2xl md:text-3xl',
+          as === 'h2' && 'text-xl md:text-2xl',
+          as === 'h3' && 'text-lg md:text-xl',
+          as === 'h4' && 'text-base md:text-lg',
+          as === 'h5' && 'text-sm md:text-base',
+          as === 'h6' && 'text-xs md:text-sm',
           className
         )}
       />

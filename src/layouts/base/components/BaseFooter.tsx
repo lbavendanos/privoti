@@ -1,5 +1,6 @@
-import Container from '@/common/components/Container'
 import { config } from 'lib/utils/helpers'
+import Container from '@/common/components/Container'
+import Paragraph from '@/common/components/Paragraph'
 import BaseFooterSocial from './BaseFooterSocial'
 import BaseFooterSubscribe from './BaseFooterSubscribe'
 
@@ -13,10 +14,10 @@ export default function BaseFooter() {
         <div className="flex flex-col justify-center items-center space-y-6">
           <BaseFooterSubscribe />
           <BaseFooterSocial />
-          <p className="font-light text-xs uppercase text-center">
+          <Paragraph size="xs" weight="light" className="text-center">
             <span className="text-base">©</span> {year} {appName} All Rights
             Reserved
-          </p>
+          </Paragraph>
         </div>
       </Container>
     </footer>

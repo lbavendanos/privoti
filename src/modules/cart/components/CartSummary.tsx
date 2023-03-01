@@ -1,6 +1,7 @@
 import { cn } from 'lib/utils/helpers'
 import Button from '@/common/components/Button'
 import Heading from '@/common/components/Heading'
+import Paragraph from '@/common/components/Paragraph'
 
 interface CartSummaryProps extends React.ComponentPropsWithoutRef<'aside'> {}
 
@@ -18,25 +19,21 @@ export default function CartSummary({ className, ...props }: CartSummaryProps) {
       </Heading>
       <div className="flex flex-col space-y-0.5">
         <div className="flex justify-between">
-          <p className="uppercase font-normal tracking-tight text-sm">
-            Total items
-          </p>
-          <p className="uppercase font-normal tracking-tight text-sm">
+          <Paragraph size="sm">Total items</Paragraph>
+          <Paragraph size="sm">
             <strong>2</strong>
-          </p>
+          </Paragraph>
         </div>
         <div className="flex justify-between">
-          <p className="uppercase font-normal tracking-tight text-sm">
-            Subtotal
-          </p>
-          <p className="uppercase font-normal tracking-tight text-sm">
+          <Paragraph size="sm">Subtotal</Paragraph>
+          <Paragraph size="sm">
             <strong>S/. 179.80 PEN</strong>
-          </p>
+          </Paragraph>
         </div>
       </div>
-      <p className="text-xs uppercase font-light tracking-tight">
+      <Paragraph size="xs" weight="light">
         Taxes and shipping costs are calculated on the checkout screen
-      </p>
+      </Paragraph>
       <Button type="button">Checkout</Button>
     </aside>
   )
