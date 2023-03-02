@@ -25,7 +25,9 @@ export default function CartSummary({ className, ...props }: CartSummaryProps) {
       <Paragraph size="xs" weight="light">
         Taxes and shipping costs are calculated on the checkout screen
       </Paragraph>
-      <Button type="button">Checkout</Button>
+      <Button type="button" size="lg">
+        Checkout
+      </Button>
     </div>
   )
 }

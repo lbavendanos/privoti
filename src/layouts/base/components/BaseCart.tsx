@@ -60,7 +60,7 @@ export default function BaseCart({ onHide, ...props }: BaseCartProps) {
       <OffcanvasBody className="pb-0">
         {hasProducts ? (
           <div className="flex flex-col space-y-4">
-            <CartItemList items={items} />
+            <CartItemList items={items} variant="minimal" />
             <div className="flex flex-col space-y-4 pb-4 bg-white sticky bottom-0 z-10">
               <Separator className="!px-0 opacity-30" />
               <CartSummary />
