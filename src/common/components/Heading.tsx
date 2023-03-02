@@ -18,12 +18,12 @@ const Heading = React.forwardRef<HTMLHeadingElement, HeadingProps>(
         ref={ref}
         className={cn(
           headingClassName,
-          as === 'h1' && 'text-2xl md:text-3xl',
-          as === 'h2' && 'text-xl md:text-2xl',
-          as === 'h3' && 'text-lg md:text-xl',
-          as === 'h4' && 'text-base md:text-lg',
-          as === 'h5' && 'text-sm md:text-base',
-          as === 'h6' && 'text-xs md:text-sm',
+          as === 'h1' && 'text-xl md:text-2xl',
+          as === 'h2' && 'text-lg md:text-xl',
+          as === 'h3' && 'text-base md:text-lg',
+          as === 'h4' && 'text-sm md:text-base',
+          as === 'h5' && 'text-xs md:text-sm',
+          as === 'h6' && 'text-xs md:text-xs',
           className
         )}
       />

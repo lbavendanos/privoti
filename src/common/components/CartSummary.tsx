@@ -1,6 +1,7 @@
 import { cn } from 'lib/utils/helpers'
 import Button from './Button'
 import Paragraph from './Paragraph'
+import ShippingInfo from './ShippingInfo'
 
 export interface CartSummaryProps
   extends React.ComponentPropsWithoutRef<'div'> {}
@@ -22,9 +23,7 @@ export default function CartSummary({ className, ...props }: CartSummaryProps) {
           </Paragraph>
         </div>
       </div>
-      <Paragraph size="xs" weight="light">
-        Taxes and shipping costs are calculated on the checkout screen
-      </Paragraph>
+      <ShippingInfo />
       <Button type="button" size="lg">
         Checkout
       </Button>
