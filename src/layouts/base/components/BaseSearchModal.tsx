@@ -7,12 +7,12 @@ import ModalBody from '@/common/components/ModalBody'
 import CloseButton from '@/common/components/CloseButton'
 import FormControl from '@/common/components/FormControl'
 
-interface BaseNavbarSearchModalProps extends ModalProps {}
+interface BaseSearchModalProps extends ModalProps {}
 
-export default function BaseNavbarSearchModal({
+export default function BaseSearchModal({
   onHide,
   ...props
-}: BaseNavbarSearchModalProps) {
+}: BaseSearchModalProps) {
   return (
     <Modal {...props} onHide={onHide} size="lg">
       <ModalBody>

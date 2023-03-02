@@ -1,6 +1,6 @@
 import { cn } from 'lib/utils/helpers'
-import BaseNavbarCart from './BaseNavbarCart'
-import BaseNavbarSearch from './BaseNavbarSearch'
+import BaseNavbarCartButton from './BaseNavbarCartButton'
+import BaseNavbarSearchButton from './BaseNavbarSearchButton'
 
 interface BaseNavbarOptionsProps
   extends React.ComponentPropsWithoutRef<'div'> {}
@@ -11,8 +11,8 @@ export default function BaseNavbarOptions({
 }: BaseNavbarOptionsProps) {
   return (
     <div {...props} className={cn('flex space-x-4', className)}>
-      <BaseNavbarSearch />
-      <BaseNavbarCart />
+      <BaseNavbarSearchButton />
+      <BaseNavbarCartButton />
     </div>
   )
 }

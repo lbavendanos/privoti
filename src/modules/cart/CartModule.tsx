@@ -4,8 +4,8 @@ import React from 'react'
 import Button from '@/common/components/Button'
 import Heading from '@/common/components/Heading'
 import Container from '@/common/components/Container'
-import CartSummary from './components/CartSummary'
 import ProductCard from '@/common/components/ProductCard'
+import CartOrderSummary from './components/CartOrderSummary'
 
 const items: Items = [
   {
@@ -42,7 +42,7 @@ export default function CartModule() {
               <CartItemList items={items} />
             </div>
             <div className="w-full lg:w-4/12 p-0 lg:pl-4">
-              <CartSummary className="relative lg:sticky lg:top-0" />
+              <CartOrderSummary className="relative lg:sticky lg:top-0" />
             </div>
           </div>
         </div>

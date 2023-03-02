@@ -9,11 +9,11 @@ const BaseNavbarMobile = dynamic(() => import('./BaseNavbarMobile'), {
   ssr: false,
 })
 
-interface BaseNavbarMobileToggleProps
+interface BaseNavbarMobileToggleButtonProps
   extends React.ComponentPropsWithoutRef<'button'> {}
 
-export default function BaseNavbarMobileToggle(
-  props: BaseNavbarMobileToggleProps
+export default function BaseNavbarMobileToggleButton(
+  props: BaseNavbarMobileToggleButtonProps
 ) {
   const isMobile = useBreakpoint('sm', 'down')
   const [isMounted, setIsMounted] = useState(false)

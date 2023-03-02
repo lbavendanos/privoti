@@ -1,13 +1,11 @@
 import { cn } from 'lib/utils/helpers'
-import Button from '@/common/components/Button'
-import Paragraph from '@/common/components/Paragraph'
+import Button from './Button'
+import Paragraph from './Paragraph'
 
-interface BaseCartSummaryProps extends React.ComponentPropsWithoutRef<'div'> {}
+export interface CartSummaryProps
+  extends React.ComponentPropsWithoutRef<'div'> {}
 
-export default function BaseCartSummary({
-  className,
-  ...props
-}: BaseCartSummaryProps) {
+export default function CartSummary({ className, ...props }: CartSummaryProps) {
   return (
     <div {...props} className={cn('flex flex-col space-y-4', className)}>
       <div className="flex flex-col space-y-0.5">
@@ -27,9 +25,7 @@ export default function BaseCartSummary({
       <Paragraph size="xs" weight="light">
         Taxes and shipping costs are calculated on the checkout screen
       </Paragraph>
-      <Button variant="primary" size="lg">
-        Checkout
-      </Button>
+      <Button type="button">Checkout</Button>
     </div>
   )
 }

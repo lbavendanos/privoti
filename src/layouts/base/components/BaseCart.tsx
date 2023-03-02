@@ -5,9 +5,9 @@ import React from 'react'
 import Link from 'next/link'
 import Separator from '@/common/components/Separator'
 import CloseButton from '@/common/components/CloseButton'
+import CartSummary from '@/common/components/CartSummary'
 import OffcanvasBody from '@/common/components/OffcanvasBody'
 import OffcanvasHeader from '@/common/components/OffcanvasHeader'
-import BaseCartSummary from './BaseCartSummary'
 
 const items: Items = [
   {
@@ -62,7 +62,7 @@ export default function BaseCart({ onHide, ...props }: BaseCartProps) {
           <div className="flex flex-col space-y-4">
             <CartItemList items={items} />
             <Separator className="!px-0 opacity-30" />
-            <BaseCartSummary className="sticky bottom-0" />
+            <CartSummary className="sticky bottom-0" />
           </div>
         ) : (
           <p className="uppercase font-normal tracking-tight text-center">

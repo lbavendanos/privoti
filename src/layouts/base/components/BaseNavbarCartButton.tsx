@@ -8,7 +8,7 @@ const BaseCart = dynamic(() => import('./BaseCart'), {
   ssr: false,
 })
 
-export default function BaseNavbarCart() {
+export default function BaseNavbarCartButton() {
   const [show, setShow] = useState(false)
 
   const handleClose = () => setShow(false)

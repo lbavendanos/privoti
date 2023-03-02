@@ -4,11 +4,11 @@ import dynamic from 'next/dynamic'
 import { useState } from 'react'
 import { SearchIcon } from '@/common/components/Icons'
 
-const BaseNavbarSearchModal = dynamic(() => import('./BaseNavbarSearchModal'), {
+const BaseSearchModal = dynamic(() => import('./BaseSearchModal'), {
   ssr: false,
 })
 
-export default function BaseNavbarSearch() {
+export default function BaseNavbarSearchButton() {
   const [show, setShow] = useState(false)
 
   const handleClose = () => setShow(false)
@@ -19,7 +19,7 @@ export default function BaseNavbarSearch() {
       <button type="button" className="text-zinc-800" onClick={handleShow}>
         <SearchIcon className="w-6 h-6" />
       </button>
-      <BaseNavbarSearchModal show={show} onHide={handleClose} />
+      <BaseSearchModal show={show} onHide={handleClose} />
     </>
   )
 }
