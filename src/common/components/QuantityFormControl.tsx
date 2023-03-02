@@ -2,14 +2,14 @@ import { cn } from 'lib/utils/helpers'
 import { LineIcon, PlusIcon } from './Icons'
 import Button from './Button'
 
-export interface CartQuantityFormControlProps
+export interface QuantityFormControlProps
   extends React.ComponentPropsWithoutRef<'input'> {}
 
-export default function CartQuantityFormControl({
+export default function QuantityFormControl({
   className,
   value,
   ...props
-}: CartQuantityFormControlProps) {
+}: QuantityFormControlProps) {
   return (
     <div {...props} className={cn('inline-block', className)}>
       <Button variant="secondary" size="sm" className="!p-2">

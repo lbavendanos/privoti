@@ -1,6 +1,6 @@
 import { cn } from 'lib/utils/helpers'
 import Paragraph from './Paragraph'
-import CartQuantityFormControl from './CartQuantityFormControl'
+import QuantityFormControl from './QuantityFormControl'
 
 export interface Item {
   name?: string
@@ -59,7 +59,7 @@ export default function CartItem({
                 <strong>{price}</strong>
               </Paragraph>
             )}
-            {amount && <CartQuantityFormControl value={amount} />}
+            {amount && <QuantityFormControl value={amount} />}
             <a
               href="#"
               className="w-fit uppercase tracking-tight font-light text-xs underline hover:font-normal"
@@ -107,7 +107,7 @@ export default function CartItem({
           </a>
         </div>
         {amount && (
-          <CartQuantityFormControl
+          <QuantityFormControl
             className="w-full lg:w-3/12 text-left"
             value={amount}
           />

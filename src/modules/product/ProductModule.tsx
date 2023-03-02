@@ -3,7 +3,7 @@ import Heading from '@/common/components/Heading'
 import Container from '@/common/components/Container'
 import Paragraph from '@/common/components/Paragraph'
 import ShippingInfo from '@/common/components/ShippingInfo'
-import CartQuantityFormControl from '@/common/components/CartQuantityFormControl'
+import QuantityFormControl from '@/common/components/QuantityFormControl'
 
 export default function ProductModule() {
   return (
@@ -49,7 +49,7 @@ export default function ProductModule() {
                   <Paragraph size="xs" weight="medium">
                     <strong>Quantity:</strong>
                   </Paragraph>
-                  <CartQuantityFormControl value={1} />
+                  <QuantityFormControl value={1} />
                 </div>
               </div>
               <div className="flex flex-col space-y-2">
