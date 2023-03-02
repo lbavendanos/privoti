@@ -1,7 +1,6 @@
 import { cn } from 'lib/utils/helpers'
-import { LineIcon, PlusIcon } from './Icons'
-import Button from './Button'
 import Paragraph from './Paragraph'
+import CartQuantityFormControl from './CartQuantityFormControl'
 
 export interface Item {
   name?: string
@@ -60,19 +59,7 @@ export default function CartItem({
                 <strong>{price}</strong>
               </Paragraph>
             )}
-            {amount && (
-              <div className="inline-block">
-                <Button variant="secondary" size="sm" className="!p-2">
-                  <LineIcon className="w-3 h-3" />
-                </Button>
-                <div className="w-[30px] border-y border-zinc-800 p-1.5 text-xs text-center inline-block align-middle">
-                  <span>{amount}</span>
-                </div>
-                <Button variant="secondary" size="sm" className="!p-2">
-                  <PlusIcon className="w-3 h-3" />
-                </Button>
-              </div>
-            )}
+            {amount && <CartQuantityFormControl value={amount} />}
             <a
               href="#"
               className="w-fit uppercase tracking-tight font-light text-xs underline hover:font-normal"
@@ -120,17 +107,10 @@ export default function CartItem({
           </a>
         </div>
         {amount && (
-          <div className="w-full lg:w-3/12 inline-block text-left">
-            <Button variant="secondary" size="sm" className="!p-2">
-              <LineIcon className="w-3 h-3" />
-            </Button>
-            <div className="w-[30px] border-y border-zinc-800 p-1.5 text-xs text-center inline-block align-middle">
-              <span>{amount}</span>
-            </div>
-            <Button variant="secondary" size="sm" className="!p-2">
-              <PlusIcon className="w-3 h-3" />
-            </Button>
-          </div>
+          <CartQuantityFormControl
+            className="w-full lg:w-3/12 text-left"
+            value={amount}
+          />
         )}
         {price && (
           <Paragraph
