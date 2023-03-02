@@ -57,12 +57,14 @@ export default function BaseCart({ onHide, ...props }: BaseCartProps) {
         <CloseButton onClick={onHide} />
       </OffcanvasHeader>
       <Separator />
-      <OffcanvasBody>
+      <OffcanvasBody className="pb-0">
         {hasProducts ? (
           <div className="flex flex-col space-y-4">
             <CartItemList items={items} />
-            <Separator className="!px-0 opacity-30" />
-            <CartSummary className="sticky bottom-0" />
+            <div className="flex flex-col space-y-4 pb-4 bg-white sticky bottom-0 z-10">
+              <Separator className="!px-0 opacity-30" />
+              <CartSummary />
+            </div>
           </div>
         ) : (
           <p className="uppercase font-normal tracking-tight text-center">
