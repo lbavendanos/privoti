@@ -33,7 +33,7 @@ const items: Items = [
 
 export default function CartModule() {
   return (
-    <Container className="my-10">
+    <Container className="my-6 md:my-10">
       <div className="flex flex-col space-y-10">
         <div className="flex flex-col space-y-4">
           <Heading as="h1">Cart</Heading>

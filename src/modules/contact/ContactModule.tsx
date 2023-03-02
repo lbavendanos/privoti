@@ -4,7 +4,7 @@ import ContactForm from './components/ContactForm'
 
 export default function ContactModule() {
   return (
-    <Container className="my-10">
+    <Container className="my-6 md:my-10">
       <div className="flex flex-col w-full max-w-[600px] mx-auto space-y-4">
         <Heading as="h2" className="text-center">
           Contact
