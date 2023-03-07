@@ -1,16 +1,69 @@
 import { cn } from 'lib/utils/helpers'
 import Link from 'next/link'
+import Image from 'next/image'
 import Paragraph from './Paragraph'
 
-export default function ProductCard() {
+interface Image {
+  id?: string
+  src?: string
+  alt?: string
+}
+
+type Images = Image[]
+
+interface Product {
+  id?: string
+  name?: string
+  url?: string
+  priceRange?: {
+    minVariantPrice?: {
+      amount?: number
+      currencyCode?: string
+    }
+  }
+  images?: Images
+}
+
+interface ProductCardProps
+  extends React.ComponentPropsWithoutRef<'a'>,
+    Product {}
+
+export default function ProductCard({
+  name,
+  url,
+  priceRange,
+  images,
+  className,
+  ...props
+}: ProductCardProps) {
+  if (!url) return null
+
   return (
-    <Link href="/" className="flex flex-col">
-      <div className="bg-gray-300 w-full h-[240px] sm:h-[300px]"></div>
+    <Link {...props} href={url} className={cn('flex flex-col', className)}>
+      {images?.at(0) && (
+        <figure className="bg-gray-300 w-full h-auto">
+          <Image
+            src={images.at(0)?.src!}
+            alt={images.at(0)?.alt! || name!}
+            width={517}
+            height={600}
+          />
+        </figure>
+      )}
       <div className={cn('flex flex-col my-2', 'tracking-tight text-xs')}>
-        <Paragraph size="xs" weight="semibold">
-          KALBARRI CORSET TOP WHITE
-        </Paragraph>
-        <Paragraph size="xs">$75.00</Paragraph>
+        {name && (
+          <Paragraph size="xs" weight="semibold">
+            {name}
+          </Paragraph>
+        )}
+        {priceRange?.minVariantPrice && (
+          <Paragraph size="xs">
+            {new Intl.NumberFormat('es-PE', {
+              style: 'currency',
+              currency: priceRange.minVariantPrice.currencyCode,
+            }).format(priceRange.minVariantPrice.amount!)}
+          </Paragraph>
+        )}
       </div>
     </Link>
   )
