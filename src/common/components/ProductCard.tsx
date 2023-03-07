@@ -1,28 +1,8 @@
 import { cn } from 'lib/utils/helpers'
+import { Product } from 'lib/types/product'
 import Link from 'next/link'
 import Image from 'next/image'
 import Paragraph from './Paragraph'
-
-interface Image {
-  id?: string
-  src?: string
-  alt?: string
-}
-
-type Images = Image[]
-
-interface Product {
-  id?: string
-  name?: string
-  url?: string
-  priceRange?: {
-    minVariantPrice?: {
-      amount?: number
-      currencyCode?: string
-    }
-  }
-  images?: Images
-}
 
 interface ProductCardProps
   extends React.ComponentPropsWithoutRef<'a'>,
