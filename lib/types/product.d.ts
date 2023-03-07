@@ -1,14 +1,13 @@
 import { Images } from './image'
+import { Price } from './price'
 
 export interface Product {
   id?: string
-  name?: string
   url?: string
+  name?: string
+  description?: string
   priceRange?: {
-    minVariantPrice?: {
-      amount?: number
-      currencyCode?: string
-    }
+    minVariantPrice?: Price
   }
   images?: Images
 }

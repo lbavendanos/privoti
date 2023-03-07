@@ -3,6 +3,7 @@ import { Product } from 'lib/types/product'
 import Link from 'next/link'
 import Image from 'next/image'
 import Paragraph from './Paragraph'
+import ProductPrice from './ProductPrice'
 
 interface ProductCardProps
   extends React.ComponentPropsWithoutRef<'a'>,
@@ -25,7 +26,7 @@ export default function ProductCard({
           <Image
             src={images.at(0)?.src!}
             alt={images.at(0)?.alt! || name!}
-            width={517}
+            width={510}
             height={600}
           />
         </figure>
@@ -37,12 +38,7 @@ export default function ProductCard({
           </Paragraph>
         )}
         {priceRange?.minVariantPrice && (
-          <Paragraph size="xs">
-            {new Intl.NumberFormat('es-PE', {
-              style: 'currency',
-              currency: priceRange.minVariantPrice.currencyCode,
-            }).format(priceRange.minVariantPrice.amount!)}
-          </Paragraph>
+          <ProductPrice size="xs" {...priceRange?.minVariantPrice} />
         )}
       </div>
     </Link>

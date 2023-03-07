@@ -49,4 +49,6 @@ export function filled<T>(value: T): boolean {
   return !blank(value)
 }
 
+export const gql = String.raw
+
 export { default as cn } from 'clsx'
