@@ -1,14 +1,34 @@
-import { getProduct, getProductSlugs } from 'lib/graphql/product'
+import { url } from 'lib/utils/url'
+import { fetcher } from 'lib/utils/http'
+import { Product } from 'lib/types/product'
 import { Metadata } from 'next'
 import ProductModule from '@/modules/product/ProductModule'
-import { url } from 'lib/utils/url'
+
+interface Slug {
+  slug?: string
+}
+
+type Slugs = Slug[]
+
+interface SlugsResponse {
+  data: Slugs
+}
+
+interface ProductResponse {
+  data: Product
+}
 
 export async function generateStaticParams() {
-  return getProductSlugs()
+  const { data: slugs } = await fetcher<SlugsResponse>(url('/api/slugs'))
+
+  return slugs
 }
 
 export async function generateMetadata({ params }: any): Promise<Metadata> {
-  const product = await getProduct(params.slug)
+  const { slug } = params
+  const { data: product } = await fetcher<ProductResponse>(
+    url(`/api/products/${slug}`)
+  )
 
   return {
     title: product.name,

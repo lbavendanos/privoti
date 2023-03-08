@@ -1,5 +1,7 @@
 import { cn } from 'lib/utils/helpers'
-import { getProduct } from 'lib/graphql/product'
+import { url } from 'lib/utils/url'
+import { fetcher } from 'lib/utils/http'
+import { Product } from 'lib/types/product'
 import Image from 'next/image'
 import Button from '@/common/components/Button'
 import Heading from '@/common/components/Heading'
@@ -8,6 +10,10 @@ import Paragraph from '@/common/components/Paragraph'
 import ShippingInfo from '@/common/components/ShippingInfo'
 import ProductPrice from '@/common/components/ProductPrice'
 import QuantityFormControl from '@/common/components/QuantityFormControl'
+
+interface ProductResponse {
+  data: Product
+}
 
 interface ProductModuleProps extends React.ComponentPropsWithoutRef<'div'> {
   slug: string
@@ -18,7 +24,12 @@ export default async function ProductModule({
   className,
   ...props
 }: ProductModuleProps) {
-  const product = await getProduct(slug)
+  const { data: product } = await fetcher<ProductResponse>(
+    url(`/api/products/${slug}`),
+    {
+      next: { revalidate: 60 },
+    }
+  )
 
   return (
     <Container {...props} className={cn('my-6 md:my-10', className)}>
