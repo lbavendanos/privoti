@@ -50,6 +50,6 @@ export async function generateMetadata({ params }: any): Promise<Metadata> {
 }
 
 export default async function ProductPage({ params }: any) {
-  /* @ts-expect-error Server Component */
+  /* @ts-expect-error Async Server Component */
   return <ProductModule slug={params.slug} />
 }
