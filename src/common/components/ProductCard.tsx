@@ -26,6 +26,8 @@ export default function ProductCard({
           <Image
             src={images.at(0)?.src!}
             alt={images.at(0)?.alt! || name!}
+            blurDataURL={images.at(0)?.blurDataURL!}
+            placeholder="blur"
             width={510}
             height={600}
           />

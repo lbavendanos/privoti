@@ -1,5 +1,7 @@
 import { gql } from 'lib/utils/helpers'
 import { shopifyFetch } from 'lib/utils/shopify'
+import { getPlaiceholder } from 'plaiceholder'
+import { Image, Images } from 'lib/types/image'
 import { Product, Products } from 'lib/types/product'
 
 export const GET_PRODUCT_SLUGS_QUERY = gql`
@@ -73,27 +75,37 @@ export async function getProductSlugs(): Promise<{ slug: string }[]> {
   const response = await shopifyFetch(GET_PRODUCT_SLUGS_QUERY)
   const edges: object[] = response.body.data.products.edges
 
-  const slugs = edges.map(({ node }: any) => ({ slug: node.handle }))
-
-  return slugs
+  return edges.map(({ node }: any) => ({ slug: node.handle }))
 }
 
 export async function getProducts(): Promise<Products> {
   const response = await shopifyFetch(GET_PRODUCTS_QUERY)
   const edges: object[] = response.body.data.products.edges
 
-  const products: Products = edges.map(({ node }: any) => ({
-    id: node.id,
-    url: node.handle,
-    name: node.title,
-    priceRange: node.priceRange,
-    images:
-      node.images?.edges?.map(({ node }: any) => ({
+  const products: Products = await Promise.all(
+    edges.map(async ({ node }: any): Promise<Product> => {
+      const images: Images = await Promise.all(
+        node.images?.edges?.map(async ({ node }: any): Promise<Image> => {
+          const { base64 } = await getPlaiceholder(node.url, { size: 10 })
+
+          return {
+            id: node.id,
+            src: node.url,
+            alt: node.altText,
+            blurDataURL: base64,
+          }
+        })
+      )
+
+      return {
         id: node.id,
-        src: node.url,
-        alt: node.altText,
-      })) || [],
-  }))
+        url: node.handle,
+        name: node.title,
+        priceRange: node.priceRange,
+        images,
+      }
+    })
+  )
 
   return products
 }
@@ -102,18 +114,26 @@ export async function getProduct(slug: string): Promise<Product> {
   const response = await shopifyFetch(GET_PRODUCT_QUERY, { handle: slug })
   const node: any = response.body.data.product
 
+  const images: Images = await Promise.all(
+    node.images?.edges?.map(async ({ node }: any): Promise<Image> => {
+      const { base64 } = await getPlaiceholder(node.url, { size: 10 })
+
+      return {
+        id: node.id,
+        src: node.url,
+        alt: node.altText,
+        blurDataURL: base64,
+      }
+    })
+  )
+
   const product: Product = {
     id: node.id,
     url: node.handle,
     name: node.title,
     description: node.description,
     priceRange: node.priceRange,
-    images:
-      node.images?.edges?.map(({ node }: any) => ({
-        id: node.id,
-        src: node.url,
-        alt: node.altText,
-      })) || [],
+    images,
   }
 
   return product

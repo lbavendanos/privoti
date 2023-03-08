@@ -31,6 +31,8 @@ export default async function ProductModule({
                   <Image
                     src={product.images.at(0)?.src!}
                     alt={product.images.at(0)?.alt! || product.name!}
+                    blurDataURL={product.images.at(0)?.blurDataURL!}
+                    placeholder="blur"
                     width={510}
                     height={600}
                   />
@@ -41,6 +43,8 @@ export default async function ProductModule({
                   <Image
                     src={product.images.at(1)?.src!}
                     alt={product.images.at(1)?.alt! || product.name!}
+                    blurDataURL={product.images.at(1)?.blurDataURL!}
+                    placeholder="blur"
                     width={510}
                     height={600}
                   />
