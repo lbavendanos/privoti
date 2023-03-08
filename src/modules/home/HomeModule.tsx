@@ -23,8 +23,8 @@ export default async function HomeModule() {
               '2xl:grid-cols-6'
             )}
           >
-            {products.map((product) => (
-              <ProductCard key={product.id} {...product} />
+            {products.map(({ id, ...product }) => (
+              <ProductCard key={id} {...product} />
             ))}
           </div>
         </div>

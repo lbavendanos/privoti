@@ -29,6 +29,7 @@ export default async function ProductModule({
               {product.images?.at(0) && (
                 <figure className="bg-gray-300 w-full h-auto lg:w-1/2">
                   <Image
+                    className="object-cover w-full h-full"
                     src={product.images.at(0)?.src!}
                     alt={product.images.at(0)?.alt! || product.name!}
                     blurDataURL={product.images.at(0)?.blurDataURL!}
@@ -41,6 +42,7 @@ export default async function ProductModule({
               {product.images?.at(1) && (
                 <figure className="bg-gray-300 w-full h-auto lg:w-1/2">
                   <Image
+                    className="object-cover w-full h-full"
                     src={product.images.at(1)?.src!}
                     alt={product.images.at(1)?.alt! || product.name!}
                     blurDataURL={product.images.at(1)?.blurDataURL!}

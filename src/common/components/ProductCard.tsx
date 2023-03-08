@@ -22,8 +22,9 @@ export default function ProductCard({
   return (
     <Link {...props} href={url} className={cn('flex flex-col', className)}>
       {images?.at(0) && (
-        <figure className="bg-gray-300 w-full h-auto">
+        <figure className="bg-gray-300 w-full h-full">
           <Image
+            className="object-cover w-full h-full"
             src={images.at(0)?.src!}
             alt={images.at(0)?.alt! || name!}
             blurDataURL={images.at(0)?.blurDataURL!}
