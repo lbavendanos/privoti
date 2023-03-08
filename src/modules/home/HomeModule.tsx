@@ -1,23 +1,12 @@
 import { cn } from 'lib/utils/helpers'
-import { url } from 'lib/utils/url'
-import { fetcher } from 'lib/utils/http'
-import { Products } from 'lib/types/product'
+import { getProducts } from 'lib/graphql/product'
 import Heading from '@/common/components/Heading'
 import Container from '@/common/components/Container'
 import HomeBanner from './components/HomeBanner'
 import ProductCard from '@/common/components/ProductCard'
 
-interface ProductsResponse {
-  data: Products
-}
-
 export default async function HomeModule() {
-  const { data: products } = await fetcher<ProductsResponse>(
-    url('/api/products'),
-    {
-      next: { revalidate: 60 },
-    }
-  )
+  const products = await getProducts()
 
   return (
     <div className="flex flex-col">
