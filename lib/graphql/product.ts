@@ -51,8 +51,10 @@ export const GET_PRODUCT_QUERY = gql`
     product(handle: $handle) {
       handle
       id
-      description
       title
+      description
+      availableForSale
+      totalInventory
       priceRange {
         minVariantPrice {
           amount
@@ -73,6 +75,8 @@ export const GET_PRODUCT_QUERY = gql`
           node {
             title
             id
+            currentlyNotInStock
+            quantityAvailable
           }
         }
       }
@@ -143,7 +147,8 @@ export const getProduct = cache(async (slug: string): Promise<Product> => {
     description: node.description,
     priceRange: node.priceRange,
     images,
-    sizes: node.variants?.edges?.map(({ node }: any) => {
+    variants: node.variants?.edges?.map(({ node }: any) => {
+      const quantity = node.quantityAvailable
       const name = node.title
       const id = (node.id as string).replace(
         'gid://shopify/ProductVariant/',
@@ -162,6 +167,7 @@ export const getProduct = cache(async (slug: string): Promise<Product> => {
         id,
         name,
         short,
+        quantity,
       }
     }),
   }

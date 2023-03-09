@@ -71,23 +71,27 @@ export default async function ProductModule({
                 <ShippingInfo />
               </div>
               <div className="flex flex-col space-y-2">
-                {product.url && product.sizes && product.sizes?.length > 0 && (
-                  <div className="flex flex-col space-y-2">
-                    <Paragraph size="xs" weight="medium">
-                      <strong>Size:</strong>
-                    </Paragraph>
-                    <Suspense
-                      fallback={
-                        <ProductSizeFormControlFallback sizes={product.sizes} />
-                      }
-                    >
-                      <ProductSizeFormControl
-                        sizes={product.sizes}
-                        url={product.url}
-                      />
-                    </Suspense>
-                  </div>
-                )}
+                {product.url &&
+                  product.variants &&
+                  product.variants?.length > 0 && (
+                    <div className="flex flex-col space-y-2">
+                      <Paragraph size="xs" weight="medium">
+                        <strong>Size:</strong>
+                      </Paragraph>
+                      <Suspense
+                        fallback={
+                          <ProductSizeFormControlFallback
+                            variants={product.variants}
+                          />
+                        }
+                      >
+                        <ProductSizeFormControl
+                          variants={product.variants}
+                          url={product.url}
+                        />
+                      </Suspense>
+                    </div>
+                  )}
                 <div className="flex flex-col space-y-2">
                   <Paragraph size="xs" weight="medium">
                     <strong>Quantity:</strong>

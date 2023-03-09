@@ -1,5 +1,4 @@
 import { Price } from './price'
-import { Sizes } from './size'
 import { Images } from './image'
 
 export interface Product {
@@ -11,7 +10,7 @@ export interface Product {
     minVariantPrice?: Price
   }
   images?: Images
-  sizes?: Sizes
+  variants?: Variants
 }
 
 export type Products = Product[]

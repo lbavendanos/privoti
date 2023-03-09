@@ -1,14 +1,17 @@
-import { Sizes } from 'lib/types/size'
+import { Variants } from 'lib/types/variant'
 
 interface ProductSizeFormControlFallbackProps {
-  sizes: Sizes
+  variants: Variants
 }
 
 export default function ProductSizeFormControlFallback({
-  sizes,
+  variants,
   ...props
 }: ProductSizeFormControlFallbackProps) {
-  const options = sizes.map(({ id, short }) => ({ value: id!, name: short! }))
+  const options = variants.map(({ id, short }) => ({
+    value: id!,
+    name: short!,
+  }))
 
   return (
     <div {...props} className="flex flex-nowrap gap-2">
