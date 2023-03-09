@@ -8,8 +8,8 @@ import Container from '@/common/components/Container'
 import Paragraph from '@/common/components/Paragraph'
 import ShippingInfo from '@/common/components/ShippingInfo'
 import ProductPrice from '@/common/components/ProductPrice'
-import QuantityFormControl from '@/common/components/QuantityFormControl'
 import ProductSizeFormControl from './components/ProductSizeFormControl'
+import ProductQuantityFormControl from './components/ProductQuantityFormControl'
 import ProductSizeFormControlFallback from './components/ProductSizeFormControlFallback'
 
 interface ProductModuleProps extends React.ComponentPropsWithoutRef<'div'> {
@@ -96,7 +96,9 @@ export default async function ProductModule({
                   <Paragraph size="xs" weight="medium">
                     <strong>Quantity:</strong>
                   </Paragraph>
-                  <QuantityFormControl value={1} />
+                  <Suspense fallback={null}>
+                    <ProductQuantityFormControl variants={product.variants} />
+                  </Suspense>
                 </div>
               </div>
               <div className="flex flex-col space-y-2">
