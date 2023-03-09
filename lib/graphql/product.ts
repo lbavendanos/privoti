@@ -143,10 +143,27 @@ export const getProduct = cache(async (slug: string): Promise<Product> => {
     description: node.description,
     priceRange: node.priceRange,
     images,
-    sizes: node.variants?.edges?.map(({ node }: any) => ({
-      id: (node.id as string).replace('gid://shopify/ProductVariant/', ''),
-      name: node.title,
-    })),
+    sizes: node.variants?.edges?.map(({ node }: any) => {
+      const name = node.title
+      const id = (node.id as string).replace(
+        'gid://shopify/ProductVariant/',
+        ''
+      )
+
+      let short = ''
+
+      if (name === 'Extra small') short = 'XS'
+      if (name === 'Small') short = 'S'
+      if (name === 'Medium') short = 'M'
+      if (name === 'Large') short = 'L'
+      if (name === 'Extra large') short = 'XL'
+
+      return {
+        id,
+        name,
+        short,
+      }
+    }),
   }
 
   return product

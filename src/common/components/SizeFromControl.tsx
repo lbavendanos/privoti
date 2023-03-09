@@ -40,11 +40,7 @@ export default function SizeFormControl({
           )}
           onClick={(e) => handleClick(e, option.value)}
         >
-          {option.name === 'Extra small' && 'XS'}
-          {option.name === 'Small' && 'S'}
-          {option.name === 'Medium' && 'M'}
-          {option.name === 'Large' && 'L'}
-          {option.name === 'Extra large' && 'XL'}
+          {option.name}
         </button>
       ))}
     </div>

@@ -13,7 +13,7 @@ export default function ProductSizeFormControl({
   ...props
 }: ProductSizeFormControlProps) {
   const searchParams = useSearchParams()
-  const options = sizes.map(({ id, name }) => ({ value: id!, name: name! }))
+  const options = sizes.map(({ id, short }) => ({ value: id!, name: short! }))
   const value = searchParams.get('variant') || options?.at(0)?.value
 
   return (
