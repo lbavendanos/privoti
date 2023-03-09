@@ -71,7 +71,7 @@ export default async function ProductModule({
                 <ShippingInfo />
               </div>
               <div className="flex flex-col space-y-2">
-                {product.sizes && product.sizes?.length > 0 && (
+                {product.url && product.sizes && product.sizes?.length > 0 && (
                   <div className="flex flex-col space-y-2">
                     <Paragraph size="xs" weight="medium">
                       <strong>Size:</strong>
@@ -81,7 +81,10 @@ export default async function ProductModule({
                         <ProductSizeFormControlFallback sizes={product.sizes} />
                       }
                     >
-                      <ProductSizeFormControl sizes={product.sizes} />
+                      <ProductSizeFormControl
+                        sizes={product.sizes}
+                        url={product.url}
+                      />
                     </Suspense>
                   </div>
                 )}
