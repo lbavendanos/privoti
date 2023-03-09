@@ -7,11 +7,19 @@ export interface ButtonProps extends React.ComponentPropsWithRef<'button'> {
   variant?: 'primary' | 'secondary' | 'tertiary' | 'dark'
   size?: 'sm' | 'md' | 'lg'
   active?: boolean
+  disabled?: boolean
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (
-    { variant = 'primary', size = 'md', active = false, className, ...props },
+    {
+      variant = 'primary',
+      size = 'md',
+      active = false,
+      disabled = false,
+      className,
+      ...props
+    },
     ref
   ) => {
     return (
@@ -28,8 +36,10 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           size === 'md' && 'btn-md',
           size === 'lg' && 'btn-lg',
           active && 'active',
+          disabled && 'disabled',
           className
         )}
+        disabled={disabled}
       />
     )
   }
