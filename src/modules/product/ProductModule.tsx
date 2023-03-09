@@ -1,5 +1,6 @@
 import { cn } from 'lib/utils/helpers'
 import { getProduct } from 'lib/graphql/product'
+import { Suspense } from 'react'
 import Image from 'next/image'
 import Button from '@/common/components/Button'
 import Heading from '@/common/components/Heading'
@@ -8,6 +9,8 @@ import Paragraph from '@/common/components/Paragraph'
 import ShippingInfo from '@/common/components/ShippingInfo'
 import ProductPrice from '@/common/components/ProductPrice'
 import QuantityFormControl from '@/common/components/QuantityFormControl'
+import ProductSizeFormControl from './components/ProductSizeFormControl'
+import ProductSizeFormControlFallback from './components/ProductSizeFormControlFallback'
 
 interface ProductModuleProps extends React.ComponentPropsWithoutRef<'div'> {
   slug: string
@@ -68,28 +71,20 @@ export default async function ProductModule({
                 <ShippingInfo />
               </div>
               <div className="flex flex-col space-y-2">
-                <div className="flex flex-col space-y-2">
-                  <Paragraph size="xs" weight="medium">
-                    <strong>Size:</strong>
-                  </Paragraph>
-                  <div className="flex flex-nowrap gap-2">
-                    <button className="btn btn-md w-20 bg-tertiary-200">
-                      XS
-                    </button>
-                    <button className="btn btn-md w-20 hover:bg-tertiary-200">
-                      S
-                    </button>
-                    <button className="btn btn-md w-20 hover:bg-tertiary-200">
-                      M
-                    </button>
-                    <button className="btn btn-md w-20 hover:bg-tertiary-200">
-                      L
-                    </button>
-                    <button className="btn btn-md w-20 hover:bg-tertiary-200">
-                      XL
-                    </button>
+                {product.sizes && product.sizes?.length > 0 && (
+                  <div className="flex flex-col space-y-2">
+                    <Paragraph size="xs" weight="medium">
+                      <strong>Size:</strong>
+                    </Paragraph>
+                    <Suspense
+                      fallback={
+                        <ProductSizeFormControlFallback sizes={product.sizes} />
+                      }
+                    >
+                      <ProductSizeFormControl sizes={product.sizes} />
+                    </Suspense>
                   </div>
-                </div>
+                )}
                 <div className="flex flex-col space-y-2">
                   <Paragraph size="xs" weight="medium">
                     <strong>Quantity:</strong>

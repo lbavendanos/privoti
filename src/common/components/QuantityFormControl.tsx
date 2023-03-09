@@ -6,8 +6,8 @@ export interface QuantityFormControlProps
   extends React.ComponentPropsWithoutRef<'input'> {}
 
 export default function QuantityFormControl({
-  className,
   value,
+  className,
   ...props
 }: QuantityFormControlProps) {
   return (

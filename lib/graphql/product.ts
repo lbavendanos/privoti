@@ -68,6 +68,14 @@ export const GET_PRODUCT_QUERY = gql`
           }
         }
       }
+      variants(first: 10) {
+        edges {
+          node {
+            title
+            id
+          }
+        }
+      }
     }
   }
 `
@@ -135,6 +143,10 @@ export const getProduct = cache(async (slug: string): Promise<Product> => {
     description: node.description,
     priceRange: node.priceRange,
     images,
+    sizes: node.variants?.edges?.map(({ node }: any) => ({
+      id: (node.id as string).replace('gid://shopify/ProductVariant/', ''),
+      name: node.title,
+    })),
   }
 
   return product
