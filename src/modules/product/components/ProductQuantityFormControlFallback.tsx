@@ -1,3 +1,5 @@
+'use client'
+
 import QuantityFormControl from '@/common/components/QuantityFormControl'
 
 export default function ProductQuantityFormControlFallback() {
