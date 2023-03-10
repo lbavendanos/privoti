@@ -11,6 +11,7 @@ import ProductPrice from '@/common/components/ProductPrice'
 import ProductSizeFormControl from './components/ProductSizeFormControl'
 import ProductQuantityFormControl from './components/ProductQuantityFormControl'
 import ProductSizeFormControlFallback from './components/ProductSizeFormControlFallback'
+import ProductQuantityFormControlFallback from './components/ProductQuantityFormControlFallback'
 
 interface ProductModuleProps extends React.ComponentPropsWithoutRef<'div'> {
   slug: string
@@ -96,7 +97,7 @@ export default async function ProductModule({
                   <Paragraph size="xs" weight="medium">
                     <strong>Quantity:</strong>
                   </Paragraph>
-                  <Suspense fallback={null}>
+                  <Suspense fallback={<ProductQuantityFormControlFallback />}>
                     <ProductQuantityFormControl variants={product.variants} />
                   </Suspense>
                 </div>
