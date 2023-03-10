@@ -17,7 +17,7 @@ export interface QuantityFormControlProps extends NumberFormControlProps {
 const QuantityFormControl = React.forwardRef<
   HTMLInputElement,
   QuantityFormControlProps
->(({ value, min, max, onChange, groupClassName, className, ...props }, ref) => {
+>(({ value, min, max, groupClassName, className, ...props }, ref) => {
   const [inputRef, attachInputRef] = useCallbackRef<HTMLInputElement>()
   const mergedRef = useMergedRefs(ref as any, attachInputRef)
 
@@ -74,7 +74,6 @@ const QuantityFormControl = React.forwardRef<
         value={value}
         min={min}
         max={max}
-        onChange={onChange}
         className="flex-1 text-center"
         readOnly
       />
