@@ -1,48 +1,65 @@
 'use client'
 
 import { cn } from 'lib/utils/helpers'
-import { useCallback } from 'react'
+import React from 'react'
 
 export interface SizeFormControlProps
   extends React.ComponentPropsWithoutRef<'input'> {
   options?: { value: string; name: string }[]
   optionClassName?: string
   activeClassName?: string
+  groupClassName?: string
 }
 
-export default function SizeFormControl({
-  value,
-  options,
-  optionClassName,
-  activeClassName,
-  onChange,
-  ...props
-}: SizeFormControlProps) {
-  const handleClick = useCallback(
-    (e: React.MouseEvent<HTMLButtonElement>, value: string) => {
-      e.preventDefault()
-
-      Object.defineProperty(e, 'target', { writable: true, value: { value } })
-
-      onChange?.(e as any)
+const SizeFormControl = React.forwardRef<
+  HTMLInputElement,
+  SizeFormControlProps
+>(
+  (
+    {
+      value,
+      name: nameProp,
+      options,
+      optionClassName,
+      activeClassName,
+      groupClassName,
+      onChange,
+      ...props
     },
-    [onChange]
-  )
+    ref
+  ) => {
+    const name = nameProp || 'size'
 
-  return (
-    <div {...props}>
-      {options?.map((option) => (
-        <button
-          key={option.value}
-          className={cn(
-            optionClassName,
-            option.value === value && activeClassName
-          )}
-          onClick={(e) => handleClick(e, option.value)}
-        >
-          {option.name}
-        </button>
-      ))}
-    </div>
-  )
-}
+    return (
+      <div {...props} className={groupClassName}>
+        {options?.map((option) => (
+          <React.Fragment key={option.value}>
+            <label
+              htmlFor={`${name}-${option.name}`}
+              className={cn(
+                optionClassName,
+                option.value === value && activeClassName
+              )}
+            >
+              {option.name}
+            </label>
+            <input
+              ref={ref}
+              id={`${name}-${option.name}`}
+              type="radio"
+              name={name}
+              value={option.value}
+              onChange={onChange}
+              checked={option.value === value}
+              className="hidden"
+            />
+          </React.Fragment>
+        ))}
+      </div>
+    )
+  }
+)
+
+SizeFormControl.displayName = 'SizeFormControl'
+
+export default SizeFormControl

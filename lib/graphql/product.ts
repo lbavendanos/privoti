@@ -157,11 +157,11 @@ export const getProduct = cache(async (slug: string): Promise<Product> => {
 
       let short = ''
 
-      if (name === 'Extra small') short = 'XS'
-      if (name === 'Small') short = 'S'
-      if (name === 'Medium') short = 'M'
-      if (name === 'Large') short = 'L'
-      if (name === 'Extra large') short = 'XL'
+      if (name === 'Extra small') short = 'xs'
+      if (name === 'Small') short = 's'
+      if (name === 'Medium') short = 'm'
+      if (name === 'Large') short = 'l'
+      if (name === 'Extra large') short = 'xl'
 
       return {
         id,

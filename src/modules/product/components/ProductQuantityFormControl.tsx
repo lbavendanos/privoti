@@ -20,10 +20,11 @@ export default function ProductQuantityFormControl({
 
   useEffect(() => {
     const variantId = searchParams.get('variant')
+    const variant = variantId
+      ? variants.find(({ id }) => id === variantId)
+      : variants.at(0)
 
-    setVariant(
-      variantId ? variants.find(({ id }) => id === variantId) : variants.at(0)
-    )
+    setVariant(variant)
     setValue(1)
   }, [searchParams, variants])
 
