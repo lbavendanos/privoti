@@ -18,7 +18,7 @@ export default function ProductSizeFormControl({
   const searchParams = useSearchParams()
   const router = useRouter()
 
-  const [value, setValue] = useState<string>()
+  const [value, setValue] = useState<string | undefined>(variants.at(0)?.id)
 
   const options = variants.map(({ id, short }) => ({
     value: id!,
