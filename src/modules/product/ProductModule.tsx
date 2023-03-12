@@ -7,11 +7,10 @@ import Heading from '@/common/components/Heading'
 import Container from '@/common/components/Container'
 import Paragraph from '@/common/components/Paragraph'
 import ShippingInfo from '@/common/components/ShippingInfo'
-import ProductPrice from '@/common/components/ProductPrice'
+import ProductPrice from './components/ProductPrice'
 import ProductSizeFormControl from './components/ProductSizeFormControl'
-import ProductQuantityFormControl from './components/ProductQuantityFormControl'
 import ProductSizeFormControlFallback from './components/ProductSizeFormControlFallback'
-import ProductQuantityFormControlFallback from './components/ProductQuantityFormControlFallback'
+import ProductPriceFallback from './components/ProductPriceFallback'
 
 interface ProductModuleProps extends React.ComponentPropsWithoutRef<'div'> {
   slug: string
@@ -62,12 +61,14 @@ export default async function ProductModule({
             <div className="flex flex-col space-y-6">
               <div className="flex flex-col space-y-2">
                 {product.name && <Heading as="h1">{product.name}</Heading>}
-                {product.priceRange?.minVariantPrice && (
-                  <ProductPrice
-                    size="lg"
-                    weight="light"
-                    {...product.priceRange?.minVariantPrice}
-                  />
+                {product.variants && (
+                  <Suspense
+                    fallback={
+                      <ProductPriceFallback variants={product.variants} />
+                    }
+                  >
+                    <ProductPrice variants={product.variants} />
+                  </Suspense>
                 )}
                 <ShippingInfo />
               </div>
@@ -93,14 +94,6 @@ export default async function ProductModule({
                       </Suspense>
                     </div>
                   )}
-                <div className="flex flex-col space-y-2">
-                  <Paragraph size="xs" weight="medium">
-                    <strong>Quantity:</strong>
-                  </Paragraph>
-                  <Suspense fallback={<ProductQuantityFormControlFallback />}>
-                    <ProductQuantityFormControl variants={product.variants} />
-                  </Suspense>
-                </div>
               </div>
               <div className="flex flex-col space-y-2">
                 <Button variant="dark" size="lg">

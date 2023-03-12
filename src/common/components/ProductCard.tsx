@@ -2,8 +2,8 @@ import { cn } from 'lib/utils/helpers'
 import { Product } from 'lib/types/product'
 import Link from 'next/link'
 import Image from 'next/image'
+import Price from './Price'
 import Paragraph from './Paragraph'
-import ProductPrice from './ProductPrice'
 
 interface ProductCardProps
   extends React.ComponentPropsWithoutRef<'a'>,
@@ -41,7 +41,7 @@ export default function ProductCard({
           </Paragraph>
         )}
         {priceRange?.minVariantPrice && (
-          <ProductPrice size="xs" {...priceRange?.minVariantPrice} />
+          <Price size="xs" {...priceRange?.minVariantPrice} />
         )}
       </div>
     </Link>

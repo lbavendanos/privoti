@@ -1,5 +1,6 @@
 import { Price } from './price'
 import { Images } from './image'
+import { Variants } from './variant'
 
 export interface Product {
   id?: string

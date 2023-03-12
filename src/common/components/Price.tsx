@@ -1,9 +1,9 @@
-import { Price } from 'lib/types/price'
+import { Price as PriceBase } from 'lib/types/price'
 import Paragraph, { ParagraphProps } from './Paragraph'
 
-export interface ProductPriceProps extends ParagraphProps, Price {}
+export interface ProductPriceProps extends ParagraphProps, PriceBase {}
 
-export default function ProductPrice({
+export default function Price({
   currencyCode,
   amount,
   ...props

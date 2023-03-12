@@ -77,6 +77,10 @@ export const GET_PRODUCT_QUERY = gql`
             id
             currentlyNotInStock
             quantityAvailable
+            price {
+              amount
+              currencyCode
+            }
           }
         }
       }
@@ -150,6 +154,7 @@ export const getProduct = cache(async (slug: string): Promise<Product> => {
     variants: node.variants?.edges?.map(({ node }: any) => {
       const quantity = node.quantityAvailable
       const name = node.title
+      const price = node.price
       const id = (node.id as string).replace(
         'gid://shopify/ProductVariant/',
         ''
@@ -168,6 +173,7 @@ export const getProduct = cache(async (slug: string): Promise<Product> => {
         name,
         short,
         quantity,
+        price,
       }
     }),
   }
