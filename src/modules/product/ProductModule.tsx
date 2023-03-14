@@ -2,15 +2,11 @@ import { cn } from 'lib/utils/helpers'
 import { getProduct } from 'lib/graphql/product'
 import { Suspense } from 'react'
 import Image from 'next/image'
-import Button from '@/common/components/Button'
 import Heading from '@/common/components/Heading'
 import Container from '@/common/components/Container'
 import Paragraph from '@/common/components/Paragraph'
-import ShippingInfo from '@/common/components/ShippingInfo'
-import ProductPrice from './components/ProductPrice'
-import ProductSizeFormControl from './components/ProductSizeFormControl'
-import ProductSizeFormControlFallback from './components/ProductSizeFormControlFallback'
-import ProductPriceFallback from './components/ProductPriceFallback'
+import ProductForm from './components/ProductForm'
+import ProductFormFallback from './components/ProductFormFallback'
 
 interface ProductModuleProps extends React.ComponentPropsWithoutRef<'div'> {
   slug: string
@@ -58,59 +54,23 @@ export default async function ProductModule({
             </div>
           </div>
           <div className="w-full md:w-4/12 p-0 md:pl-4">
-            <div className="flex flex-col space-y-6">
-              <div className="flex flex-col space-y-2">
-                {product.name && <Heading as="h1">{product.name}</Heading>}
-                {product.variants && (
-                  <Suspense
-                    fallback={
-                      <ProductPriceFallback variants={product.variants} />
-                    }
-                  >
-                    <ProductPrice variants={product.variants} />
-                  </Suspense>
-                )}
-                <ShippingInfo />
-              </div>
-              <div className="flex flex-col space-y-2">
-                {product.url &&
-                  product.variants &&
-                  product.variants?.length > 0 && (
-                    <div className="flex flex-col space-y-2">
-                      <Paragraph size="xs" weight="medium">
-                        <strong>Size:</strong>
-                      </Paragraph>
-                      <Suspense
-                        fallback={
-                          <ProductSizeFormControlFallback
-                            variants={product.variants}
-                          />
-                        }
-                      >
-                        <ProductSizeFormControl
-                          variants={product.variants}
-                          url={product.url}
-                        />
-                      </Suspense>
-                    </div>
-                  )}
-              </div>
-              <div className="flex flex-col space-y-2">
-                <Button variant="dark" size="lg">
-                  Add to my cart
-                </Button>
-                <Button variant="primary" size="lg">
-                  Buy now
-                </Button>
-              </div>
-              {product.description && (
-                <div className="w-full">
-                  <Paragraph size="sm" weight="light">
-                    {product.description}
-                  </Paragraph>
-                </div>
-              )}
+            {product.name && (
+              <Heading as="h1" className="mb-2">
+                {product.name}
+              </Heading>
+            )}
+            <div className="w-full mb-6">
+              <Suspense fallback={<ProductFormFallback product={product} />}>
+                <ProductForm product={product} />
+              </Suspense>
             </div>
+            {product.description && (
+              <div className="w-full">
+                <Paragraph size="sm" weight="light">
+                  {product.description}
+                </Paragraph>
+              </div>
+            )}
           </div>
         </div>
       </div>

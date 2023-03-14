@@ -2,6 +2,7 @@ import { gql } from 'lib/utils/helpers'
 import { cache } from 'react'
 import { shopifyFetch } from 'lib/utils/shopify'
 import { getPlaiceholder } from 'plaiceholder'
+import { Price } from 'lib/types/price'
 import { Image, Images } from 'lib/types/image'
 import { Product, Products } from 'lib/types/product'
 
@@ -152,26 +153,25 @@ export const getProduct = cache(async (slug: string): Promise<Product> => {
     priceRange: node.priceRange,
     images,
     variants: node.variants?.edges?.map(({ node }: any) => {
-      const quantity = node.quantityAvailable
-      const name = node.title
-      const price = node.price
-      const id = (node.id as string).replace(
-        'gid://shopify/ProductVariant/',
-        ''
-      )
+      const quantity: number = node.quantityAvailable
+      const name: string = node.title
+      const price: Price = node.price
+      const id: string = node.id
+      const shortId: string = id.replace('gid://shopify/ProductVariant/', '')
 
-      let short = ''
+      let shortName = ''
 
-      if (name === 'Extra small') short = 'xs'
-      if (name === 'Small') short = 's'
-      if (name === 'Medium') short = 'm'
-      if (name === 'Large') short = 'l'
-      if (name === 'Extra large') short = 'xl'
+      if (name === 'Extra small') shortName = 'xs'
+      if (name === 'Small') shortName = 's'
+      if (name === 'Medium') shortName = 'm'
+      if (name === 'Large') shortName = 'l'
+      if (name === 'Extra large') shortName = 'xl'
 
       return {
         id,
+        shortId,
         name,
-        short,
+        shortName,
         quantity,
         price,
       }

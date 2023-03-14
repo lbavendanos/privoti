@@ -2,8 +2,9 @@ import { Price } from './price'
 
 export interface Variant {
   id?: string
+  shortId: string
   name?: string
-  short?: string
+  shortName?: string
   quantity?: number
   price?: Price
 }
