@@ -1,8 +1,8 @@
 'use client'
 
 import { cn } from 'lib/utils/helpers'
-import { createCart } from 'lib/graphql/cart'
 import { useCartStore } from 'lib/store/cart'
+import { addItemToCart, createCart } from 'lib/graphql/cart'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { FormController, useForm } from 'lib/utils/form'
@@ -31,6 +31,7 @@ export default function ProductForm({
   const router = useRouter()
   const searchParams = useSearchParams()
   const updateCart = useCartStore((state) => state.updateCart)
+  const cart = useCartStore((state) => state.cart)
 
   const variants = useMemo(() => product.variants, [product])
 
@@ -68,14 +69,17 @@ export default function ProductForm({
       )?.id
 
       if (variantId) {
-        const cart = await createCart(variantId, data.quantity)
+        const response =
+          cart && cart.id
+            ? await addItemToCart(cart.id, variantId)
+            : await createCart(variantId, data.quantity)
 
-        updateCart(cart)
+        updateCart(response)
       }
 
       setIsLoading(false)
     },
-    [variants, updateCart]
+    [cart, variants, updateCart]
   )
 
   useEffect(() => {
