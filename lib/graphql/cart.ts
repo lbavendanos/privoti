@@ -1,5 +1,5 @@
 import { gql } from 'lib/utils/helpers'
-import { shopifyFetch } from 'lib/utils/shopify'
+import { shopifyFetcher } from 'lib/utils/shopify'
 import { Cart } from 'lib/types/cart'
 
 export const CREATE_CART = gql`
@@ -114,12 +114,12 @@ export async function createCart(
   variantId: string,
   quantity: number
 ): Promise<Cart> {
-  const response = await shopifyFetch(CREATE_CART, {
+  const response = await shopifyFetcher(CREATE_CART, {
     merchandiseId: variantId,
     quantity,
   })
 
-  return response.body.data.cartCreate.cart
+  return response.cartCreate.cart
 }
 
 export async function addItemToCart(
@@ -127,11 +127,11 @@ export async function addItemToCart(
   variantId: string,
   quantity: number = 1
 ): Promise<Cart> {
-  const response = await shopifyFetch(ADD_ITEM_TO_CART, {
+  const response = await shopifyFetcher(ADD_ITEM_TO_CART, {
     cartId,
     merchandiseId: variantId,
     quantity,
   })
 
-  return response.body.data.cartLinesAdd.cart
+  return response.cartLinesAdd.cart
 }

@@ -1,12 +1,12 @@
 import { gql } from 'lib/utils/helpers'
 import { cache } from 'react'
-import { shopifyFetch } from 'lib/utils/shopify'
+import { shopifyFetcher } from 'lib/utils/shopify'
 import { getPlaiceholder } from 'plaiceholder'
 import { Price } from 'lib/types/price'
 import { Image, Images } from 'lib/types/image'
 import { Product, Products } from 'lib/types/product'
 
-export const GET_PRODUCT_SLUGS_QUERY = gql`
+export const GET_PRODUCT_SLUGS = gql`
   query GetProductSlugs {
     products(first: 10, sortKey: CREATED_AT) {
       edges {
@@ -18,7 +18,7 @@ export const GET_PRODUCT_SLUGS_QUERY = gql`
   }
 `
 
-export const GET_PRODUCTS_QUERY = gql`
+export const GET_PRODUCTS = gql`
   query GetProducts {
     products(first: 10, sortKey: CREATED_AT) {
       edges {
@@ -47,7 +47,7 @@ export const GET_PRODUCTS_QUERY = gql`
   }
 `
 
-export const GET_PRODUCT_QUERY = gql`
+export const GET_PRODUCT = gql`
   query GetProduct($handle: String!) {
     product(handle: $handle) {
       handle
@@ -90,15 +90,15 @@ export const GET_PRODUCT_QUERY = gql`
 `
 
 export async function getProductSlugs(): Promise<{ slug: string }[]> {
-  const response = await shopifyFetch(GET_PRODUCT_SLUGS_QUERY)
-  const edges: object[] = response.body.data.products.edges
+  const response = await shopifyFetcher(GET_PRODUCT_SLUGS)
+  const edges: object[] = response.products.edges
 
   return edges.map(({ node }: any) => ({ slug: node.handle }))
 }
 
 export const getProducts = cache(async (): Promise<Products> => {
-  const response = await shopifyFetch(GET_PRODUCTS_QUERY)
-  const edges: object[] = response.body.data.products.edges
+  const response = await shopifyFetcher(GET_PRODUCTS)
+  const edges: object[] = response.products.edges
 
   const products: Products = await Promise.all(
     edges.map(async ({ node }: any): Promise<Product> => {
@@ -129,8 +129,8 @@ export const getProducts = cache(async (): Promise<Products> => {
 })
 
 export const getProduct = cache(async (slug: string): Promise<Product> => {
-  const response = await shopifyFetch(GET_PRODUCT_QUERY, { handle: slug })
-  const node: any = response.body.data.product
+  const response = await shopifyFetcher(GET_PRODUCT, { handle: slug })
+  const node: any = response.product
 
   const images: Images = await Promise.all(
     node.images?.edges?.map(async ({ node }: any): Promise<Image> => {

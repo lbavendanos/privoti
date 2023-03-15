@@ -1,6 +1,10 @@
 import { config } from './helpers'
+import { gqlFetcher } from './http'
 
-export async function shopifyFetch(query: string, variables = {}) {
+export async function shopifyFetcher<T = any>(
+  query: string,
+  variables = {}
+): Promise<T> {
   const isServer = typeof window === 'undefined'
 
   const domain = config('shopify.domain')
@@ -14,27 +18,12 @@ export async function shopifyFetch(query: string, variables = {}) {
     ? 'Shopify-Storefront-Private-Token'
     : 'X-Shopify-Storefront-Access-Token'
 
-  try {
-    const response = await fetch(endpoint, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-SDK-Variant-Source': 'react',
-        'X-SDK-Version': apiVersion,
-        [tokenHeader]: token,
-      },
-      body: { query, variables } && JSON.stringify({ query, variables }),
-    })
-
-    return {
-      status: response.status,
-      body: await response.json(),
-    }
-  } catch (error) {
-    console.error('Error:', error)
-    return {
-      status: 500,
-      error: 'Error receiving data',
-    }
+  const headers = {
+    'Content-Type': 'application/json',
+    'X-SDK-Variant-Source': 'react',
+    'X-SDK-Version': apiVersion,
+    [tokenHeader]: token,
   }
+
+  return gqlFetcher<T>(endpoint, query, variables, { headers })
 }
