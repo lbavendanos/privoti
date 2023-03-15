@@ -9,6 +9,31 @@ export const CREATE_CART_QUERY = gql`
     ) {
       cart {
         id
+        totalQuantity
+        checkoutUrl
+        cost {
+          totalAmount {
+            amount
+            currencyCode
+          }
+        }
+        lines(first: 10) {
+          edges {
+            node {
+              id
+              quantity
+              merchandise {
+                ... on ProductVariant {
+                  id
+                  title
+                  image {
+                    src
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   }
@@ -58,13 +83,13 @@ export const UPDATE_ITEM_QUERY = gql`
 `
 
 export async function createCart(
-  productId: string,
+  variantId: string,
   quantity: number
 ): Promise<Cart> {
   const response = await shopifyFetch(CREATE_CART_QUERY, {
-    merchandiseId: productId,
+    merchandiseId: variantId,
     quantity,
   })
 
-  return response.body.data.cart
+  return response.body.data.cartCreate.cart
 }

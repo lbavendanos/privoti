@@ -1,6 +1,8 @@
 'use client'
 
 import { cn } from 'lib/utils/helpers'
+import { createCart } from 'lib/graphql/cart'
+import { useCartStore } from 'lib/store/cart'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { FormController, useForm } from 'lib/utils/form'
@@ -11,7 +13,6 @@ import Paragraph from '@/common/components/Paragraph'
 import ProductPrice from './ProductPrice'
 import ShippingInfo from '@/common/components/ShippingInfo'
 import ProductSizeFormControl from './ProductSizeFormControl'
-import { createCart } from 'lib/graphql/cart'
 
 interface ProductFormData {
   variantId: string
@@ -29,10 +30,12 @@ export default function ProductForm({
 }: ProductFormProps) {
   const router = useRouter()
   const searchParams = useSearchParams()
+  const updateCart = useCartStore((state) => state.updateCart)
 
   const variants = useMemo(() => product.variants, [product])
 
   const [variant, setVariant] = useState<Variant | undefined>()
+  const [isLoading, setIsLoading] = useState(false)
 
   const {
     formControl,
@@ -58,16 +61,21 @@ export default function ProductForm({
 
   const handleValid = useCallback(
     async (data: ProductFormData) => {
-      const productId = variants?.find(
+      setIsLoading(true)
+
+      const variantId = variants?.find(
         ({ shortId }) => shortId === data.variantId
       )?.id
 
-      if (productId) {
-        const cart = await createCart(productId, data.quantity)
-        localStorage.setItem('cart', JSON.stringify(cart))
+      if (variantId) {
+        const cart = await createCart(variantId, data.quantity)
+
+        updateCart(cart)
       }
+
+      setIsLoading(false)
     },
-    [variants]
+    [variants, updateCart]
   )
 
   useEffect(() => {
@@ -115,7 +123,7 @@ export default function ProductForm({
         )}
       </div>
       <div className="flex flex-col space-y-2">
-        <Button type="submit" variant="dark" size="lg">
+        <Button type="submit" variant="dark" size="lg" disabled={isLoading}>
           Add to my cart
         </Button>
         <Button type="button" variant="primary" size="lg">
