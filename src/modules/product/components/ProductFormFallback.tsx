@@ -4,7 +4,6 @@ import Button from '@/common/components/Button'
 import Paragraph from '@/common/components/Paragraph'
 import ShippingInfo from '@/common/components/ShippingInfo'
 import ProductPrice from './ProductPrice'
-import ProductSizeFormControlFallback from './ProductSizeFormControlFallback'
 
 interface ProductFormFallbackProps
   extends React.ComponentPropsWithoutRef<'form'> {
