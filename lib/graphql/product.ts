@@ -1,4 +1,4 @@
-import { gql } from 'lib/utils/helpers'
+import { gql } from 'lib/utils/graphql'
 import { cache } from 'react'
 import { shopifyFetcher } from 'lib/utils/shopify'
 import { getPlaiceholder } from 'plaiceholder'

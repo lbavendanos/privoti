@@ -1,4 +1,4 @@
-import { gql } from 'lib/utils/helpers'
+import { gql } from 'lib/utils/graphql'
 import { shopifyFetcher } from 'lib/utils/shopify'
 import { Cart } from 'lib/types/cart'
 
