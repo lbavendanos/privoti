@@ -74,7 +74,7 @@ export default function CartItem({
         {node?.merchandise?.product?.handle && (
           <Link
             href={node.merchandise.product.handle}
-            className="w-2/6"
+            className="w-2/6 sm:w-1/5 grow-0 shrink-0"
             onClick={onClick as any}
           >
             {node?.merchandise?.product?.images?.edges?.at(0) && (
@@ -135,7 +135,7 @@ export default function CartItem({
       {node?.merchandise?.product?.handle && (
         <Link
           href={node.merchandise.product.handle}
-          className="w-2/6"
+          className="w-[110px] lg:w-[150px] grow-0 shrink-0"
           onClick={onClick as any}
         >
           {node?.merchandise?.product?.images?.edges?.at(0) && (
@@ -148,7 +148,7 @@ export default function CartItem({
           )}
         </Link>
       )}
-      <div className="w-full flex flex-col lg:flex-row justify-center items-center space-y-2">
+      <div className="w-full flex flex-col lg:flex-row justify-center items-start lg:items-center space-y-2">
         <div className="w-full lg:w-6/12 flex flex-col space-y-1">
           {node?.merchandise?.product?.handle &&
             node?.merchandise?.product?.title && (
@@ -178,7 +178,6 @@ export default function CartItem({
         </div>
         {node?.quantity && (
           <QuantityFormControl
-            className="w-full lg:w-3/12 text-left"
             groupClassName="w-[90px] h-[30px]"
             value={quantity}
             min={1}
