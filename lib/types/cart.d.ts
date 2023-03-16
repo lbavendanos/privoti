@@ -60,6 +60,7 @@ export interface CartLine {
     merchandise: {
       id?: string
       title?: string
+      quantityAvailable?: number
       image?: { url: string }
       product?: Product
     }

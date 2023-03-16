@@ -3,7 +3,7 @@
 import { cn } from 'lib/utils/helpers'
 import { useGetCart } from '../hooks/cart'
 import { useCartStore } from 'lib/store/cart'
-import { removeLineFromCart } from 'lib/graphql/cart'
+import { removeLineFromCart, updateLineFromCart } from 'lib/graphql/cart'
 import { useCallback, useState } from 'react'
 import { CartLine } from 'lib/types/cart'
 import Link from 'next/link'
@@ -29,6 +29,27 @@ export default function CartItem({
   const { mutate } = useGetCart(cartId)
 
   const [isLoading, setIsLoading] = useState(false)
+  const [quantity, setQuantity] = useState(node?.quantity)
+
+  const handleQuantity = useCallback(
+    async (e: React.ChangeEvent<HTMLInputElement>) => {
+      const value = e.target.valueAsNumber
+
+      setQuantity(value)
+
+      if (cartId && node && node.id && node.merchandise.id) {
+        const cart = await updateLineFromCart(
+          cartId,
+          node?.id,
+          node?.merchandise.id,
+          value
+        )
+
+        mutate({ cart })
+      }
+    },
+    [cartId, node, mutate]
+  )
 
   const handleRemove = useCallback(
     async (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -90,8 +111,11 @@ export default function CartItem({
             )}
             {node?.quantity && (
               <QuantityFormControl
-                value={node.quantity}
                 groupClassName="w-[90px] h-[30px]"
+                value={quantity}
+                min={1}
+                max={node.merchandise.quantityAvailable}
+                onChange={handleQuantity}
               />
             )}
             <button
@@ -156,7 +180,10 @@ export default function CartItem({
           <QuantityFormControl
             className="w-full lg:w-3/12 text-left"
             groupClassName="w-[90px] h-[30px]"
-            value={node.quantity}
+            value={quantity}
+            min={1}
+            max={node.merchandise.quantityAvailable}
+            onChange={handleQuantity}
           />
         )}
         {node?.cost?.amountPerQuantity && (

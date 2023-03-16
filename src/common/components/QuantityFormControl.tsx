@@ -2,7 +2,7 @@
 
 import { cn } from 'lib/utils/helpers'
 import { useCallbackRef, useMergedRefs } from 'lib/hooks'
-import React, { useCallback } from 'react'
+import React, { useCallback, useMemo } from 'react'
 import { LineIcon, PlusIcon } from './Icons'
 import Button from './Button'
 import NumberFormControl, { NumberFormControlProps } from './NumberFormControl'
@@ -11,13 +11,14 @@ export interface QuantityFormControlProps extends NumberFormControlProps {
   value?: number
   min?: number
   max?: number
+  disabled?: boolean
   groupClassName?: string
 }
 
 const QuantityFormControl = React.forwardRef<
   HTMLInputElement,
   QuantityFormControlProps
->(({ value, min, max, groupClassName, className, ...props }, ref) => {
+>(({ value, min, max, disabled, groupClassName, className, ...props }, ref) => {
   const [inputRef, attachInputRef] = useCallbackRef<HTMLInputElement>()
   const mergedRef = useMergedRefs(ref as any, attachInputRef)
 
@@ -34,6 +35,18 @@ const QuantityFormControl = React.forwardRef<
     },
     [inputRef]
   )
+
+  const increaseDisabled = useMemo(() => {
+    if (disabled) return true
+
+    return value && max ? max <= value : false
+  }, [disabled, value, max])
+
+  const decreaseDisabled = useMemo(() => {
+    if (disabled) return true
+
+    return value && min ? min >= value : false
+  }, [disabled, value, min])
 
   const handleIncrease = useCallback(
     (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -64,7 +77,7 @@ const QuantityFormControl = React.forwardRef<
         size="sm"
         className="flex-1 flex justify-center items-center border-r-0"
         onClick={handleDecrease}
-        disabled={value && min ? min >= value : false}
+        disabled={decreaseDisabled}
       >
         <LineIcon className="w-3 h-3" />
       </Button>
@@ -82,7 +95,7 @@ const QuantityFormControl = React.forwardRef<
         size="sm"
         className="flex-1 flex justify-center items-center border-l-0"
         onClick={handleIncrease}
-        disabled={value && max ? max <= value : false}
+        disabled={increaseDisabled}
       >
         <PlusIcon className="w-3 h-3" />
       </Button>

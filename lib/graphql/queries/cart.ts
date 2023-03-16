@@ -37,6 +37,7 @@ export const CART_FRAGMENT = gql`
             ... on ProductVariant {
               id
               title
+              quantityAvailable
               image {
                 url
               }
@@ -75,13 +76,33 @@ export const CREATE_CART = gql`
   }
 `
 
-export const ADD_LINE_TO_CART = gql`
+export const ADD_LINE = gql`
   ${CART_FRAGMENT}
 
   mutation AddLineToCart($cartId: ID!, $merchandiseId: ID!, $quantity: Int!) {
     cartLinesAdd(
       lines: { merchandiseId: $merchandiseId, quantity: $quantity }
       cartId: $cartId
+    ) {
+      cart {
+        ...CartFragment
+      }
+    }
+  }
+`
+
+export const UPDATE_LINE = gql`
+  ${CART_FRAGMENT}
+
+  mutation UpdateLine(
+    $cartId: ID!
+    $id: ID!
+    $merchandiseId: ID!
+    $quantity: Int!
+  ) {
+    cartLinesUpdate(
+      cartId: $cartId
+      lines: { id: $id, merchandiseId: $merchandiseId, quantity: $quantity }
     ) {
       cart {
         ...CartFragment
