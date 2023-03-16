@@ -1,4 +1,10 @@
+'use client'
+
 import { cn } from 'lib/utils/helpers'
+import { useGetCart } from '../hooks/cart'
+import { useCartStore } from 'lib/store/cart'
+import { removeLineFromCart } from 'lib/graphql/cart'
+import { useCallback, useState } from 'react'
 import { CartLine } from 'lib/types/cart'
 import Link from 'next/link'
 import Price from './Price'
@@ -19,6 +25,28 @@ export default function CartItem({
   onClick,
   ...props
 }: CartItemProps) {
+  const cartId = useCartStore((state) => state.cart.id)
+  const { mutate } = useGetCart(cartId)
+
+  const [isLoading, setIsLoading] = useState(false)
+
+  const handleRemove = useCallback(
+    async (e: React.MouseEvent<HTMLButtonElement>) => {
+      e.preventDefault()
+
+      setIsLoading(false)
+
+      if (cartId && node?.id) {
+        const cart = await removeLineFromCart(cartId, node?.id)
+
+        mutate({ cart })
+      }
+
+      setIsLoading(false)
+    },
+    [cartId, node, mutate]
+  )
+
   if (variant === 'minimal')
     return (
       <div {...props} className={cn('flex flex-nowrap space-x-4', className)}>
@@ -57,12 +85,8 @@ export default function CartItem({
             )}
           </div>
           <div className="w-full flex flex-col space-y-2 items-start md:items-end">
-            {node?.cost?.amountPerQuantity && (
-              <Price
-                size="xs"
-                weight="light"
-                {...node.cost.amountPerQuantity}
-              />
+            {node?.cost?.subtotalAmount && (
+              <Price size="xs" weight="light" {...node.cost.subtotalAmount} />
             )}
             {node?.quantity && (
               <QuantityFormControl
@@ -70,12 +94,13 @@ export default function CartItem({
                 groupClassName="w-[90px] h-[30px]"
               />
             )}
-            <a
-              href="#"
-              className="w-fit uppercase tracking-tight font-light text-xs underline hover:font-normal"
+            <button
+              className="w-fit uppercase tracking-tight font-light text-xs hover:underline hover:font-normal"
+              disabled={isLoading}
+              onClick={handleRemove}
             >
               Remove
-            </a>
+            </button>
           </div>
         </div>
       </div>
@@ -116,15 +141,16 @@ export default function CartItem({
               Size: <strong>{node.merchandise.title}</strong>
             </Paragraph>
           )}
-          <a
-            href="#"
+          <button
             className={cn(
               'hidden lg:block',
               'w-fit uppercase tracking-tight font-light text-xs underline hover:font-normal'
             )}
+            disabled={isLoading}
+            onClick={handleRemove}
           >
             Remove
-          </a>
+          </button>
         </div>
         {node?.quantity && (
           <QuantityFormControl
@@ -142,12 +168,13 @@ export default function CartItem({
           />
         )}
         <div className="w-full block lg:hidden">
-          <a
-            href="#"
+          <button
             className="w-fit uppercase tracking-tight font-light text-xs underline hover:font-normal"
+            disabled={isLoading}
+            onClick={handleRemove}
           >
             Remove
-          </a>
+          </button>
         </div>
       </div>
     </div>

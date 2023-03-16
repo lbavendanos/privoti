@@ -1,8 +1,9 @@
 'use client'
 
 import { cn } from 'lib/utils/helpers'
+import { useGetCart } from '@/common/hooks/cart'
 import { useCartStore } from 'lib/store/cart'
-import { addItemToCart, createCart } from 'lib/graphql/cart'
+import { createCart, addLineToCart } from 'lib/graphql/cart'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { FormController, useForm } from 'lib/utils/form'
@@ -16,7 +17,6 @@ import ProductSizeFormControl from './ProductSizeFormControl'
 
 interface ProductFormData {
   variantId: string
-  quantity: number
 }
 
 interface ProductFormProps extends React.ComponentPropsWithoutRef<'form'> {
@@ -30,8 +30,9 @@ export default function ProductForm({
 }: ProductFormProps) {
   const router = useRouter()
   const searchParams = useSearchParams()
+  const cartId = useCartStore((state) => state.cart.id)
   const updateCart = useCartStore((state) => state.updateCart)
-  const cart = useCartStore((state) => state.cart)
+  const { mutate } = useGetCart(cartId)
 
   const variants = useMemo(() => product.variants, [product])
 
@@ -41,7 +42,6 @@ export default function ProductForm({
   const { formControl, setFormValue, handleSubmit } = useForm<ProductFormData>({
     defaultValues: {
       variantId: '',
-      quantity: 1,
     },
   })
 
@@ -64,17 +64,17 @@ export default function ProductForm({
       )?.id
 
       if (variantId) {
-        const response =
-          cart && cart.id
-            ? await addItemToCart(cart.id, variantId)
-            : await createCart(variantId, data.quantity)
+        const cart = cartId
+          ? await addLineToCart(cartId, variantId)
+          : await createCart(variantId)
 
-        updateCart(response)
+        updateCart(cart)
+        mutate({ cart })
       }
 
       setIsLoading(false)
     },
-    [cart, variants, updateCart]
+    [cartId, variants, updateCart, mutate]
   )
 
   useEffect(() => {

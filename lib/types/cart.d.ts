@@ -55,6 +55,7 @@ export interface CartLine {
     quantity?: number
     cost?: {
       amountPerQuantity?: Price
+      subtotalAmount?: Price
     }
     merchandise: {
       id?: string

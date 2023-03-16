@@ -1,11 +1,8 @@
 'use client'
 
-import { filled } from 'lib/utils/helpers'
+import { useGetCart } from '@/common/hooks/cart'
 import { useCartStore } from 'lib/store/cart'
-import { useShopifySWR } from 'lib/utils/swr'
-import { GET_CART_QUERY } from 'lib/graphql/queries'
 import React, { useMemo } from 'react'
-import { Cart } from 'lib/types/cart'
 import { ShoppingIcon } from '@/common/components/Icons'
 import Offcanvas, { OffcanvasProps } from '@/common/components/Offcanvas'
 import Link from 'next/link'
@@ -19,10 +16,8 @@ import OffcanvasHeader from '@/common/components/OffcanvasHeader'
 interface BaseCartProps extends OffcanvasProps {}
 
 export default function BaseCart({ onHide, ...props }: BaseCartProps) {
-  const id = useCartStore((state) => state.cart.id)
-  const { data } = useShopifySWR<{ cart: Cart }>(
-    filled(id) ? [GET_CART_QUERY, { id }] : null
-  )
+  const cartId = useCartStore((state) => state.cart.id)
+  const { data } = useGetCart(cartId)
 
   const lines = useMemo(() => data?.cart?.lines?.edges, [data])
 
