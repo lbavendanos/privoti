@@ -27,41 +27,8 @@ export const CREATE_CART = gql`
                   id
                   title
                   image {
-                    src
+                    url
                   }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-`
-
-export const GET_CART_QUERY = gql`
-  query GetCart($id: ID!) {
-    cart(id: $id) {
-      id
-      totalQuantity
-      checkoutUrl
-      cost {
-        totalAmount {
-          amount
-          currencyCode
-        }
-      }
-      lines(first: 10) {
-        edges {
-          node {
-            id
-            quantity
-            merchandise {
-              ... on ProductVariant {
-                id
-                title
-                image {
-                  src
                 }
               }
             }
@@ -98,7 +65,7 @@ export const ADD_ITEM_TO_CART = gql`
                   id
                   title
                   image {
-                    src
+                    url
                   }
                 }
               }

@@ -38,12 +38,7 @@ export default function ProductForm({
   const [variant, setVariant] = useState<Variant | undefined>()
   const [isLoading, setIsLoading] = useState(false)
 
-  const {
-    formControl,
-    setFormValue,
-    handleSubmit,
-    formState: { errors: formErrors },
-  } = useForm<ProductFormData>({
+  const { formControl, setFormValue, handleSubmit } = useForm<ProductFormData>({
     defaultValues: {
       variantId: '',
       quantity: 1,

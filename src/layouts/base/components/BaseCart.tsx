@@ -1,42 +1,30 @@
+'use client'
+
+import { filled } from 'lib/utils/helpers'
+import { useCartStore } from 'lib/store/cart'
+import { useShopifySWR } from 'lib/utils/swr'
+import { GET_CART_QUERY } from 'lib/graphql/queries'
+import React, { useMemo } from 'react'
+import { Cart } from 'lib/types/cart'
 import { ShoppingIcon } from '@/common/components/Icons'
 import Offcanvas, { OffcanvasProps } from '@/common/components/Offcanvas'
-import CartItemList, { Items } from '@/common/components/CartItemList'
-import React from 'react'
 import Link from 'next/link'
 import Separator from '@/common/components/Separator'
 import CloseButton from '@/common/components/CloseButton'
 import CartSummary from '@/common/components/CartSummary'
+import CartItemList from '@/common/components/CartItemList'
 import OffcanvasBody from '@/common/components/OffcanvasBody'
 import OffcanvasHeader from '@/common/components/OffcanvasHeader'
-
-const items: Items = [
-  {
-    name: 'Marida top pink',
-    size: 'Extra small',
-    color: 'Black',
-    amount: 1,
-    price: 'S/. 179.80 PEN',
-  },
-  {
-    name: 'Marida top pink',
-    size: 'Extra small',
-    color: 'Black',
-    amount: 2,
-    price: 'S/. 179.80 PEN',
-  },
-  {
-    name: 'Marida top pink',
-    size: 'Extra small',
-    color: 'Black',
-    amount: 3,
-    price: 'S/. 179.80 PEN',
-  },
-]
 
 interface BaseCartProps extends OffcanvasProps {}
 
 export default function BaseCart({ onHide, ...props }: BaseCartProps) {
-  const hasProducts = true
+  const id = useCartStore((state) => state.cart.id)
+  const { data } = useShopifySWR<{ cart: Cart }>(
+    filled(id) ? [GET_CART_QUERY, { id }] : null
+  )
+
+  const lines = useMemo(() => data?.cart?.lines?.edges, [data])
 
   return (
     <Offcanvas
@@ -58,12 +46,12 @@ export default function BaseCart({ onHide, ...props }: BaseCartProps) {
       </OffcanvasHeader>
       <Separator />
       <OffcanvasBody className="pb-0">
-        {hasProducts ? (
+        {lines && lines.length > 0 ? (
           <div className="flex flex-col space-y-4">
-            <CartItemList items={items} variant="minimal" />
+            <CartItemList lines={lines} variant="minimal" onClick={onHide} />
             <div className="flex flex-col space-y-4 pb-4 bg-white sticky bottom-0 z-10">
               <Separator className="!px-0 opacity-30" />
-              <CartSummary />
+              <CartSummary cart={data.cart} />
             </div>
           </div>
         ) : (

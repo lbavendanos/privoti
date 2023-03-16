@@ -1,24 +1,67 @@
 import { Price } from './price'
-import { Image } from './image'
-import { Products } from './product'
+
+export interface Variant {
+  id?: string
+  title?: string
+  price?: Price
+  currentlyNotInStock?: boolean
+  quantityAvailable?: number
+}
+
+export interface Variants {
+  edges?: { node?: Variant }[]
+}
+
+export interface Image {
+  id?: string
+  url?: string
+  altText?: string
+  width?: number
+  height?: number
+}
+
+export interface Images {
+  edges?: { node?: Image }[]
+}
+
+export interface Product {
+  handle?: string
+  id?: string
+  title?: string
+  description?: string
+  availableForSale?: boolean
+  totalInventory?: number
+  priceRange?: { minVariantPrice?: Price }
+  images?: Images
+  variants?: Variants
+}
 
 export interface Cart {
   id?: string
   totalQuantity?: number
   checkoutUrl?: string
   cost?: {
+    subtotalAmount?: Price
     totalAmount?: Price
   }
-  lines?: CarLines
+  lines?: {
+    edges: CartLines
+  }
 }
 
 export interface CartLine {
-  id?: string
-  quantity?: number
-  merchandise: {
+  node?: {
     id?: string
-    title?: string
-    image: Image
+    quantity?: number
+    cost?: {
+      amountPerQuantity?: Price
+    }
+    merchandise: {
+      id?: string
+      title?: string
+      image?: { url: string }
+      product?: Product
+    }
   }
 }
 

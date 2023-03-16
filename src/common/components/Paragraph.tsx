@@ -3,7 +3,7 @@ import React from 'react'
 
 export interface ParagraphProps extends React.ComponentPropsWithRef<'p'> {
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
-  weight?: 'light' | 'normal' | 'medium' | 'semibold'
+  weight?: 'light' | 'normal' | 'medium' | 'semibold' | 'bold'
 }
 
 const Paragraph = React.forwardRef<HTMLParagraphElement, ParagraphProps>(
@@ -25,6 +25,7 @@ const Paragraph = React.forwardRef<HTMLParagraphElement, ParagraphProps>(
           weight === 'normal' && 'font-normal',
           weight === 'medium' && 'font-medium',
           weight === 'semibold' && 'font-semibold',
+          weight === 'bold' && 'font-bold',
           className
         )}
       />
