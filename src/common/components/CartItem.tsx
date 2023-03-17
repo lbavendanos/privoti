@@ -185,12 +185,12 @@ export default function CartItem({
             onChange={handleQuantity}
           />
         )}
-        {node?.cost?.amountPerQuantity && (
+        {node?.cost?.subtotalAmount && (
           <Price
             size="sm"
             weight="light"
             className="w-full lg:w-3/12 text-left lg:text-right"
-            {...node.cost.amountPerQuantity}
+            {...node.cost.subtotalAmount}
           />
         )}
         <div className="w-full block lg:hidden">

@@ -1,44 +1,18 @@
-'use client'
-
 import { cn } from 'lib/utils/helpers'
-import { useCartStore } from 'lib/store/cart'
-import { useGetCart } from '@/common/hooks/cart'
-import React, { useMemo } from 'react'
+import React from 'react'
 import Button from '@/common/components/Button'
 import Heading from '@/common/components/Heading'
 import Container from '@/common/components/Container'
 import ProductCard from '@/common/components/ProductCard'
-import CartItemList from '@/common/components/CartItemList'
-import CartOrderSummary from './components/CartOrderSummary'
+import CartOrder from './components/CartOder'
 
 export default function CartModule() {
-  const cartId = useCartStore((state) => state.cart.id)
-  const { data } = useGetCart(cartId)
-
-  const lines = useMemo(() => data?.cart?.lines?.edges, [data])
-
   return (
     <Container className="my-6 md:my-10">
       <div className="flex flex-col space-y-10">
         <div className="flex flex-col space-y-4">
           <Heading as="h1">Cart</Heading>
-          {lines && lines.length > 0 ? (
-            <div className="flex flex-wrap gap-y-6">
-              <div className="w-full lg:w-8/12 p-0 lg:pr-4">
-                <CartItemList lines={lines} />
-              </div>
-              <div className="w-full lg:w-4/12 p-0 lg:pl-4">
-                <CartOrderSummary
-                  className="relative lg:sticky lg:top-0"
-                  cart={data.cart}
-                />
-              </div>
-            </div>
-          ) : (
-            <p className="uppercase font-normal tracking-tight text-center">
-              your cart is currently empty! <br /> let&apos;s fix that
-            </p>
-          )}
+          <CartOrder />
         </div>
         <div className="flex flex-col space-y-3">
           <div className="flex justify-between">
