@@ -3,7 +3,6 @@
 import { useGetCart } from 'lib/graphql/hooks/cart'
 import { useCartStore } from 'lib/store/cart'
 import React, { useMemo } from 'react'
-import { ShoppingIcon } from '@/common/components/Icons'
 import Offcanvas, { OffcanvasProps } from '@/common/components/Offcanvas'
 import Link from 'next/link'
 import Separator from '@/common/components/Separator'
@@ -13,6 +12,7 @@ import CartItemList from '@/common/components/CartItemList'
 import OffcanvasBody from '@/common/components/OffcanvasBody'
 import CartEmptyInfo from '@/common/components/CartEmptyInfo'
 import OffcanvasHeader from '@/common/components/OffcanvasHeader'
+import CartShoppingInfo from '@/common/components/CartShoppingInfo'
 
 interface BaseCartProps extends OffcanvasProps {}
 
@@ -30,7 +30,12 @@ export default function BaseCart({ onHide, ...props }: BaseCartProps) {
       className="w-[85%] md:w-[480px]"
     >
       <OffcanvasHeader>
-        <ShoppingIcon className="w-6 h-6 md:w-8 md:h-8" />
+        <Link href="/cart" onClick={onHide}>
+          <CartShoppingInfo
+            quantityClassName="text-xs mt-[4px]"
+            iconClassName="w-8 h-8"
+          />
+        </Link>
         <Link
           href="/cart"
           className="text-sm md:text-base uppercase font-semibold tracking-tight hover:underline"

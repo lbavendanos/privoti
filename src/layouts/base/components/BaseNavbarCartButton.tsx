@@ -2,7 +2,7 @@
 
 import dynamic from 'next/dynamic'
 import { useState } from 'react'
-import { ShoppingIcon } from '@/common/components/Icons'
+import CartShoppingInfo from '@/common/components/CartShoppingInfo'
 
 const BaseCart = dynamic(() => import('./BaseCart'), {
   ssr: false,
@@ -17,7 +17,10 @@ export default function BaseNavbarCartButton() {
   return (
     <>
       <button type="button" className="text-zinc-800" onClick={handleShow}>
-        <ShoppingIcon className="w-6 h-6" />
+        <CartShoppingInfo
+          quantityClassName="text-[9px] mt-[3px]"
+          iconClassName="w-6 h-6"
+        />
       </button>
       <BaseCart show={show} onHide={handleClose} />
     </>
