@@ -1,6 +1,6 @@
 'use client'
 
-import { useGetCart } from '@/common/hooks/cart'
+import { useGetCart } from 'lib/graphql/hooks/cart'
 import { useCartStore } from 'lib/store/cart'
 import React, { useMemo } from 'react'
 import { ShoppingIcon } from '@/common/components/Icons'

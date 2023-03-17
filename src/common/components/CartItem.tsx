@@ -1,10 +1,10 @@
 'use client'
 
 import { cn } from 'lib/utils/helpers'
-import { useGetCart } from '../hooks/cart'
+import { useGetCart } from 'lib/graphql/hooks/cart'
 import { useCartStore } from 'lib/store/cart'
+import { useCallback, useEffect, useState } from 'react'
 import { removeLineFromCart, updateLineFromCart } from 'lib/graphql/cart'
-import { useCallback, useState } from 'react'
 import { CartLine } from 'lib/types/cart'
 import Link from 'next/link'
 import Price from './Price'
@@ -67,6 +67,10 @@ export default function CartItem({
     },
     [cartId, node, mutate]
   )
+
+  useEffect(() => {
+    setQuantity(node?.quantity)
+  }, [node?.quantity])
 
   if (variant === 'minimal')
     return (
@@ -168,7 +172,7 @@ export default function CartItem({
           <button
             className={cn(
               'hidden lg:block',
-              'w-fit uppercase tracking-tight font-light text-xs underline hover:font-normal'
+              'w-fit uppercase tracking-tight font-light text-xs hover::underline hover:font-normal'
             )}
             disabled={isLoading}
             onClick={handleRemove}
@@ -195,7 +199,7 @@ export default function CartItem({
         )}
         <div className="w-full block lg:hidden">
           <button
-            className="w-fit uppercase tracking-tight font-light text-xs underline hover:font-normal"
+            className="w-fit uppercase tracking-tight font-light text-xs hover:underline hover:font-normal"
             disabled={isLoading}
             onClick={handleRemove}
           >
