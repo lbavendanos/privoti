@@ -1,5 +1,5 @@
 import { cn } from 'lib/utils/helpers'
-import { Product } from 'lib/types/product'
+import { Variants } from 'lib/shopify/types/variant'
 import Button from '@/common/components/Button'
 import Paragraph from '@/common/components/Paragraph'
 import ShippingInfo from '@/common/components/ShippingInfo'
@@ -7,38 +7,36 @@ import ProductPrice from './ProductPrice'
 
 interface ProductFormFallbackProps
   extends React.ComponentPropsWithoutRef<'form'> {
-  product: Product
+  variants: Variants
 }
 
 export default function ProductFormFallback({
-  product,
+  variants,
   className,
   ...props
 }: ProductFormFallbackProps) {
-  const { variants } = product
-  const variant = product.variants?.at(0)
-
-  const options = variants?.map(({ shortId, shortName }) => ({
-    value: shortId,
-    name: shortName,
-  }))
+  const variant = variants.edges?.at(0)?.node
 
   return (
     <form {...props} className={cn('flex flex-col space-y-6', className)}>
       <div className="flex flex-col gap-y-2">
-        <ProductPrice {...variant?.price} />
+        {variant?.price && <ProductPrice {...variant.price} />}
         <ShippingInfo />
         <Paragraph size="xs" weight="medium">
           <strong>Size:</strong>
         </Paragraph>
-        {options && options.length > 0 && (
+        {variants.edges && variants.edges.length > 0 && (
           <div className="flex flex-nowrap gap-2">
-            {options.map((option) => (
+            {variants.edges.map(({ node }) => (
               <div
-                key={option.value}
+                key={node?.id}
                 className="btn btn-md w-20 pointer-events-none"
               >
-                {option.name}
+                {node?.title === 'Extra small' && 'xs'}
+                {node?.title === 'Small' && 's'}
+                {node?.title === 'Medium' && 'm'}
+                {node?.title === 'Large' && 'l'}
+                {node?.title === 'Extra large' && 'xl'}
               </div>
             ))}
           </div>

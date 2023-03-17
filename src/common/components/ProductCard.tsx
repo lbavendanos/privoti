@@ -1,43 +1,43 @@
 import { cn } from 'lib/utils/helpers'
-import { Product } from 'lib/types/product'
+import { Product } from 'lib/shopify/types/product'
 import Link from 'next/link'
 import Image from 'next/image'
 import Price from './Price'
 import Paragraph from './Paragraph'
 
-interface ProductCardProps
-  extends React.ComponentPropsWithoutRef<'a'>,
-    Product {}
+interface ProductCardProps extends React.ComponentPropsWithoutRef<'a'> {
+  product: Product
+}
 
 export default function ProductCard({
-  name,
-  url,
-  priceRange,
-  images,
+  product,
   className,
   ...props
 }: ProductCardProps) {
-  if (!url) return null
+  const { handle, title, images, priceRange } = product
+
+  if (!handle || !title) return null
 
   return (
-    <Link {...props} href={url} className={cn('flex flex-col', className)}>
-      {images?.at(0) && (
-        <figure className="bg-gray-300 w-full h-full">
+    <Link {...props} href={handle} className={cn('flex flex-col', className)}>
+      {images?.edges?.at(0)?.node && (
+        <figure className="w-full h-full">
           <Image
             className="object-cover w-full h-full"
-            src={images.at(0)?.src!}
-            alt={images.at(0)?.alt! || name!}
-            blurDataURL={images.at(0)?.blurDataURL!}
-            placeholder="blur"
-            width={510}
-            height={600}
+            src={images.edges.at(0)?.node?.url!}
+            alt={images.edges.at(0)?.node?.altText || title}
+            // blurDataURL={images.at(0)?.blurDataURL!}
+            // placeholder="blur"
+            width={images.edges.at(0)?.node?.width}
+            height={images.edges.at(0)?.node?.height}
+            quality={100}
           />
         </figure>
       )}
       <div className={cn('flex flex-col my-2', 'tracking-tight text-xs')}>
-        {name && (
+        {title && (
           <Paragraph size="xs" weight="semibold">
-            {name}
+            {title}
           </Paragraph>
         )}
         {priceRange?.minVariantPrice && (

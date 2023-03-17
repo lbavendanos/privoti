@@ -1,12 +1,12 @@
 import { cn } from 'lib/utils/helpers'
-import { getProducts } from 'lib/graphql/product'
+import { getProductsCache } from 'lib/shopify/core/product'
 import Heading from '@/common/components/Heading'
 import Container from '@/common/components/Container'
 import HomeBanner from './components/HomeBanner'
 import ProductCard from '@/common/components/ProductCard'
 
 export default async function HomeModule() {
-  const products = await getProducts()
+  const products = await getProductsCache()
 
   return (
     <div className="flex flex-col">
@@ -23,8 +23,8 @@ export default async function HomeModule() {
               '2xl:grid-cols-6'
             )}
           >
-            {products.map(({ id, ...product }) => (
-              <ProductCard key={id} {...product} />
+            {products.edges?.map(({ node }) => (
+              <ProductCard key={node.id} product={node} />
             ))}
           </div>
         </div>

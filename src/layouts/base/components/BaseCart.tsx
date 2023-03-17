@@ -1,6 +1,6 @@
 'use client'
 
-import { useGetCart } from 'lib/graphql/hooks/cart'
+import { useGetCart } from 'lib/shopify/core/cart/hooks'
 import { useCartStore } from 'lib/store/cart'
 import React, { useMemo } from 'react'
 import Offcanvas, { OffcanvasProps } from '@/common/components/Offcanvas'

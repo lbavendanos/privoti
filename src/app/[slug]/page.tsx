@@ -1,5 +1,5 @@
 import { url } from 'lib/utils/url'
-import { getProduct, getProductSlugs } from 'lib/graphql/product'
+import { getProductCache, getProductSlugs } from 'lib/shopify/core/product'
 import { Metadata } from 'next'
 import ProductModule from '@/modules/product/ProductModule'
 
@@ -10,21 +10,23 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: any): Promise<Metadata> {
-  const product = await getProduct(params.slug)
+  const { handle, title, description, images } = await getProductCache(
+    params.slug
+  )
 
   return {
-    title: product.name,
-    description: product.description,
+    title: title,
+    description: description,
     openGraph: {
-      title: product.name,
-      description: product.description,
+      title: title,
+      description: description,
       type: 'article',
-      url: url(product.url),
+      url: url(handle),
       images: [
         {
-          url: product.images?.at(0)?.src || '',
-          width: 510,
-          height: 600,
+          url: images?.edges?.at(0)?.node?.url || '',
+          width: images?.edges?.at(0)?.node?.width,
+          height: images?.edges?.at(0)?.node?.height,
         },
       ],
     },

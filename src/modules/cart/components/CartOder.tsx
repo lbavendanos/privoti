@@ -1,7 +1,7 @@
 'use client'
 
 import { useMemo } from 'react'
-import { useGetCart } from 'lib/graphql/hooks/cart'
+import { useGetCart } from 'lib/shopify/core/cart/hooks'
 import { useCartStore } from 'lib/store/cart'
 import CartItemList from '@/common/components/CartItemList'
 import CartEmptyInfo from '@/common/components/CartEmptyInfo'

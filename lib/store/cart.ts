@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 import { devtools, persist } from 'zustand/middleware'
-import { Cart } from 'lib/types/cart'
+import { Cart } from 'lib/shopify/types/cart'
 
 export interface CartState {
   cart: Cart

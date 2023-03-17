@@ -1,5 +1,5 @@
-import { config } from './helpers'
-import { gqlFetcher } from './http'
+import { config } from 'lib/utils/helpers'
+import { gqlFetcher } from 'lib/utils/http'
 
 export async function shopifyFetcher<T = any>(
   query: string,

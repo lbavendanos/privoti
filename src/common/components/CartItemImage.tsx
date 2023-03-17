@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { Image as ImageType } from 'lib/types/cart'
+import { Image as ImageType } from 'lib/shopify/types/image'
 
 export interface CartItemImageProps extends ImageType {
   alt?: string

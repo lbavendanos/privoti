@@ -4,7 +4,6 @@ import Button from '@/common/components/Button'
 import Heading from '@/common/components/Heading'
 import Container from '@/common/components/Container'
 import CartOrder from './components/CartOder'
-import ProductCard from '@/common/components/ProductCard'
 
 export default function CartModule() {
   return (
@@ -30,9 +29,9 @@ export default function CartModule() {
               '2xl:grid-cols-6'
             )}
           >
-            {Array.from({ length: 6 }, (_, i) => (
-              <ProductCard key={i} />
-            ))}
+            {/* {Array.from({ length: 6 }, (_, i) => ( */}
+            {/*   <ProductCard key={i} /> */}
+            {/* ))} */}
           </div>
         </div>
       </div>

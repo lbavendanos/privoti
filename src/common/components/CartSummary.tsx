@@ -3,7 +3,7 @@
 import { cn } from 'lib/utils/helpers'
 import { useRouter } from 'next/navigation'
 import { useCallback, useState } from 'react'
-import { Cart } from 'lib/types/cart'
+import { Cart } from 'lib/shopify/types/cart'
 import Price from './Price'
 import Button from './Button'
 import Paragraph from './Paragraph'

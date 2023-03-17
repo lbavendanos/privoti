@@ -1,5 +1,5 @@
 import { cn } from 'lib/utils/helpers'
-import { Cart } from 'lib/types/cart'
+import { Cart } from 'lib/shopify/types/cart'
 import Heading from '@/common/components/Heading'
 import CartSummary from '@/common/components/CartSummary'
 

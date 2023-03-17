@@ -1,5 +1,5 @@
 import { cn } from 'lib/utils/helpers'
-import { getProduct } from 'lib/graphql/product'
+import { getProductCache } from 'lib/shopify/core/product'
 import { Suspense } from 'react'
 import Image from 'next/image'
 import Heading from '@/common/components/Heading'
@@ -17,7 +17,8 @@ export default async function ProductModule({
   className,
   ...props
 }: ProductModuleProps) {
-  const product = await getProduct(slug)
+  const { handle, title, description, images, variants } =
+    await getProductCache(slug)
 
   return (
     <Container {...props} className={cn('my-6 md:my-10', className)}>
@@ -25,49 +26,55 @@ export default async function ProductModule({
         <div className="flex flex-col md:flex-row gap-y-4">
           <div className="w-full md:w-8/12 p-0 md:pr-4">
             <div className="flex space-x-2">
-              {product.images?.at(0) && (
-                <figure className="bg-gray-300 w-full h-auto lg:w-1/2">
+              {images?.edges?.at(0)?.node && (
+                <figure className="w-full h-auto lg:w-1/2">
                   <Image
                     className="object-cover w-full h-full"
-                    src={product.images.at(0)?.src!}
-                    alt={product.images.at(0)?.alt! || product.name!}
-                    blurDataURL={product.images.at(0)?.blurDataURL!}
-                    placeholder="blur"
-                    width={510}
-                    height={600}
+                    src={images.edges.at(0)?.node?.url!}
+                    alt={images.edges.at(0)?.node?.altText || title!}
+                    // blurDataURL={product.images.at(0)?.blurDataURL!}
+                    // placeholder="blur"
+                    width={images.edges.at(0)?.node?.width}
+                    height={images.edges.at(0)?.node?.height}
+                    quality={100}
                   />
                 </figure>
               )}
-              {product.images?.at(1) && (
-                <figure className="bg-gray-300 w-full h-auto lg:w-1/2">
+              {images?.edges?.at(1)?.node && (
+                <figure className="w-full h-auto lg:w-1/2">
                   <Image
                     className="object-cover w-full h-full"
-                    src={product.images.at(1)?.src!}
-                    alt={product.images.at(1)?.alt! || product.name!}
-                    blurDataURL={product.images.at(1)?.blurDataURL!}
-                    placeholder="blur"
-                    width={510}
-                    height={600}
+                    src={images.edges.at(1)?.node?.url!}
+                    alt={images.edges.at(1)?.node?.altText || title!}
+                    // blurDataURL={product.images.at(0)?.blurDataURL!}
+                    // placeholder="blur"
+                    width={images.edges.at(1)?.node?.width}
+                    height={images.edges.at(1)?.node?.height}
+                    quality={100}
                   />
                 </figure>
               )}
             </div>
           </div>
           <div className="w-full md:w-4/12 p-0 md:pl-4">
-            {product.name && (
+            {title && (
               <Heading as="h1" className="mb-2">
-                {product.name}
+                {title}
               </Heading>
             )}
-            <div className="w-full mb-6">
-              <Suspense fallback={<ProductFormFallback product={product} />}>
-                <ProductForm product={product} />
-              </Suspense>
-            </div>
-            {product.description && (
+            {variants && handle && (
+              <div className="w-full mb-6">
+                <Suspense
+                  fallback={<ProductFormFallback variants={variants} />}
+                >
+                  <ProductForm url={handle} variants={variants} />
+                </Suspense>
+              </div>
+            )}
+            {description && (
               <div className="w-full">
                 <Paragraph size="sm" weight="light">
-                  {product.description}
+                  {description}
                 </Paragraph>
               </div>
             )}

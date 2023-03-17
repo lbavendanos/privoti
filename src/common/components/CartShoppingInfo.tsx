@@ -2,7 +2,7 @@
 
 import { cn } from 'lib/utils/helpers'
 import { useMemo } from 'react'
-import { useGetCart } from 'lib/graphql/hooks/cart'
+import { useGetCart } from 'lib/shopify/core/cart/hooks'
 import { useCartStore } from 'lib/store/cart'
 import { ShoppingIcon } from './Icons'
 

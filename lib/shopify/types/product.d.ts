@@ -3,15 +3,17 @@ import { Images } from './image'
 import { Variants } from './variant'
 
 export interface Product {
+  handle?: string
   id?: string
-  url?: string
-  name?: string
+  title?: string
   description?: string
-  priceRange?: {
-    minVariantPrice?: Price
-  }
+  availableForSale?: boolean
+  totalInventory?: number
+  priceRange?: { minVariantPrice?: Price }
   images?: Images
   variants?: Variants
 }
 
-export type Products = Product[]
+export interface Products {
+  edges?: { node: Product }[]
+}

@@ -1,6 +1,6 @@
 import { cn } from 'lib/utils/helpers'
 import React from 'react'
-import { CartLines } from 'lib/types/cart'
+import { CartLines } from 'lib/shopify/types/cart'
 import Separator from './Separator'
 import CartItem from './CartItem'
 

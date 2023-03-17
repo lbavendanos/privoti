@@ -1,4 +1,4 @@
-import { Price as PriceBase } from 'lib/types/price'
+import { Price as PriceBase } from 'lib/shopify/types/price'
 import Paragraph, { ParagraphProps } from './Paragraph'
 
 export interface PriceProps extends ParagraphProps, PriceBase {}

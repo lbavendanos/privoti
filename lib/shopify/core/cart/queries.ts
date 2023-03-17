@@ -1,5 +1,5 @@
 import { gql } from 'lib/utils/graphql'
-import { PRODUCT_FRAGMENT } from '.'
+import { PRODUCT_FRAGMENT } from '../product/queries'
 
 export const CART_FRAGMENT = gql`
   ${PRODUCT_FRAGMENT}
