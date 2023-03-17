@@ -4,6 +4,7 @@ import { useMemo } from 'react'
 import { useGetCart } from 'lib/graphql/hooks/cart'
 import { useCartStore } from 'lib/store/cart'
 import CartItemList from '@/common/components/CartItemList'
+import CartEmptyInfo from '@/common/components/CartEmptyInfo'
 import CartOrderSummary from './CartOrderSummary'
 
 export default function CartOrder() {
@@ -27,9 +28,7 @@ export default function CartOrder() {
           </div>
         </div>
       ) : (
-        <p className="uppercase font-normal tracking-tight text-center">
-          your cart is currently empty! <br /> let&apos;s fix that
-        </p>
+        <CartEmptyInfo className="text-center" />
       )}
     </div>
   )

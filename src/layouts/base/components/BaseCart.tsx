@@ -11,6 +11,7 @@ import CloseButton from '@/common/components/CloseButton'
 import CartSummary from '@/common/components/CartSummary'
 import CartItemList from '@/common/components/CartItemList'
 import OffcanvasBody from '@/common/components/OffcanvasBody'
+import CartEmptyInfo from '@/common/components/CartEmptyInfo'
 import OffcanvasHeader from '@/common/components/OffcanvasHeader'
 
 interface BaseCartProps extends OffcanvasProps {}
@@ -50,9 +51,7 @@ export default function BaseCart({ onHide, ...props }: BaseCartProps) {
             </div>
           </div>
         ) : (
-          <p className="uppercase font-normal tracking-tight text-center">
-            your cart is currently empty! <br /> let&apos;s fix that
-          </p>
+          <CartEmptyInfo className="text-center" />
         )}
       </OffcanvasBody>
     </Offcanvas>
