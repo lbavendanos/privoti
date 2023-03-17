@@ -20,7 +20,7 @@
     "plaiceholder": "^2.5.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-hook-form": "^7.43.5",
+    "react-hook-form": "^7.43.6",
     "react-transition-group": "^4.4.5",
     "sharp": "^0.31.3",
     "swr": "^2.1.0",
