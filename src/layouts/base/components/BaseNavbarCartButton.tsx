@@ -12,7 +12,12 @@ export default function BaseNavbarCartButton() {
 
   return (
     <>
-      <button type="button" className="text-zinc-800" onClick={handleShow}>
+      <button
+        id="btn-cart"
+        type="button"
+        className="text-zinc-800"
+        onClick={handleShow}
+      >
         <CartShoppingInfo
           quantityClassName="text-[9px] mt-[3px]"
           iconClassName="w-6 h-6"

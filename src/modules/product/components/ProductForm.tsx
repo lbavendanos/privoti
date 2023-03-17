@@ -70,6 +70,12 @@ export default function ProductForm({
 
         updateCart(cart)
         mutate({ cart })
+
+        const btnCart = document.querySelector<HTMLButtonElement>('#btn-cart')
+
+        if (btnCart) {
+          btnCart.click()
+        }
       }
 
       setIsLoading(false)
