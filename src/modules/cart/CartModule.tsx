@@ -3,8 +3,8 @@ import React from 'react'
 import Button from '@/common/components/Button'
 import Heading from '@/common/components/Heading'
 import Container from '@/common/components/Container'
-import ProductCard from '@/common/components/ProductCard'
 import CartOrder from './components/CartOder'
+import ProductCard from '@/common/components/ProductCard'
 
 export default function CartModule() {
   return (

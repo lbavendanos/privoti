@@ -1,12 +1,8 @@
 'use client'
 
-import dynamic from 'next/dynamic'
 import { useState } from 'react'
 import CartShoppingInfo from '@/common/components/CartShoppingInfo'
-
-const BaseCart = dynamic(() => import('./BaseCart'), {
-  ssr: false,
-})
+import BaseCart from './BaseCart'
 
 export default function BaseNavbarCartButton() {
   const [show, setShow] = useState(false)
