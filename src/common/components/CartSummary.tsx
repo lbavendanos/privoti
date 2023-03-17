@@ -1,5 +1,8 @@
+'use client'
+
 import { cn } from 'lib/utils/helpers'
 import { useRouter } from 'next/navigation'
+import { useCallback, useState } from 'react'
 import { Cart } from 'lib/types/cart'
 import Price from './Price'
 import Button from './Button'
@@ -17,6 +20,21 @@ export default function CartSummary({
   ...props
 }: CartSummaryProps) {
   const router = useRouter()
+
+  const [isLoading, setIsLoading] = useState(false)
+
+  const handleClick = useCallback(
+    (e: React.MouseEvent<HTMLButtonElement>) => {
+      e.preventDefault()
+
+      setIsLoading(true)
+
+      if (cart.checkoutUrl) {
+        router.push(cart?.checkoutUrl)
+      }
+    },
+    [cart.checkoutUrl, router]
+  )
 
   return (
     <div {...props} className={cn('flex flex-col space-y-4', className)}>
@@ -36,13 +54,8 @@ export default function CartSummary({
       <Button
         type="button"
         size="lg"
-        onClick={(e) => {
-          e.preventDefault
-
-          if (cart.checkoutUrl) {
-            router.push(cart?.checkoutUrl)
-          }
-        }}
+        disabled={isLoading}
+        onClick={handleClick}
       >
         Checkout
       </Button>
