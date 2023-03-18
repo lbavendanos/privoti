@@ -11,7 +11,7 @@
   "dependencies": {
     "@next/font": "^13.2.4",
     "@restart/hooks": "^0.4.9",
-    "@restart/ui": "^1.6.1",
+    "@restart/ui": "^1.6.2",
     "clsx": "^1.2.1",
     "dom-helpers": "^5.2.1",
     "graphql": "^16.6.0",
