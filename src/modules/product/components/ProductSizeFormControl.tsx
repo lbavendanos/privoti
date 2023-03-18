@@ -1,8 +1,9 @@
 'use client'
 
+import { getShortVariantTitle } from 'lib/shopify/core/variant'
 import React, { useMemo } from 'react'
-import SizeFormControl from '@/common/components/SizeFromControl'
 import { Variants } from 'lib/shopify/types/variant'
+import SizeFormControl from '@/common/components/SizeFromControl'
 
 interface ProductSizeFormControlProps
   extends React.ComponentPropsWithRef<'input'> {
@@ -16,17 +17,9 @@ const ProductSizeFormControl = React.forwardRef<
   const options = useMemo(
     () =>
       variants.edges?.map(({ node }) => {
-        let name = ''
-
-        if (node?.title === 'Extra small') name = 'xs'
-        if (node?.title === 'Small') name = 's'
-        if (node?.title === 'Medium') name = 'm'
-        if (node?.title === 'Large') name = 'l'
-        if (node?.title === 'Extra large') name = 'xl'
-
         return {
           value: node?.id?.replace('gid://shopify/ProductVariant/', '')!,
-          name,
+          name: getShortVariantTitle(node?.title!)!,
         }
       }),
     [variants]

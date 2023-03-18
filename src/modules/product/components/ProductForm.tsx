@@ -3,6 +3,7 @@
 import { cn } from 'lib/utils/helpers'
 import { useGetCart } from 'lib/shopify/core/cart/hooks'
 import { useCartStore } from 'lib/store/cart'
+import { getShortVariantId } from 'lib/shopify/core/variant'
 import { addLineToCart, createCart } from 'lib/shopify/core/cart'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useCallback, useEffect, useState } from 'react'
@@ -58,9 +59,7 @@ export default function ProductForm({
       setIsLoading(true)
 
       const variantId = variants.edges?.find(
-        ({ node }) =>
-          node?.id?.replace('gid://shopify/ProductVariant/', '') ===
-          data.variantId
+        ({ node }) => getShortVariantId(node?.id!) === data.variantId
       )?.node?.id
 
       if (variantId) {
@@ -87,18 +86,13 @@ export default function ProductForm({
     const queryVariant = searchParams.get('variant')
     const variant = queryVariant
       ? variants.edges?.find(
-          ({ node }) =>
-            node?.id?.replace('gid://shopify/ProductVariant/', '') ===
-            queryVariant
+          ({ node }) => getShortVariantId(node?.id!) === queryVariant
         )?.node
       : variants.edges?.at(0)?.node
 
     if (variant && variant.id) {
       setVariant(variant)
-      setFormValue(
-        'variantId',
-        variant.id?.replace('gid://shopify/ProductVariant/', '')
-      )
+      setFormValue('variantId', getShortVariantId(variant.id))
     }
   }, [searchParams, variants, setFormValue])
 

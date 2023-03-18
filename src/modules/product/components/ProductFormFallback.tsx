@@ -1,4 +1,5 @@
 import { cn } from 'lib/utils/helpers'
+import { getShortVariantTitle } from 'lib/shopify/core/variant'
 import { Variants } from 'lib/shopify/types/variant'
 import Button from '@/common/components/Button'
 import Paragraph from '@/common/components/Paragraph'
@@ -32,11 +33,7 @@ export default function ProductFormFallback({
                 key={node?.id}
                 className="btn btn-md w-20 pointer-events-none"
               >
-                {node?.title === 'Extra small' && 'xs'}
-                {node?.title === 'Small' && 's'}
-                {node?.title === 'Medium' && 'm'}
-                {node?.title === 'Large' && 'l'}
-                {node?.title === 'Extra large' && 'xl'}
+                {getShortVariantTitle(node?.title!)}
               </div>
             ))}
           </div>
