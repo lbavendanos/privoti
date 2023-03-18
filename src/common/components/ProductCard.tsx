@@ -21,13 +21,15 @@ export default function ProductCard({
   return (
     <Link {...props} href={handle} className={cn('flex flex-col', className)}>
       {images?.edges?.at(0)?.node && (
-        <figure className="w-full h-full">
+        <figure className="relative block pt-[150%]">
           <Image
-            className="object-cover w-full h-full"
+            className={cn(
+              'absolute top-0',
+              'w-full h-full max-w-full',
+              'object-cover object-center'
+            )}
             src={images.edges.at(0)?.node?.url!}
             alt={images.edges.at(0)?.node?.altText || title}
-            // blurDataURL={images.at(0)?.blurDataURL!}
-            // placeholder="blur"
             width={images.edges.at(0)?.node?.width}
             height={images.edges.at(0)?.node?.height}
             quality={100}
