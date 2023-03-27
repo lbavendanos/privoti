@@ -21,10 +21,10 @@ export default function ProductCard({
   return (
     <Link {...props} href={handle} className={cn('flex flex-col', className)}>
       {images?.edges?.at(0)?.node && (
-        <figure className="relative block pt-[150%]">
+        <figure className="relative block">
           <Image
             className={cn(
-              'absolute top-0',
+              'aspect-[2/3]',
               'w-full h-full max-w-full',
               'object-cover object-center'
             )}
