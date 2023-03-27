@@ -21,10 +21,12 @@ export default function CartOrder() {
             <CartItemList lines={lines} variant="normal" />
           </div>
           <div className="w-full lg:w-4/12 p-0 lg:pl-4">
-            <CartOrderSummary
-              className="relative lg:sticky lg:top-0"
-              cart={data.cart}
-            />
+            {data?.cart && (
+              <CartOrderSummary
+                className="relative lg:sticky lg:top-0"
+                cart={data.cart}
+              />
+            )}
           </div>
         </div>
       ) : (

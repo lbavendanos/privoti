@@ -52,7 +52,7 @@ export default function BaseCart({ onHide, ...props }: BaseCartProps) {
             <CartItemList lines={lines} variant="minimal" onClick={onHide} />
             <div className="flex flex-col space-y-4 pb-4 bg-white sticky bottom-0 z-10">
               <Separator className="!px-0 opacity-30" />
-              <CartSummary cart={data.cart} />
+              {data?.cart && <CartSummary cart={data.cart} />}
             </div>
           </div>
         ) : (
