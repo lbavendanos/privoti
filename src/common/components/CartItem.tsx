@@ -9,7 +9,7 @@ import { CartLine } from 'lib/shopify/types/cart'
 import Link from 'next/link'
 import Price from './Price'
 import Paragraph from './Paragraph'
-import CartItemImage from './CartItemImage'
+import ProductImage from './ProductImage'
 import QuantityFormControl from './QuantityFormControl'
 
 export interface CartItemProps
@@ -82,12 +82,17 @@ export default function CartItem({
             onClick={onClick as any}
           >
             {node?.merchandise?.product?.images?.edges?.at(0) && (
-              <figure className="w-full h-full">
-                <CartItemImage
-                  {...node.merchandise.product.images.edges.at(0)?.node}
-                  alt={node.merchandise.product.title}
-                />
-              </figure>
+              <ProductImage
+                src={node.merchandise.product.images.edges.at(0)?.node?.url!}
+                alt={
+                  node.merchandise.product.images.edges.at(0)?.node?.altText! ||
+                  node.merchandise.product.title!
+                }
+                width={node.merchandise.product.images.edges.at(0)?.node?.width}
+                height={
+                  node.merchandise.product.images.edges.at(0)?.node?.height
+                }
+              />
             )}
           </Link>
         )}
@@ -97,7 +102,7 @@ export default function CartItem({
               node?.merchandise?.product?.title && (
                 <Link
                   href={node.merchandise.product.handle}
-                  className="uppercase tracking-tight font-medium w-fit text-xs md:text-sm"
+                  className="uppercase tracking-tight font-medium w-fit text-xs md:text-sm hover:underline"
                   onClick={onClick as any}
                 >
                   {node.merchandise.product.title}
@@ -143,12 +148,15 @@ export default function CartItem({
           onClick={onClick as any}
         >
           {node?.merchandise?.product?.images?.edges?.at(0) && (
-            <figure className="w-full h-full">
-              <CartItemImage
-                {...node.merchandise.product.images.edges.at(0)?.node}
-                alt={node.merchandise.product.title}
-              />
-            </figure>
+            <ProductImage
+              src={node.merchandise.product.images.edges.at(0)?.node?.url!}
+              alt={
+                node.merchandise.product.images.edges.at(0)?.node?.altText! ||
+                node.merchandise.product.title!
+              }
+              width={node.merchandise.product.images.edges.at(0)?.node?.width}
+              height={node.merchandise.product.images.edges.at(0)?.node?.height}
+            />
           )}
         </Link>
       )}
@@ -158,7 +166,7 @@ export default function CartItem({
             node?.merchandise?.product?.title && (
               <Link
                 href={node.merchandise.product.handle}
-                className="uppercase tracking-tight font-medium text-sm lg:text-base w-fit"
+                className="uppercase tracking-tight font-medium text-sm lg:text-base w-fit hover:underline"
                 onClick={onClick as any}
               >
                 {node.merchandise.product.title}
@@ -172,7 +180,7 @@ export default function CartItem({
           <button
             className={cn(
               'hidden lg:block',
-              'w-fit uppercase tracking-tight font-light text-xs hover::underline hover:font-normal'
+              'w-fit uppercase tracking-tight font-light text-xs hover:underline hover:font-normal'
             )}
             disabled={isLoading}
             onClick={handleRemove}

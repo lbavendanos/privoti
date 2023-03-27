@@ -32,8 +32,6 @@ export default async function ProductModule({
                     className="object-cover w-full h-full"
                     src={images.edges.at(0)?.node?.url!}
                     alt={images.edges.at(0)?.node?.altText || title!}
-                    // blurDataURL={product.images.at(0)?.blurDataURL!}
-                    // placeholder="blur"
                     width={images.edges.at(0)?.node?.width}
                     height={images.edges.at(0)?.node?.height}
                     quality={100}
@@ -46,8 +44,6 @@ export default async function ProductModule({
                     className="object-cover w-full h-full"
                     src={images.edges.at(1)?.node?.url!}
                     alt={images.edges.at(1)?.node?.altText || title!}
-                    // blurDataURL={product.images.at(0)?.blurDataURL!}
-                    // placeholder="blur"
                     width={images.edges.at(1)?.node?.width}
                     height={images.edges.at(1)?.node?.height}
                     quality={100}
