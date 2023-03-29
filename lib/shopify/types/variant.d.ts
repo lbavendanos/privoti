@@ -4,7 +4,7 @@ export interface Variant {
   id?: string
   title?: string
   price?: Price
-  currentlyNotInStock?: boolean
+  availableForSale?: boolean
   quantityAvailable?: number
 }
 

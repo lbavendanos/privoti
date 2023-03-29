@@ -5,9 +5,11 @@ import React from 'react'
 
 export interface SizeFormControlProps
   extends React.ComponentPropsWithoutRef<'input'> {
-  options?: { value: string; name: string }[]
-  optionClassName?: string
-  activeClassName?: string
+  options?: { value: string; name: string; available: boolean }[]
+  availableClassName?: string
+  activeAvailableClassName?: string
+  unavailableClassName?: string
+  activeUnavailableClassName?: string
   groupClassName?: string
 }
 
@@ -20,8 +22,10 @@ const SizeFormControl = React.forwardRef<
       value,
       name: nameProp,
       options,
-      optionClassName,
-      activeClassName,
+      availableClassName,
+      activeAvailableClassName,
+      unavailableClassName,
+      activeUnavailableClassName,
       groupClassName,
       onChange,
       ...props
@@ -37,8 +41,15 @@ const SizeFormControl = React.forwardRef<
             <label
               htmlFor={`${name}-${option.name}`}
               className={cn(
-                optionClassName,
-                option.value === value && activeClassName
+                option.available
+                  ? [
+                      availableClassName,
+                      option.value === value && activeAvailableClassName,
+                    ]
+                  : [
+                      unavailableClassName,
+                      option.value === value && activeUnavailableClassName,
+                    ]
               )}
             >
               {option.name}

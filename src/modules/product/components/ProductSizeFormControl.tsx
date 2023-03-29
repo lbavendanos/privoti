@@ -20,6 +20,7 @@ const ProductSizeFormControl = React.forwardRef<
         return {
           value: node?.id?.replace('gid://shopify/ProductVariant/', '')!,
           name: getShortVariantTitle(node?.title!)!,
+          available: node?.availableForSale!,
         }
       }),
     [variants]
@@ -30,8 +31,10 @@ const ProductSizeFormControl = React.forwardRef<
       {...props}
       ref={ref}
       groupClassName="flex flex-nowrap gap-2"
-      optionClassName="btn btn-md w-20 hover:bg-tertiary-200"
-      activeClassName="bg-tertiary-200"
+      availableClassName="btn btn-md w-20 hover:bg-tertiary-200"
+      activeAvailableClassName="bg-tertiary-200"
+      unavailableClassName="btn btn-md w-20 bg-zinc-50 hover:bg-zinc-200 opacity-40"
+      activeUnavailableClassName="!bg-tertiary-200"
       options={options}
     />
   )

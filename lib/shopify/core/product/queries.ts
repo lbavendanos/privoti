@@ -30,7 +30,7 @@ export const PRODUCT_FRAGMENT = gql`
         node {
           id
           title
-          currentlyNotInStock
+          availableForSale
           quantityAvailable
           price {
             amount

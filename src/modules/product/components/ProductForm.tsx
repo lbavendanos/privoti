@@ -127,12 +127,18 @@ export default function ProductForm({
         />
       </div>
       <div className="flex flex-col space-y-2">
-        <Button type="submit" variant="dark" size="lg" disabled={isLoading}>
-          Add to my cart
-        </Button>
-        <Button type="button" variant="primary" size="lg">
-          Buy now
-        </Button>
+        {variant?.availableForSale ? (
+          <>
+            <Button type="submit" variant="dark" size="lg" disabled={isLoading}>
+              Add to my cart
+            </Button>
+            <Button type="button" variant="primary" size="lg">
+              Buy now
+            </Button>
+          </>
+        ) : (
+          <span className="btn btn-dark btn-lg disabled">Agotado</span>
+        )}
       </div>
     </form>
   )
