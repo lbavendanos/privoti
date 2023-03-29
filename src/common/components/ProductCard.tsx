@@ -19,7 +19,11 @@ export default function ProductCard({
   if (!handle || !title) return null
 
   return (
-    <Link {...props} href={handle} className={cn('flex flex-col', className)}>
+    <Link
+      {...props}
+      href={handle}
+      className={cn('flex flex-col gap-y-1', className)}
+    >
       {images?.edges?.at(0)?.node && (
         <ProductImage
           src={images.edges.at(0)?.node?.url!}
@@ -28,7 +32,7 @@ export default function ProductCard({
           height={images.edges.at(0)?.node?.height}
         />
       )}
-      <div className={cn('flex flex-col my-2', 'tracking-tight text-xs')}>
+      <div className={cn('flex flex-col space-y-1')}>
         {title && (
           <Paragraph size="xs" weight="semibold">
             {title}

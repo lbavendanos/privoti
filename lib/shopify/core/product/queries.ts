@@ -43,8 +43,8 @@ export const PRODUCT_FRAGMENT = gql`
 `
 
 export const GET_PRODUCT_SLUGS = gql`
-  query GetProductSlugs {
-    products(first: 10, sortKey: CREATED_AT) {
+  query GetProductSlugs($first: Int) {
+    products(first: $first) {
       edges {
         node {
           handle
@@ -57,8 +57,8 @@ export const GET_PRODUCT_SLUGS = gql`
 export const GET_PRODUCTS = gql`
   ${PRODUCT_FRAGMENT}
 
-  query GetProducts {
-    products(first: 10, sortKey: CREATED_AT) {
+  query GetProducts($query: String, $first: Int) {
+    products(query: $query, first: $first) {
       edges {
         node {
           ...ProductFragment
