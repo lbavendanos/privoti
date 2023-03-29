@@ -1,7 +1,7 @@
 'use client'
 
 import { useDebounce } from 'lib/hooks'
-import { Suspense, useCallback, useState } from 'react'
+import { Suspense, useCallback, useRef, useState } from 'react'
 import { SearchIcon } from '@/common/components/Icons'
 import Modal, { ModalProps } from '@/common/components/Modal'
 import Button from '@/common/components/Button'
@@ -18,6 +18,7 @@ export default function BaseSearchModal({
   ...props
 }: BaseSearchModalProps) {
   const [query, setQuery] = useState<string>()
+  const inputRef = useRef<HTMLInputElement>()
 
   const debounceResult = useDebounce(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -33,20 +34,27 @@ export default function BaseSearchModal({
     [debounceResult]
   )
 
+  const handleEntering = useCallback(() => {
+    if (inputRef.current) {
+      inputRef.current.focus()
+    }
+  }, [])
+
   return (
-    <Modal {...props} onHide={onHide}>
+    <Modal {...props} onHide={onHide} onEntering={handleEntering}>
       <ModalBody>
         <div className="flex flex-col space-y-4">
           <div className="flex items-center space-x-2">
             <div className="flex justify-center w-full">
               <FormControl
+                ref={inputRef}
                 id="search"
                 type="search"
                 name="search"
                 placeholder="Enter search"
                 className="shrink border-r-0"
-                onChange={handleChange}
                 autoComplete="off"
+                onChange={handleChange}
               />
               <Button type="button">
                 <SearchIcon />

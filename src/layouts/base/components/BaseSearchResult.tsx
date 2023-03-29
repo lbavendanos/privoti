@@ -38,7 +38,7 @@ export default function BaseSearchResult({
                   onClick={onClick}
                 >
                   {node.images?.edges?.at(0) && (
-                    <div className="w-1/6 grow-0 shrink-0">
+                    <div className="w-[15%] md:w-[10%] grow-0 shrink-0">
                       <ProductImage
                         src={node.images?.edges?.at(0)?.node?.url!}
                         alt={
