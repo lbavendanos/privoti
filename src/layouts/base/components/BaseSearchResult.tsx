@@ -30,7 +30,7 @@ export default function BaseSearchResult({
       {hasProducts && (
         <ul className="flex flex-col -mx-4">
           {data.products.edges?.map(({ node }) => (
-            <li key={node.id} className="flex px-4 py-2 hover:bg-zinc-100">
+            <li key={node.id} className="flex px-4 py-2 hover:bg-secondary-50">
               {node.handle && (
                 <Link
                   href={node.handle}
