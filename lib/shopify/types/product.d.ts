@@ -9,7 +9,8 @@ export interface Product {
   description?: string
   availableForSale?: boolean
   totalInventory?: number
-  priceRange?: { minVariantPrice?: Price }
+  priceRange?: { maxVariantPrice?: Price; minVariantPrice?: Price }
+  compareAtPriceRange?: { maxVariantPrice?: Price; minVariantPrice?: Price }
   images?: Images
   variants?: Variants
 }

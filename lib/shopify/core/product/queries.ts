@@ -9,6 +9,20 @@ export const PRODUCT_FRAGMENT = gql`
     availableForSale
     totalInventory
     priceRange {
+      maxVariantPrice {
+        amount
+        currencyCode
+      }
+      minVariantPrice {
+        amount
+        currencyCode
+      }
+    }
+    compareAtPriceRange {
+      maxVariantPrice {
+        amount
+        currencyCode
+      }
       minVariantPrice {
         amount
         currencyCode
@@ -33,6 +47,10 @@ export const PRODUCT_FRAGMENT = gql`
           availableForSale
           quantityAvailable
           price {
+            amount
+            currencyCode
+          }
+          compareAtPrice {
             amount
             currencyCode
           }

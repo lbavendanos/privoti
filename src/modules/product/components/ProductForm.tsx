@@ -5,7 +5,7 @@ import { useGetCart } from 'lib/shopify/core/cart/hooks'
 import { useCartStore } from 'lib/store/cart'
 import { addLineToCart, createCart } from 'lib/shopify/core/cart'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import {
   getDefaultVariant,
   getShortVariantId,
@@ -40,6 +40,11 @@ export default function ProductForm({
   const [variant, setVariant] = useState<Variant>()
   const [variantId, setVariantId] = useState<string>()
   const [isLoading, setIsLoading] = useState(false)
+
+  const isOnSale = useMemo(
+    () => variant?.compareAtPrice?.amount && variant.compareAtPrice.amount > 0,
+    [variant]
+  )
 
   const handleSizeChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -93,7 +98,18 @@ export default function ProductForm({
   return (
     <form {...props} className={cn('flex flex-col space-y-6', className)}>
       <div className="flex flex-col gap-y-2">
-        <ProductPrice {...variant?.price} />
+        <div className="flex flex-row space-x-2">
+          <ProductPrice
+            className={cn(isOnSale && 'text-red-500')}
+            {...variant?.price}
+          />
+          {isOnSale && (
+            <ProductPrice
+              className="line-through"
+              {...variant?.compareAtPrice}
+            />
+          )}
+        </div>
         <ShippingInfo />
         <Paragraph size="xs" weight="medium">
           <strong>Size:</strong>

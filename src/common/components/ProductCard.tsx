@@ -14,7 +14,18 @@ export default function ProductCard({
   className,
   ...props
 }: ProductCardProps) {
-  const { handle, title, images, priceRange, availableForSale } = product
+  const {
+    handle,
+    title,
+    images,
+    priceRange,
+    compareAtPriceRange,
+    availableForSale,
+  } = product
+
+  const isOnSale =
+    compareAtPriceRange?.minVariantPrice?.amount &&
+    compareAtPriceRange.minVariantPrice.amount > 0
 
   if (!handle || !title) return null
 
@@ -33,16 +44,18 @@ export default function ProductCard({
             height={images.edges.at(0)?.node?.height}
           />
         )}
-        {!availableForSale && (
+        {(!availableForSale || isOnSale) && (
           <div
             className={cn(
               'absolute bottom-2 left-0',
               'pl-4 pr-2',
-              'text-white bg-zinc-800'
+              !availableForSale && 'text-white bg-zinc-800',
+              availableForSale && isOnSale && 'text-zinc-800 bg-primary-100'
             )}
           >
             <span className="uppercase tracking-wider leading-none text-xs">
-              Agotado
+              {!availableForSale && 'Agotado'}
+              {availableForSale && isOnSale && 'Oferta'}
             </span>
           </div>
         )}
@@ -53,9 +66,22 @@ export default function ProductCard({
             {title}
           </Paragraph>
         )}
-        {priceRange?.minVariantPrice && (
-          <Price size="xs" {...priceRange?.minVariantPrice} />
-        )}
+        <div className="flex flex-row space-x-2">
+          {priceRange?.minVariantPrice && (
+            <Price
+              size="xs"
+              className={cn(isOnSale && 'text-red-500')}
+              {...priceRange?.minVariantPrice}
+            />
+          )}
+          {isOnSale && (
+            <Price
+              size="xs"
+              className="line-through"
+              {...compareAtPriceRange?.minVariantPrice}
+            />
+          )}
+        </div>
       </div>
     </Link>
   )

@@ -22,11 +22,26 @@ export default function ProductFormFallback({
   ...props
 }: ProductFormFallbackProps) {
   const variant = getDefaultVariant(variants, availableForSale)
+  const isOnSale =
+    variant?.compareAtPrice?.amount && variant.compareAtPrice.amount > 0
 
   return (
     <form {...props} className={cn('flex flex-col space-y-6', className)}>
       <div className="flex flex-col gap-y-2">
-        {variant?.price && <ProductPrice {...variant.price} />}
+        <div className="flex flex-row space-x-2">
+          {variant?.price && (
+            <ProductPrice
+              className={cn(isOnSale && 'text-red-500')}
+              {...variant.price}
+            />
+          )}
+          {isOnSale && (
+            <ProductPrice
+              className="line-through"
+              {...variant?.compareAtPrice}
+            />
+          )}
+        </div>
         <ShippingInfo />
         <Paragraph size="xs" weight="medium">
           <strong>Size:</strong>
