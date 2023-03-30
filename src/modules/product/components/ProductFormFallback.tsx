@@ -1,5 +1,8 @@
 import { cn } from 'lib/utils/helpers'
-import { getShortVariantTitle } from 'lib/shopify/core/variant'
+import {
+  getDefaultVariant,
+  getShortVariantTitle,
+} from 'lib/shopify/core/variant'
 import { Variants } from 'lib/shopify/types/variant'
 import Button from '@/common/components/Button'
 import Paragraph from '@/common/components/Paragraph'
@@ -9,14 +12,16 @@ import ProductPrice from './ProductPrice'
 interface ProductFormFallbackProps
   extends React.ComponentPropsWithoutRef<'form'> {
   variants: Variants
+  availableForSale?: boolean
 }
 
 export default function ProductFormFallback({
   variants,
+  availableForSale,
   className,
   ...props
 }: ProductFormFallbackProps) {
-  const variant = variants.edges?.at(0)?.node
+  const variant = getDefaultVariant(variants, availableForSale)
 
   return (
     <form {...props} className={cn('flex flex-col space-y-6', className)}>
@@ -40,12 +45,18 @@ export default function ProductFormFallback({
         )}
       </div>
       <div className="flex flex-col space-y-2">
-        <Button type="submit" variant="dark" size="lg">
-          Add to my cart
-        </Button>
-        <Button type="button" variant="primary" size="lg">
-          Buy now
-        </Button>
+        {variant?.availableForSale ? (
+          <>
+            <Button type="submit" variant="dark" size="lg" disabled>
+              Add to my cart
+            </Button>
+            <Button type="button" variant="primary" size="lg" disabled>
+              Buy now
+            </Button>
+          </>
+        ) : (
+          <span className="btn btn-dark btn-lg disabled">Agotado</span>
+        )}
       </div>
     </form>
   )

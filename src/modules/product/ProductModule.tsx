@@ -17,7 +17,7 @@ export default async function ProductModule({
   className,
   ...props
 }: ProductModuleProps) {
-  const { handle, title, description, images, variants } =
+  const { handle, title, description, availableForSale, images, variants } =
     await getProductCache(slug)
 
   return (
@@ -61,9 +61,18 @@ export default async function ProductModule({
             {variants && handle && (
               <div className="w-full mb-6">
                 <Suspense
-                  fallback={<ProductFormFallback variants={variants} />}
+                  fallback={
+                    <ProductFormFallback
+                      variants={variants}
+                      availableForSale={availableForSale}
+                    />
+                  }
                 >
-                  <ProductForm url={handle} variants={variants} />
+                  <ProductForm
+                    url={handle}
+                    variants={variants}
+                    availableForSale={availableForSale}
+                  />
                 </Suspense>
               </div>
             )}

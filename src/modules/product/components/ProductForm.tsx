@@ -3,11 +3,14 @@
 import { cn } from 'lib/utils/helpers'
 import { useGetCart } from 'lib/shopify/core/cart/hooks'
 import { useCartStore } from 'lib/store/cart'
-import { getShortVariantId } from 'lib/shopify/core/variant'
 import { addLineToCart, createCart } from 'lib/shopify/core/cart'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useCallback, useEffect, useState } from 'react'
-import { FormController, useForm } from 'lib/utils/form'
+import {
+  getDefaultVariant,
+  getShortVariantId,
+  findVariantByShortId,
+} from 'lib/shopify/core/variant'
 import { Variant, Variants } from 'lib/shopify/types/variant'
 import Button from '@/common/components/Button'
 import Paragraph from '@/common/components/Paragraph'
@@ -15,18 +18,16 @@ import ProductPrice from './ProductPrice'
 import ShippingInfo from '@/common/components/ShippingInfo'
 import ProductSizeFormControl from './ProductSizeFormControl'
 
-interface ProductFormData {
-  variantId: string
-}
-
 interface ProductFormProps extends React.ComponentPropsWithoutRef<'form'> {
   url: string
   variants: Variants
+  availableForSale?: boolean
 }
 
 export default function ProductForm({
   url,
   variants,
+  availableForSale,
   className,
   ...props
 }: ProductFormProps) {
@@ -36,103 +37,93 @@ export default function ProductForm({
   const updateCart = useCartStore((state) => state.updateCart)
   const { mutate } = useGetCart(cartId)
 
-  const [variant, setVariant] = useState<Variant | undefined>()
+  const [variant, setVariant] = useState<Variant>()
+  const [variantId, setVariantId] = useState<string>()
   const [isLoading, setIsLoading] = useState(false)
 
-  const { formControl, setFormValue, handleSubmit } = useForm<ProductFormData>({
-    defaultValues: {
-      variantId: '',
-    },
-  })
-
-  const handleChange = useCallback(
+  const handleSizeChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const value = e.target.value
 
+      setVariantId(value)
       router.replace(`${url}?variant=${value}`)
     },
     [router, url]
   )
 
-  const handleValid = useCallback(
-    async (data: ProductFormData) => {
-      setIsLoading(true)
+  const handleAddToCart = useCallback(async () => {
+    setIsLoading(true)
 
-      const variantId = variants.edges?.find(
-        ({ node }) => getShortVariantId(node?.id!) === data.variantId
-      )?.node?.id
+    const merchandiseId = variantId
+      ? findVariantByShortId(variantId, variants)?.id
+      : null
 
-      if (variantId) {
-        const cart = cartId
-          ? await addLineToCart(cartId, variantId)
-          : await createCart(variantId)
+    if (merchandiseId) {
+      const cart = cartId
+        ? await addLineToCart(cartId, merchandiseId)
+        : await createCart(merchandiseId)
 
-        updateCart(cart)
-        mutate({ cart })
+      updateCart(cart)
+      mutate({ cart })
 
-        const btnCart = document.querySelector<HTMLButtonElement>('#btn-cart')
+      const btnCart = document.querySelector<HTMLButtonElement>('#btn-cart')
 
-        if (btnCart) {
-          btnCart.click()
-        }
+      if (btnCart) {
+        btnCart.click()
       }
+    }
 
-      setIsLoading(false)
-    },
-    [cartId, variants, updateCart, mutate]
-  )
+    setIsLoading(false)
+  }, [variantId, variants, cartId, updateCart, mutate])
 
   useEffect(() => {
     const queryVariant = searchParams.get('variant')
     const variant = queryVariant
-      ? variants.edges?.find(
-          ({ node }) => getShortVariantId(node?.id!) === queryVariant
-        )?.node
-      : variants.edges?.at(0)?.node
+      ? findVariantByShortId(queryVariant, variants)
+      : getDefaultVariant(variants, availableForSale)
 
     if (variant && variant.id) {
       setVariant(variant)
-      setFormValue('variantId', getShortVariantId(variant.id))
+      setVariantId(getShortVariantId(variant.id))
     }
-  }, [searchParams, variants, setFormValue])
+  }, [variants, availableForSale, searchParams])
 
   if (!(variants.edges && variants.edges?.length > 0)) return null
 
   return (
-    <form
-      {...props}
-      className={cn('flex flex-col space-y-6', className)}
-      onSubmit={handleSubmit(handleValid)}
-    >
+    <form {...props} className={cn('flex flex-col space-y-6', className)}>
       <div className="flex flex-col gap-y-2">
         <ProductPrice {...variant?.price} />
         <ShippingInfo />
         <Paragraph size="xs" weight="medium">
           <strong>Size:</strong>
         </Paragraph>
-        <FormController
+        <ProductSizeFormControl
+          id="variantId"
           name="variantId"
-          control={formControl}
-          render={({ field }) => (
-            <ProductSizeFormControl
-              {...field}
-              id="variantId"
-              variants={variants}
-              onChange={(e) => {
-                field.onChange(e)
-                handleChange(e)
-              }}
-            />
-          )}
+          value={variantId}
+          variants={variants}
+          onChange={handleSizeChange}
         />
       </div>
       <div className="flex flex-col space-y-2">
         {variant?.availableForSale ? (
           <>
-            <Button type="submit" variant="dark" size="lg" disabled={isLoading}>
+            <Button
+              type="button"
+              variant="dark"
+              size="lg"
+              disabled={isLoading}
+              onClick={handleAddToCart}
+            >
               Add to my cart
             </Button>
-            <Button type="button" variant="primary" size="lg">
+            <Button
+              type="button"
+              variant="primary"
+              size="lg"
+              disabled={isLoading}
+            >
               Buy now
             </Button>
           </>
