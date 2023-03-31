@@ -48,7 +48,8 @@ export default function ProductCard({
           <div
             className={cn(
               'absolute bottom-2 left-0',
-              'pl-4 pr-2',
+              'pl-4 pr-2 py-1.5',
+              'flex items-center',
               !availableForSale && 'text-white bg-zinc-800',
               availableForSale && isOnSale && 'text-zinc-800 bg-primary-100'
             )}
