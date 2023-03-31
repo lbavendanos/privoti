@@ -1,6 +1,6 @@
 'use client'
 
-import { useDebounce } from 'lib/hooks'
+import { useDebouncedCallback } from 'lib/hooks'
 import { Suspense, useCallback, useRef, useState } from 'react'
 import { SearchIcon } from '@/common/components/Icons'
 import Modal, { ModalProps } from '@/common/components/Modal'
@@ -20,7 +20,7 @@ export default function BaseSearchModal({
   const [query, setQuery] = useState<string>()
   const inputRef = useRef<HTMLInputElement>()
 
-  const debounceResult = useDebounce(
+  const debounceResult = useDebouncedCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       setQuery(e.target.value)
     },

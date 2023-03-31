@@ -3,8 +3,10 @@
 import { cn } from 'lib/utils/helpers'
 import { useGetCart } from 'lib/shopify/core/cart/hooks'
 import { useCartStore } from 'lib/store/cart'
-import { useCallback, useEffect, useState } from 'react'
+import { getShortVariantId } from 'lib/shopify/core/variant'
+import { useDebouncedCallback } from 'lib/hooks'
 import { removeLineFromCart, updateLineFromCart } from 'lib/shopify/core/cart'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { CartLine } from 'lib/shopify/types/cart'
 import Link from 'next/link'
 import Price from './Price'
@@ -31,12 +33,15 @@ export default function CartItem({
   const [isLoading, setIsLoading] = useState(false)
   const [quantity, setQuantity] = useState(node?.quantity)
 
-  const handleQuantity = useCallback(
-    async (e: React.ChangeEvent<HTMLInputElement>) => {
-      const value = e.target.valueAsNumber
+  const merchandise = useMemo(() => node?.merchandise, [node])
+  const product = useMemo(() => merchandise?.product, [merchandise])
+  const merchandiseUrl = useMemo(
+    () => `${product?.handle}?variant=${getShortVariantId(merchandise?.id!)}`,
+    [merchandise, product]
+  )
 
-      setQuantity(value)
-
+  const updateQuantityCart = useCallback(
+    async (value: number) => {
       if (cartId && node && node.id && node.merchandise.id) {
         const cart = await updateLineFromCart(
           cartId,
@@ -49,6 +54,21 @@ export default function CartItem({
       }
     },
     [cartId, node, mutate]
+  )
+
+  const debouncedUpdateQuantityCart = useDebouncedCallback(
+    updateQuantityCart,
+    500
+  )
+
+  const handleQuantity = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const value = e.target.valueAsNumber
+
+      setQuantity(value)
+      debouncedUpdateQuantityCart(value)
+    },
+    [debouncedUpdateQuantityCart]
   )
 
   const handleRemove = useCallback(
@@ -75,42 +95,32 @@ export default function CartItem({
   if (variant === 'minimal')
     return (
       <div {...props} className={cn('flex flex-nowrap space-x-4', className)}>
-        {node?.merchandise?.product?.handle && (
-          <Link
-            href={node.merchandise.product.handle}
-            className="w-2/6 sm:w-1/5 grow-0 shrink-0"
-            onClick={onClick as any}
-          >
-            {node?.merchandise?.product?.images?.edges?.at(0) && (
-              <ProductImage
-                src={node.merchandise.product.images.edges.at(0)?.node?.url!}
-                alt={
-                  node.merchandise.product.images.edges.at(0)?.node?.altText! ||
-                  node.merchandise.product.title!
-                }
-                width={node.merchandise.product.images.edges.at(0)?.node?.width}
-                height={
-                  node.merchandise.product.images.edges.at(0)?.node?.height
-                }
-              />
-            )}
-          </Link>
-        )}
+        <Link
+          href={merchandiseUrl}
+          className="w-2/6 sm:w-1/5 grow-0 shrink-0"
+          onClick={onClick as any}
+        >
+          {product?.images?.edges?.at(0) && (
+            <ProductImage
+              src={product.images.edges.at(0)?.node?.url!}
+              alt={product.images.edges.at(0)?.node?.altText! || product.title!}
+              width={product.images.edges.at(0)?.node?.width}
+              height={product.images.edges.at(0)?.node?.height}
+            />
+          )}
+        </Link>
         <div className="w-full flex flex-col md:flex-row space-y-2">
           <div className="flex flex-col space-y-1 w-8/12 shrink-0 grow-0">
-            {node?.merchandise?.product?.handle &&
-              node?.merchandise?.product?.title && (
-                <Link
-                  href={node.merchandise.product.handle}
-                  className="uppercase tracking-tight font-medium w-fit text-xs md:text-sm hover:underline"
-                  onClick={onClick as any}
-                >
-                  {node.merchandise.product.title}
-                </Link>
-              )}
-            {node?.merchandise?.title && (
+            <Link
+              href={merchandiseUrl}
+              className="uppercase tracking-tight font-medium w-fit text-xs md:text-sm hover:underline"
+              onClick={onClick as any}
+            >
+              {product?.title}
+            </Link>
+            {merchandise?.title && (
               <Paragraph size="xs" weight="light">
-                Size: <strong>{node.merchandise.title}</strong>
+                Size: <strong>{merchandise.title}</strong>
               </Paragraph>
             )}
           </div>
@@ -123,7 +133,7 @@ export default function CartItem({
                 groupClassName="w-[90px] h-[30px]"
                 value={quantity}
                 min={1}
-                max={node.merchandise.quantityAvailable}
+                max={merchandise?.quantityAvailable}
                 onChange={handleQuantity}
               />
             )}
@@ -141,40 +151,32 @@ export default function CartItem({
 
   return (
     <div {...props} className={cn('flex flex-nowrap space-x-4', className)}>
-      {node?.merchandise?.product?.handle && (
-        <Link
-          href={node.merchandise.product.handle}
-          className="w-[110px] lg:w-[150px] grow-0 shrink-0"
-          onClick={onClick as any}
-        >
-          {node?.merchandise?.product?.images?.edges?.at(0) && (
-            <ProductImage
-              src={node.merchandise.product.images.edges.at(0)?.node?.url!}
-              alt={
-                node.merchandise.product.images.edges.at(0)?.node?.altText! ||
-                node.merchandise.product.title!
-              }
-              width={node.merchandise.product.images.edges.at(0)?.node?.width}
-              height={node.merchandise.product.images.edges.at(0)?.node?.height}
-            />
-          )}
-        </Link>
-      )}
+      <Link
+        href={merchandiseUrl}
+        className="w-[110px] lg:w-[150px] grow-0 shrink-0"
+        onClick={onClick as any}
+      >
+        {product?.images?.edges?.at(0) && (
+          <ProductImage
+            src={product.images.edges.at(0)?.node?.url!}
+            alt={product.images.edges.at(0)?.node?.altText! || product.title!}
+            width={product.images.edges.at(0)?.node?.width}
+            height={product.images.edges.at(0)?.node?.height}
+          />
+        )}
+      </Link>
       <div className="w-full flex flex-col lg:flex-row justify-center items-start lg:items-center space-y-2">
         <div className="w-full lg:w-6/12 flex flex-col space-y-1">
-          {node?.merchandise?.product?.handle &&
-            node?.merchandise?.product?.title && (
-              <Link
-                href={node.merchandise.product.handle}
-                className="uppercase tracking-tight font-medium text-sm lg:text-base w-fit hover:underline"
-                onClick={onClick as any}
-              >
-                {node.merchandise.product.title}
-              </Link>
-            )}
-          {node?.merchandise?.title && (
+          <Link
+            href={merchandiseUrl}
+            className="uppercase tracking-tight font-medium text-sm lg:text-base w-fit hover:underline"
+            onClick={onClick as any}
+          >
+            {product?.title}
+          </Link>
+          {merchandise?.title && (
             <Paragraph size="xs" weight="light">
-              Size: <strong>{node.merchandise.title}</strong>
+              Size: <strong>{merchandise.title}</strong>
             </Paragraph>
           )}
           <button
@@ -193,7 +195,7 @@ export default function CartItem({
             groupClassName="w-[90px] h-[30px]"
             value={quantity}
             min={1}
-            max={node.merchandise.quantityAvailable}
+            max={merchandise?.quantityAvailable}
             onChange={handleQuantity}
           />
         )}
