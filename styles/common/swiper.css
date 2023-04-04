@@ -1,0 +1,23 @@
+@layer components {
+  .swiper-thumb {
+    .swiper-wrapper {
+      @apply flex flex-row lg:flex-col;
+    }
+
+    .swiper-slide {
+      @apply w-1/4 max-w-[112px];
+      @apply lg:w-full lg:h-auto;
+      @apply border border-transparent;
+    }
+
+    .swiper-slide-active {
+      @apply border border-zinc-800;
+    }
+  }
+
+  .swiper-media {
+    .swiper-slide {
+      @apply w-full md:w-1/2 lg:w-full xl:w-1/2;
+    }
+  }
+}
