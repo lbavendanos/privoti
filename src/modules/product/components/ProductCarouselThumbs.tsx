@@ -2,7 +2,7 @@
 
 import { useCallback, useState } from 'react'
 import { Images } from 'lib/shopify/types/image'
-import { Controller, Navigation } from 'swiper'
+import { Thumbs } from 'swiper'
 import Swiper, { SwiperProps } from '@/common/components/Swiper'
 import SwiperSlide from '@/common/components/SwiperSlide'
 import ProductImage from '@/common/components/ProductImage'
@@ -15,8 +15,9 @@ export default function ProductCarouselThumbs({
   images,
   ...props
 }: ProductCarouselThumbsProps) {
-  const [swiperSlideClassName, setSwiperSlideClassName] =
-    useState('mr-2.5 lg:mb-2.5')
+  const [swiperSlideClassName, setSwiperSlideClassName] = useState(
+    'mr-2.5 lg:mb-2.5 xl:mb-[14px]'
+  )
 
   const handleBeforeInit = useCallback(() => {
     setSwiperSlideClassName('')
@@ -25,7 +26,7 @@ export default function ProductCarouselThumbs({
   return (
     <Swiper
       {...props}
-      modules={[Navigation, Controller]}
+      modules={[Thumbs]}
       className="swiper-thumb"
       direction="horizontal"
       slidesPerView="auto"
@@ -33,11 +34,16 @@ export default function ProductCarouselThumbs({
       breakpoints={{
         1024: {
           direction: 'vertical',
+          spaceBetween: 10,
+        },
+        1280: {
+          direction: 'vertical',
+          spaceBetween: 14,
         },
       }}
       onBeforeInit={handleBeforeInit}
+      slideToClickedSlide
       watchSlidesProgress
-      navigation
       loop
     >
       {images?.edges?.map(({ node }) => (

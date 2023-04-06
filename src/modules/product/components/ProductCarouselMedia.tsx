@@ -2,10 +2,11 @@
 
 import { useCallback, useState } from 'react'
 import { Images } from 'lib/shopify/types/image'
-import { Controller, Navigation } from 'swiper'
+import { Thumbs } from 'swiper'
 import Swiper, { SwiperProps } from '@/common/components/Swiper'
 import SwiperSlide from '@/common/components/SwiperSlide'
 import ProductImage from '@/common/components/ProductImage'
+import ProductCarouselNavigation from './ProductCarouselNavigation'
 
 interface ProductCarouselMediaProps extends SwiperProps {
   images?: Images
@@ -24,13 +25,17 @@ export default function ProductCarouselMedia({
   return (
     <Swiper
       {...props}
-      modules={[Navigation, Controller]}
-      className="swiper-media"
+      modules={[Thumbs]}
+      className="swiper-media group"
       slidesPerView="auto"
       spaceBetween={10}
       onBeforeInit={handleBeforeInit}
       watchSlidesProgress
-      navigation
+      breakpoints={{
+        1024: {
+          allowTouchMove: false,
+        },
+      }}
       loop
     >
       {images?.edges?.map(({ node }) => (
@@ -43,6 +48,7 @@ export default function ProductCarouselMedia({
           />
         </SwiperSlide>
       ))}
+      <ProductCarouselNavigation />
     </Swiper>
   )
 }
