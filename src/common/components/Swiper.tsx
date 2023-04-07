@@ -5,7 +5,6 @@ import {
   SwiperProps as SwiperBaseProps,
 } from 'swiper/react'
 import 'node_modules/swiper/swiper.min.css'
-import 'node_modules/swiper/modules/navigation/navigation.min.css'
 
 export interface SwiperProps extends SwiperBaseProps {}
 

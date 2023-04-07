@@ -7,6 +7,7 @@
     }
 
     .swiper-slide {
+      @apply cursor-pointer select-none outline-none shadow-none;
       @apply border border-transparent;
       @apply w-1/4 max-w-[112px];
       @apply lg:w-full lg:h-auto;

@@ -16,7 +16,9 @@ export default function ProductCarouselMedia({
   images,
   ...props
 }: ProductCarouselMediaProps) {
-  const [swiperSlideClassName, setSwiperSlideClassName] = useState('mr-2.5')
+  const [swiperSlideClassName, setSwiperSlideClassName] = useState(
+    'mr-0 md:mr-2.5 lg:mr-0 xl:mr-2.5'
+  )
 
   const handleBeforeInit = useCallback(() => {
     setSwiperSlideClassName('')
@@ -28,12 +30,20 @@ export default function ProductCarouselMedia({
       modules={[Thumbs]}
       className="swiper-media group"
       slidesPerView="auto"
-      spaceBetween={10}
+      spaceBetween={0}
       onBeforeInit={handleBeforeInit}
       watchSlidesProgress
       breakpoints={{
+        768: {
+          spaceBetween: 10,
+        },
         1024: {
           allowTouchMove: false,
+          spaceBetween: 0,
+        },
+        1280: {
+          allowTouchMove: false,
+          spaceBetween: 10,
         },
       }}
       loop
