@@ -40,14 +40,18 @@ export default function CartSummary({
     <div {...props} className={cn('flex flex-col space-y-4', className)}>
       <div className="flex flex-col space-y-0.5">
         <div className="flex justify-between">
-          <Paragraph size="sm">Total items</Paragraph>
+          <Paragraph size="sm" weight="light" uppercase>
+            Total items
+          </Paragraph>
           <Paragraph size="sm" weight="semibold">
             {cart.totalQuantity}
           </Paragraph>
         </div>
         <div className="flex justify-between">
-          <Paragraph size="sm">Subtotal</Paragraph>
-          <Price size="sm" weight="semibold" {...cart.cost?.subtotalAmount} />
+          <Paragraph size="lg" weight="semibold" uppercase>
+            Subtotal
+          </Paragraph>
+          <Price size="lg" weight="semibold" {...cart.cost?.subtotalAmount} />
         </div>
       </div>
       <ShippingInfo />

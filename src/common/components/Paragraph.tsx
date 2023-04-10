@@ -4,18 +4,17 @@ import React from 'react'
 export interface ParagraphProps extends React.ComponentPropsWithRef<'p'> {
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
   weight?: 'light' | 'normal' | 'medium' | 'semibold' | 'bold'
+  uppercase?: boolean
 }
 
 const Paragraph = React.forwardRef<HTMLParagraphElement, ParagraphProps>(
-  ({ className, size = 'md', weight = 'normal', ...props }, ref) => {
-    const paragraphClassName = 'uppercase font-light tracking-tight'
-
+  ({ size = 'md', weight = 'normal', uppercase, className, ...props }, ref) => {
     return (
       <p
         {...props}
         ref={ref}
         className={cn(
-          paragraphClassName,
+          'tracking-tight',
           size === 'xs' && 'text-xs',
           size === 'sm' && 'text-sm',
           size === 'md' && 'text-base',
@@ -26,6 +25,7 @@ const Paragraph = React.forwardRef<HTMLParagraphElement, ParagraphProps>(
           weight === 'medium' && 'font-medium',
           weight === 'semibold' && 'font-semibold',
           weight === 'bold' && 'font-bold',
+          uppercase && 'uppercase',
           className
         )}
       />

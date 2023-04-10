@@ -119,7 +119,7 @@ export default function CartItem({
               {product?.title}
             </Link>
             {merchandise?.title && (
-              <Paragraph size="xs" weight="light">
+              <Paragraph size="xs" weight="light" uppercase>
                 Size: <strong>{merchandise.title}</strong>
               </Paragraph>
             )}
@@ -175,7 +175,7 @@ export default function CartItem({
             {product?.title}
           </Link>
           {merchandise?.title && (
-            <Paragraph size="xs" weight="light">
+            <Paragraph size="xs" weight="light" uppercase>
               Size: <strong>{merchandise.title}</strong>
             </Paragraph>
           )}

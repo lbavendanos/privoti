@@ -63,7 +63,7 @@ export default function ProductCard({
       </div>
       <div className={cn('flex flex-col space-y-1')}>
         {title && (
-          <Paragraph size="xs" weight="semibold">
+          <Paragraph size="xs" weight="semibold" uppercase>
             {title}
           </Paragraph>
         )}

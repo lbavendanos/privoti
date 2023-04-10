@@ -49,7 +49,7 @@ export default function BaseSearchItem({
           )}
           <div className="flex flex-col space-y-1">
             {product.title && (
-              <Paragraph size="xs" weight="semibold">
+              <Paragraph size="xs" weight="semibold" uppercase>
                 {product.title}
               </Paragraph>
             )}

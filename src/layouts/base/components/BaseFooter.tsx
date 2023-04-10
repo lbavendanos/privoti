@@ -14,7 +14,7 @@ export default function BaseFooter() {
         <div className="flex flex-col justify-center items-center space-y-6">
           <BaseFooterSubscribe />
           <BaseFooterSocial />
-          <Paragraph size="xs" weight="light" className="text-center">
+          <Paragraph size="xs" weight="light" className="text-center" uppercase>
             <span className="text-base">©</span> {year} {appName} All Rights
             Reserved
           </Paragraph>

@@ -64,7 +64,12 @@ export default function BaseSearchModal({
           </div>
           <Suspense
             fallback={
-              <Paragraph size="xs" weight="semibold" className="text-center">
+              <Paragraph
+                size="xs"
+                weight="semibold"
+                className="text-center"
+                uppercase
+              >
                 Loading...
               </Paragraph>
             }
