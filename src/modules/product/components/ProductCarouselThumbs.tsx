@@ -9,10 +9,12 @@ import ProductImage from '@/common/components/ProductImage'
 
 interface ProductCarouselThumbsProps extends SwiperProps {
   images?: Images
+  defaultAlt?: string
 }
 
 export default function ProductCarouselThumbs({
   images,
+  defaultAlt = '',
   ...props
 }: ProductCarouselThumbsProps) {
   const [swiperSlideClassName, setSwiperSlideClassName] = useState(
@@ -50,7 +52,7 @@ export default function ProductCarouselThumbs({
         <SwiperSlide key={node?.id} className={swiperSlideClassName}>
           <ProductImage
             src={node?.url!}
-            alt={node?.altText || ''}
+            alt={node?.altText || defaultAlt}
             width={node?.width}
             height={node?.height}
           />

@@ -10,10 +10,12 @@ import ProductCarouselNavigation from './ProductCarouselNavigation'
 
 interface ProductCarouselMediaProps extends SwiperProps {
   images?: Images
+  defaultAlt?: string
 }
 
 export default function ProductCarouselMedia({
   images,
+  defaultAlt = '',
   ...props
 }: ProductCarouselMediaProps) {
   const [swiperSlideClassName, setSwiperSlideClassName] = useState(
@@ -52,7 +54,7 @@ export default function ProductCarouselMedia({
         <SwiperSlide key={node?.id} className={swiperSlideClassName}>
           <ProductImage
             src={node?.url!}
-            alt={node?.altText || ''}
+            alt={node?.altText || defaultAlt}
             width={node?.width}
             height={node?.height}
           />
