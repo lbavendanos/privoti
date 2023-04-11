@@ -95,3 +95,13 @@ export const GET_PRODUCT = gql`
     }
   }
 `
+
+export const GET_PRODUCT_RELATED_RECOMMENDATIONS = gql`
+  ${PRODUCT_FRAGMENT}
+
+  query GetProductRelatedRecommendations($productId: ID!) {
+    productRecommendations(productId: $productId, intent: RELATED) {
+      ...ProductFragment
+    }
+  }
+`

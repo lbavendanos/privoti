@@ -1,6 +1,11 @@
 import { cache } from 'react'
 import { shopifyFetcher } from 'lib/shopify/utils'
-import { GET_PRODUCT, GET_PRODUCTS, GET_PRODUCT_SLUGS } from './queries'
+import {
+  GET_PRODUCT,
+  GET_PRODUCTS,
+  GET_PRODUCT_SLUGS,
+  GET_PRODUCT_RELATED_RECOMMENDATIONS,
+} from './queries'
 import { Product, Products } from 'lib/shopify/types/product'
 
 export async function getProductSlugs(
@@ -30,6 +35,17 @@ export async function getProduct(handle: string): Promise<Product> {
   })
 
   return response.product
+}
+
+export async function getProductRelatedRecommendations(productId: string) {
+  const response = await shopifyFetcher<{ productRecommendations: Product[] }>(
+    GET_PRODUCT_RELATED_RECOMMENDATIONS,
+    {
+      productId,
+    }
+  )
+
+  return response.productRecommendations
 }
 
 export const getProductsCache = cache(getProducts)

@@ -7,6 +7,7 @@ import Paragraph from '@/common/components/Paragraph'
 import ProductForm from './components/ProductForm'
 import ProductCarousel from './components/ProductCarousel'
 import ProductFormFallback from './components/ProductFormFallback'
+import ProductRecommendationsLazy from './components/ProductRecommendationsLazy'
 
 interface ProductModuleProps extends React.ComponentPropsWithoutRef<'div'> {
   slug: string
@@ -17,12 +18,12 @@ export default async function ProductModule({
   className,
   ...props
 }: ProductModuleProps) {
-  const { handle, title, description, availableForSale, images, variants } =
+  const { id, handle, title, description, availableForSale, images, variants } =
     await getProductCache(slug)
 
   return (
     <Container {...props} className={cn('my-6 md:my-10', className)}>
-      <div className="flex flex-col space-y-4">
+      <div className="flex flex-col space-y-10">
         <div className="flex flex-col lg:flex-row gap-y-4">
           <div className="w-full lg:w-8/12 p-0 lg:pr-4">
             <ProductCarousel images={images} defaultAlt={title} />
@@ -60,6 +61,7 @@ export default async function ProductModule({
             )}
           </div>
         </div>
+        {id && <ProductRecommendationsLazy productId={id} />}
       </div>
     </Container>
   )
