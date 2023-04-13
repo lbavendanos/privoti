@@ -1,4 +1,10 @@
 @layer components {
+  .swiper-pagination {
+    .swiper-pagination-bullet-active {
+      @apply bg-primary-300;
+    }
+  }
+
   .swiper-thumb {
     @apply h-full;
 

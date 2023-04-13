@@ -2,7 +2,7 @@
 
 import { useCallback, useState } from 'react'
 import { Images } from 'lib/shopify/types/image'
-import { Thumbs } from 'swiper'
+import { Pagination, Thumbs } from 'swiper'
 import Swiper, { SwiperProps } from '@/common/components/Swiper'
 import SwiperSlide from '@/common/components/SwiperSlide'
 import ProductImage from '@/common/components/ProductImage'
@@ -29,10 +29,24 @@ export default function ProductCarouselMedia({
   return (
     <Swiper
       {...props}
-      modules={[Thumbs]}
+      modules={[Thumbs, Pagination]}
       className="swiper-media group"
       slidesPerView="auto"
       spaceBetween={0}
+      pagination={{
+        enabled: true,
+        type: 'bullets',
+        clickable: true,
+        bulletClass: 'swiper-pagination-bullet',
+        bulletActiveClass: 'swiper-pagination-bullet-active',
+      }}
+      breakpoints={{
+        1024: {
+          pagination: {
+            enabled: false,
+          },
+        },
+      }}
       onBeforeInit={handleBeforeInit}
       watchSlidesProgress
       loop

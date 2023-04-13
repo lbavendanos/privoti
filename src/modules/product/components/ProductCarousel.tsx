@@ -24,11 +24,12 @@ export default function ProductCarousel({
     <div className={cn('relative', 'flex flex-col', 'md:flex-row md:gap-x-4')}>
       <div
         className={cn(
-          'hidden w-full',
+          'hidden',
+          'w-full',
           'grow-0 shrink-0',
+          'lg:block',
           'lg:w-[60px]',
-          'lg:aspect-square',
-          'lg:block'
+          'lg:aspect-square'
         )}
       >
         <ProductCarouselThumbs
