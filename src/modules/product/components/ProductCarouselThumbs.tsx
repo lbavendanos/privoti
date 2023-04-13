@@ -17,9 +17,7 @@ export default function ProductCarouselThumbs({
   defaultAlt = '',
   ...props
 }: ProductCarouselThumbsProps) {
-  const [swiperSlideClassName, setSwiperSlideClassName] = useState(
-    'mr-2.5 lg:mb-2.5 xl:mb-[14px]'
-  )
+  const [swiperSlideClassName, setSwiperSlideClassName] = useState('mb-2.5')
 
   const handleBeforeInit = useCallback(() => {
     setSwiperSlideClassName('')
@@ -30,19 +28,9 @@ export default function ProductCarouselThumbs({
       {...props}
       modules={[Thumbs]}
       className="swiper-thumb"
-      direction="horizontal"
+      direction="vertical"
       slidesPerView="auto"
       spaceBetween={10}
-      breakpoints={{
-        1024: {
-          direction: 'vertical',
-          spaceBetween: 10,
-        },
-        1280: {
-          direction: 'vertical',
-          spaceBetween: 14,
-        },
-      }}
       onBeforeInit={handleBeforeInit}
       slideToClickedSlide
       watchSlidesProgress

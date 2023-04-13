@@ -35,19 +35,6 @@ export default function ProductCarouselMedia({
       spaceBetween={0}
       onBeforeInit={handleBeforeInit}
       watchSlidesProgress
-      breakpoints={{
-        768: {
-          spaceBetween: 10,
-        },
-        1024: {
-          allowTouchMove: false,
-          spaceBetween: 0,
-        },
-        1280: {
-          allowTouchMove: false,
-          spaceBetween: 10,
-        },
-      }}
       loop
     >
       {images?.edges?.map(({ node }) => (

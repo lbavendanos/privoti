@@ -18,11 +18,11 @@ export default function ProdutCarouselNavigation() {
     'opacity-0',
     'group-hover:opacity-100',
     'transition-opacity delay-100',
-    'hidden lg:block'
+    'hidden md:block'
   )
   const prevBtnClassName = 'left-2'
   const nextBtnClassName = 'right-2'
-  const iconClassName = 'lg:w-8 lg:h-8 xl:w-6 xl:h-6'
+  const iconClassName = 'w-6 h-6'
 
   const handlePrev = useCallback(
     (e: React.MouseEvent<HTMLButtonElement>) => {

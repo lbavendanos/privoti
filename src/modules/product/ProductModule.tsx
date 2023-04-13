@@ -24,11 +24,16 @@ export default async function ProductModule({
   return (
     <Container {...props} className={cn('my-6 md:my-10', className)}>
       <div className="flex flex-col space-y-10">
-        <div className="flex flex-col lg:flex-row gap-y-4">
-          <div className="w-full lg:w-8/12 p-0 lg:pr-4">
+        <div
+          className={cn(
+            'flex flex-col md:flex-row gap-4 lg:gap-x-10',
+            'max-w-[1024px] mx-auto'
+          )}
+        >
+          <div className="w-full md:w-6/12 lg:w-7/12">
             <ProductCarousel images={images} defaultAlt={title} />
           </div>
-          <div className="w-full lg:w-4/12 p-0 lg:pl-4">
+          <div className="w-full md:w-6/12 lg:w-5/12">
             {title && (
               <Heading as="h1" className="mb-2">
                 {title}

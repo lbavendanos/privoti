@@ -3,14 +3,13 @@
     @apply h-full;
 
     .swiper-wrapper {
-      @apply flex flex-row lg:flex-col;
+      @apply flex flex-row md:flex-col;
     }
 
     .swiper-slide {
-      @apply cursor-pointer select-none outline-none shadow-none;
+      @apply w-full h-auto;
       @apply border border-transparent;
-      @apply w-1/4 max-w-[112px];
-      @apply lg:w-full lg:h-auto;
+      @apply cursor-pointer select-none outline-none shadow-none;
       @apply opacity-50;
     }
 
@@ -24,7 +23,7 @@
     @apply h-full;
 
     .swiper-slide {
-      @apply w-full md:w-1/2 lg:w-full xl:w-1/2;
+      @apply w-full;
     }
   }
 }

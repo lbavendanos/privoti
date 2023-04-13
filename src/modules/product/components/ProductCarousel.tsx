@@ -21,31 +21,27 @@ export default function ProductCarousel({
   if (images?.edges?.length === 0) null
 
   return (
-    <div
-      className={cn(
-        'relative',
-        'flex flex-col gap-y-2',
-        'lg:flex-row lg:gap-x-1.5'
-      )}
-    >
+    <div className={cn('relative', 'flex flex-col', 'md:flex-row md:gap-x-4')}>
       <div
         className={cn(
-          '-mx-4 -mt-6',
-          'md:-mt-10',
-          'lg:order-2 lg:w-11/12 lg:m-0'
+          'hidden w-full',
+          'grow-0 shrink-0',
+          'lg:w-[60px]',
+          'lg:aspect-square',
+          'lg:block'
         )}
       >
-        <ProductCarouselMedia
-          thumbs={{ swiper: thumbsSwiper }}
-          images={images}
-          defaultAlt={defaultAlt}
-        />
-      </div>
-      <div className={cn('w-full', 'lg:order-1 lg:w-1/12', 'lg:aspect-square')}>
         <ProductCarouselThumbs
           images={images}
           defaultAlt={defaultAlt}
           onSwiper={setThumbsSwiper}
+        />
+      </div>
+      <div className={cn('-mx-4 -mt-6', 'md:w-full md:m-0')}>
+        <ProductCarouselMedia
+          thumbs={{ swiper: thumbsSwiper }}
+          images={images}
+          defaultAlt={defaultAlt}
         />
       </div>
     </div>
