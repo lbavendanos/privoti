@@ -5,8 +5,8 @@ import { Suspense, useCallback, useRef, useState } from 'react'
 import { SearchIcon } from '@/common/components/Icons'
 import Modal, { ModalProps } from '@/common/components/Modal'
 import Button from '@/common/components/Button'
+import Loading from '@/common/components/Loading'
 import ModalBody from '@/common/components/ModalBody'
-import Paragraph from '@/common/components/Paragraph'
 import CloseButton from '@/common/components/CloseButton'
 import FormControl from '@/common/components/FormControl'
 import BaseSearchResult from './BaseSearchResult'
@@ -62,18 +62,7 @@ export default function BaseSearchModal({
             </div>
             <CloseButton onClick={onHide} />
           </div>
-          <Suspense
-            fallback={
-              <Paragraph
-                size="xs"
-                weight="semibold"
-                className="text-center"
-                uppercase
-              >
-                Loading...
-              </Paragraph>
-            }
-          >
+          <Suspense fallback={<Loading className="text-center" />}>
             <BaseSearchResult query={query} onClick={onHide} />
           </Suspense>
         </div>

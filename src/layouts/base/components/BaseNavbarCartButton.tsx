@@ -1,8 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-import CartShoppingInfo from '@/common/components/CartShoppingInfo'
 import BaseCart from './BaseCart'
+import CartShoppingInfo from '@/common/components/CartShoppingInfo'
 
 export default function BaseNavbarCartButton() {
   const [show, setShow] = useState(false)

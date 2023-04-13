@@ -3,18 +3,20 @@
 import { cn } from 'lib/utils/helpers'
 import { useGetProductRelatedRecommendations } from 'lib/shopify/core/product/hooks'
 import Heading from '@/common/components/Heading'
+import Loading from '@/common/components/Loading'
 import ProductCard from '@/common/components/ProductCard'
 
-interface ProductRelatedRecommendationsProps {
+interface ProductRelatedRecommendationsProps
+  extends React.ComponentPropsWithRef<'div'> {
   productId: string
 }
 
 export default function ProductRelatedRecommendations({
   productId,
 }: ProductRelatedRecommendationsProps) {
-  const { data } = useGetProductRelatedRecommendations(productId, {
-    suspense: true,
-  })
+  const { data, isLoading } = useGetProductRelatedRecommendations(productId)
+
+  if (isLoading) return <Loading className="text-center" />
 
   if (!data) return null
   if (data.productRecommendations && data.productRecommendations.length === 0)
@@ -22,18 +24,25 @@ export default function ProductRelatedRecommendations({
 
   return (
     <div className="flex flex-col space-y-4">
-      <Heading as="h2">You may also like</Heading>
+      <Heading as="h2" className="text-center">
+        You may also like
+      </Heading>
       <div
         className={cn(
-          'grid grid-cols-2 gap-4',
-          'md:grid-cols-3',
-          'lg:grid-cols-4',
-          'xl:grid-cols-5',
-          '2xl:grid-cols-6'
+          'flex flex-row flex-nowrap',
+          'overflow-x-auto overflow-y-hidden',
+          'space-x-4'
         )}
       >
         {data.productRecommendations.map((product) => (
-          <ProductCard key={product.id} product={product} />
+          <ProductCard
+            key={product.id}
+            product={product}
+            className={cn(
+              'w-5/12 sm:w-4/12 md:w-3/12 lg:w-2/12',
+              'grow-0 shrink-0'
+            )}
+          />
         ))}
       </div>
     </div>

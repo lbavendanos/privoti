@@ -7,7 +7,7 @@ import Paragraph from '@/common/components/Paragraph'
 import ProductForm from './components/ProductForm'
 import ProductCarousel from './components/ProductCarousel'
 import ProductFormFallback from './components/ProductFormFallback'
-import ProductRecommendationsLazy from './components/ProductRecommendationsLazy'
+import ProductRecommendations from './components/ProductRecommendations'
 
 interface ProductModuleProps extends React.ComponentPropsWithoutRef<'div'> {
   slug: string
@@ -61,7 +61,7 @@ export default async function ProductModule({
             )}
           </div>
         </div>
-        {id && <ProductRecommendationsLazy productId={id} />}
+        {id && <ProductRecommendations productId={id} />}
       </div>
     </Container>
   )

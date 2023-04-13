@@ -1,32 +1,21 @@
 'use client'
 
-import { Suspense } from 'react'
-import Paragraph from '@/common/components/Paragraph'
+import { cn } from 'lib/utils/helpers'
 import ProductRelatedRecommendations from './ProductRelatedRecommendations'
 
-interface ProductRecommendationsProps {
+interface ProductRecommendationsProps
+  extends React.ComponentPropsWithRef<'div'> {
   productId: string
 }
 
 export default function ProductRecommendations({
   productId,
+  className,
+  ...props
 }: ProductRecommendationsProps) {
   return (
-    <div className="flex flex-col space-y-10">
-      <Suspense
-        fallback={
-          <Paragraph
-            size="xs"
-            weight="semibold"
-            className="text-center"
-            uppercase
-          >
-            Loading...
-          </Paragraph>
-        }
-      >
-        <ProductRelatedRecommendations productId={productId} />
-      </Suspense>
+    <div {...props} className={cn('flex flex-col space-y-10', className)}>
+      <ProductRelatedRecommendations productId={productId} />
     </div>
   )
 }
