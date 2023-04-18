@@ -5,6 +5,7 @@ import Heading from '@/common/components/Heading'
 import Container from '@/common/components/Container'
 import Paragraph from '@/common/components/Paragraph'
 import ProductForm from './components/ProductForm'
+import ProductJsonLd from './components/ProductJsonLd'
 import ProductCarousel from './components/ProductCarousel'
 import ProductFormFallback from './components/ProductFormFallback'
 import ProductRecommendations from './components/ProductRecommendations'
@@ -23,6 +24,8 @@ export default async function ProductModule({
 
   return (
     <Container {...props} className={cn('my-6 md:my-10', className)}>
+      {/* @ts-expect-error Async Server Component */}
+      <ProductJsonLd slug={slug} />
       <div className="flex flex-col space-y-10">
         <div
           className={cn(
