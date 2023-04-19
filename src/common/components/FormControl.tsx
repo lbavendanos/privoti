@@ -1,34 +1,24 @@
-'use client'
-
 import { cn } from 'lib/utils/helpers'
 import React from 'react'
 
 export interface FormControlProps extends React.ComponentPropsWithRef<'input'> {
-  multiline?: boolean
   rows?: number
+  multiline?: boolean
 }
 
-const FormControl = React.forwardRef<any, any>(
-  ({ className, multiline, ...props }, ref) => {
-    const formControlClassName = [
-      'w-full h-auto p-2.5',
-      'border border-zinc-800 outline-none rounded-none',
-      'bg-white appearance-none',
-      'text-xs text-zinc-500 tracking-tight',
-      'placeholder:uppercase placeholder:tracking-tight',
-    ]
+const FormControl = React.forwardRef<HTMLInputElement, FormControlProps>(
+  ({ type = 'text', multiline, className, ...props }, ref) => {
+    const formControlClassName = cn('form-control', className)
 
     return multiline ? (
-      <textarea
-        {...props}
-        ref={ref}
-        className={cn(formControlClassName, className)}
-      />
+      // @ts-ignore
+      <textarea {...props} ref={ref as any} className={formControlClassName} />
     ) : (
       <input
         {...props}
         ref={ref}
-        className={cn(formControlClassName, className)}
+        type={type}
+        className={formControlClassName}
       />
     )
   }

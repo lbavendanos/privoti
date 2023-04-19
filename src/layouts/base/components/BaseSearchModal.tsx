@@ -18,7 +18,7 @@ export default function BaseSearchModal({
   ...props
 }: BaseSearchModalProps) {
   const [query, setQuery] = useState<string>()
-  const inputRef = useRef<HTMLInputElement>()
+  const inputRef = useRef<HTMLInputElement>(null)
 
   const debounceResult = useDebouncedCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {

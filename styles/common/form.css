@@ -1,0 +1,33 @@
+@layer components {
+  .form-group {
+    @apply relative flex flex-col space-y-1 w-full;
+  }
+
+  .form-label {
+    @apply uppercase font-medium text-sm text-zinc-800 tracking-tight;
+  }
+
+  .form-control {
+    @apply w-full h-auto p-2.5;
+    @apply border border-zinc-800 outline-none rounded-none;
+    @apply bg-white appearance-none;
+    @apply text-xs text-zinc-800 tracking-tight;
+    @apply placeholder:uppercase placeholder:text-zinc-500 placeholder:tracking-tight;
+  }
+
+  .form-helper-text {
+    @apply tracking-tight text-xs font-normal uppercase px-3;
+  }
+
+  .form-group-error > .form-label {
+    @apply text-red-500;
+  }
+
+  .form-group-error > .form-control {
+    @apply border-red-500;
+  }
+
+  .form-group-error > .form-helper-text {
+    @apply text-red-500;
+  }
+}
