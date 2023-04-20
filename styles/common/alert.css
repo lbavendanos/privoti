@@ -1,0 +1,65 @@
+@layer components {
+  .alert {
+    @apply relative;
+    @apply bg-transparent;
+    @apply p-4;
+    @apply border border-zinc-800 rounded-none;
+  }
+
+  .alert-heading {
+    color: inherit;
+  }
+
+  .alert-link {
+    font-weight: 700;
+  }
+
+  .alert-dismissible {
+    padding-right: 3rem;
+  }
+
+  .alert-dismissible .btn-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 2;
+    padding: 1.25rem 1rem;
+  }
+
+  .alert-primary {
+    @apply bg-primary-100;
+  }
+
+  .alert-secondary {
+    @apply bg-secondary-100;
+  }
+
+  .alert-tertiary {
+    @apply bg-tertiary-100;
+  }
+
+  .alert-success {
+    @apply bg-green-100;
+  }
+
+  .alert-info {
+    @apply bg-blue-100;
+  }
+
+  .alert-warning {
+    @apply bg-yellow-100;
+  }
+
+  .alert-danger {
+    @apply bg-red-100;
+  }
+
+  .alert-light {
+    @apply bg-transparent;
+  }
+
+  .alert-dark {
+    @apply bg-zinc-900;
+    @apply text-white;
+  }
+}

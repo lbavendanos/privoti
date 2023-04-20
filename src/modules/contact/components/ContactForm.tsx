@@ -3,6 +3,7 @@
 import { fetcher } from 'lib/utils/http'
 import { useForm, FormController } from 'lib/utils/form'
 import { useCallback, useState } from 'react'
+import Alert from '@/common/components/Alert'
 import Button from '@/common/components/Button'
 import Paragraph from '@/common/components/Paragraph'
 import TextField from '@/common/components/TextField'
@@ -62,9 +63,23 @@ export default function ContactForm() {
       className="flex flex-col items-center space-y-3 border border-zinc-800 p-4"
       onSubmit={handleSubmit(handleValid)}
     >
+      {isSuccess && (
+        <Alert variant="primary">
+          <Paragraph size="xs">
+            Gracias por contactarnos. Te responderemos lo antes posible.
+          </Paragraph>
+        </Alert>
+      )}
+      {isError && (
+        <Alert variant="danger">
+          <Paragraph size="xs">
+            Ha ocurrido un error, por favor inténtelo de nuevo más tarde
+          </Paragraph>
+        </Alert>
+      )}
       <Paragraph size="sm">
-        If you have any questions, please write us a message and we will answer
-        you as soon as possible.
+        Si tienes alguna duda, por favor escríbenos un mensaje y te
+        responderemos lo antes posible.
       </Paragraph>
       <FormController
         name="name"
@@ -126,7 +141,7 @@ export default function ContactForm() {
         )}
       />
       <Button type="submit" className="w-full md:w-2/5" disabled={isLoading}>
-        Submit
+        Enviar
       </Button>
     </form>
   )
