@@ -1,6 +1,7 @@
 import { objGet } from './object'
 import app from 'config/app'
 import shopify from 'config/shopify'
+import mail from 'config/mail'
 
 /**
  * Gets the specified configuration value.
@@ -11,7 +12,7 @@ import shopify from 'config/shopify'
  * @returns {T} Returns the resolved value.
  */
 export function config<T = any>(path: string, defaultValue?: T): T {
-  return objGet({ app, shopify }, path, defaultValue)
+  return objGet({ app, shopify, mail }, path, defaultValue)
 }
 
 /**

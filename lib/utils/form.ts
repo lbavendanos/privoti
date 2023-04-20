@@ -33,7 +33,7 @@ export type UseFormReturn<
   trigger: UseFormTrigger<TFieldValues>
   formState: FormState<TFieldValues>
   resetField: UseFormResetField<TFieldValues>
-  reset: UseFormReset<TFieldValues>
+  resetForm: UseFormReset<TFieldValues>
   handleSubmit: UseFormHandleSubmit<TFieldValues>
   unregister: UseFormUnregister<TFieldValues>
   formControl: Control<TFieldValues, TContext>
@@ -79,8 +79,9 @@ export function useForm<
   const {
     control: formControl,
     setValue: setFormValue,
+    reset: resetForm,
     ...extra
   } = useBaseForm<TFieldValues, TContext>(props)
 
-  return { formControl, setFormValue, ...extra }
+  return { formControl, setFormValue, resetForm, ...extra }
 }

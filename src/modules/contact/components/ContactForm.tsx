@@ -1,7 +1,8 @@
 'use client'
 
+import { fetcher } from 'lib/utils/http'
 import { useForm, FormController } from 'lib/utils/form'
-import { useCallback } from 'react'
+import { useCallback, useState } from 'react'
 import Button from '@/common/components/Button'
 import Paragraph from '@/common/components/Paragraph'
 import TextField from '@/common/components/TextField'
@@ -14,15 +15,47 @@ interface ContactFormData {
 }
 
 export default function ContactForm() {
+  const [isLoading, setIsLoading] = useState(false)
+  const [isSuccess, setIsSuccess] = useState(false)
+  const [isError, setIsError] = useState(false)
+
   const {
+    resetForm,
     formControl,
     handleSubmit,
     formState: { errors: formErrors },
-  } = useForm<ContactFormData>()
+  } = useForm<ContactFormData>({
+    defaultValues: {
+      name: '',
+      email: '',
+      phone: '',
+      message: '',
+    },
+  })
 
-  const handleValid = useCallback((data: ContactFormData) => {
-    console.log(data)
-  }, [])
+  const handleValid = useCallback(
+    async (data: ContactFormData) => {
+      setIsLoading(true)
+      setIsSuccess(false)
+      setIsError(false)
+
+      try {
+        await fetcher('/api/email/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+        })
+
+        setIsSuccess(true)
+        resetForm()
+      } catch (error) {
+        setIsError(true)
+      } finally {
+        setIsLoading(false)
+      }
+    },
+    [resetForm]
+  )
 
   return (
     <form
@@ -56,6 +89,7 @@ export default function ContactForm() {
             {...field}
             id="email"
             label="Email *"
+            autoComplete="off"
             error={!!formErrors.email}
             helperText={formErrors.email?.message}
           />
@@ -91,7 +125,7 @@ export default function ContactForm() {
           />
         )}
       />
-      <Button type="submit" className="w-full md:w-2/5">
+      <Button type="submit" className="w-full md:w-2/5" disabled={isLoading}>
         Submit
       </Button>
     </form>
