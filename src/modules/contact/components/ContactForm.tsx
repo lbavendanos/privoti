@@ -43,7 +43,10 @@ export default function ContactForm() {
       try {
         await fetcher('/api/email/contact', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+          },
           body: JSON.stringify(data),
         })
 

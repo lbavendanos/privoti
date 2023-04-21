@@ -8,9 +8,7 @@ export async function POST(request: Request) {
   const params = await request.json()
 
   const transporter = nodemailer.createTransport({
-    host: config('mail.host'),
-    port: config('mail.port'),
-    secure: false,
+    service: config('mail.service'),
     auth: {
       user: config('mail.username'),
       pass: config('mail.password'),
@@ -18,7 +16,7 @@ export async function POST(request: Request) {
   })
 
   await transporter.sendMail({
-    from: `"${config('mail.from.name')}" <${config('mail.from.address')}>`,
+    from: `${config('mail.from.name')} <${config('mail.from.address')}>`,
     to: 'lbavendanos@gmail.com',
     subject: 'Contact',
     html: render(ContactEmail(params)),
