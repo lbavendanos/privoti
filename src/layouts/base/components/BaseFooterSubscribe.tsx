@@ -7,14 +7,14 @@ export default function BaseFooterSubscribe() {
   return (
     <div className="flex flex-col items-center justify-center space-y-2 text-center">
       <Paragraph weight="medium" uppercase>
-        Subscribe to our emails
+        Suscribete a nuestro boletín
       </Paragraph>
       <div className="flex justify-center w-full">
         <FormControl
           id="email"
           type="email"
           name="email"
-          placeholder="Enter email"
+          placeholder="Correo electrónico"
           className="shrink py-2 max-w-[350px] border-r-0"
         />
         <Button type="button">
@@ -22,7 +22,7 @@ export default function BaseFooterSubscribe() {
         </Button>
       </div>
       <Paragraph size="xs" weight="light" uppercase>
-        Stay informed of all the launches of our products.
+        Manténgase informado de todos los lanzamientos de nuestros productos.
       </Paragraph>
     </div>
   )

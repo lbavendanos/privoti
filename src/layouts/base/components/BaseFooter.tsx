@@ -15,8 +15,8 @@ export default function BaseFooter() {
           <BaseFooterSubscribe />
           <BaseFooterSocial />
           <Paragraph size="xs" weight="light" className="text-center" uppercase>
-            <span className="text-base">©</span> {year} {appName} All Rights
-            Reserved
+            <span className="text-base">©</span> {year} {appName} Todos los
+            derechos reservados
           </Paragraph>
         </div>
       </Container>

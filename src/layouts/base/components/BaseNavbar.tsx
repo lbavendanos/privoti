@@ -19,7 +19,7 @@ export default function BaseNavbar({
       <ul className={menuClassName}>
         <li className={itemClassName}>
           <BaseNavbarLink href="/" className={linkClassName} onClick={onChange}>
-            Home
+            Inicio
           </BaseNavbarLink>
         </li>
         <li>
@@ -28,7 +28,7 @@ export default function BaseNavbar({
             className={linkClassName}
             onClick={onChange}
           >
-            Catalog
+            Catálogo
           </BaseNavbarLink>
         </li>
         <li>
@@ -37,7 +37,7 @@ export default function BaseNavbar({
             className={linkClassName}
             onClick={onChange}
           >
-            Contact
+            Contacto
           </BaseNavbarLink>
         </li>
       </ul>
