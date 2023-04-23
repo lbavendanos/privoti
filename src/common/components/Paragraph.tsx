@@ -5,10 +5,21 @@ export interface ParagraphProps extends React.ComponentPropsWithRef<'p'> {
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
   weight?: 'light' | 'normal' | 'medium' | 'semibold' | 'bold'
   uppercase?: boolean
+  centered?: boolean
 }
 
 const Paragraph = React.forwardRef<HTMLParagraphElement, ParagraphProps>(
-  ({ size = 'md', weight = 'normal', uppercase, className, ...props }, ref) => {
+  (
+    {
+      size = 'md',
+      weight = 'normal',
+      uppercase,
+      centered,
+      className,
+      ...props
+    },
+    ref
+  ) => {
     return (
       <p
         {...props}
@@ -26,6 +37,7 @@ const Paragraph = React.forwardRef<HTMLParagraphElement, ParagraphProps>(
           weight === 'semibold' && 'font-semibold',
           weight === 'bold' && 'font-bold',
           uppercase && 'uppercase',
+          centered && 'text-center',
           className
         )}
       />

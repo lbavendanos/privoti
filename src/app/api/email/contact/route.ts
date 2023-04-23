@@ -18,7 +18,7 @@ export async function POST(request: Request) {
   await transporter.sendMail({
     from: `${config('mail.from.name')} <${config('mail.from.address')}>`,
     to: 'lbavendanos@gmail.com',
-    subject: 'Contact',
+    subject: 'Contacto',
     html: render(ContactEmail(params)),
   })
 

@@ -7,7 +7,7 @@ export default function ContactModule() {
     <Container className="my-6 md:my-10">
       <div className="flex flex-col w-full max-w-[600px] mx-auto space-y-4">
         <Heading as="h1" className="text-center">
-          Contact
+          Contacto
         </Heading>
         <ContactForm />
       </div>

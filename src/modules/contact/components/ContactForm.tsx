@@ -1,12 +1,13 @@
 'use client'
 
 import { fetcher } from 'lib/utils/http'
-import { useForm, FormController } from 'lib/utils/form'
 import { useCallback, useState } from 'react'
+import { useForm, FormController } from 'lib/utils/form'
 import Alert from '@/common/components/Alert'
 import Button from '@/common/components/Button'
 import Paragraph from '@/common/components/Paragraph'
 import TextField from '@/common/components/TextField'
+import ContactSuccessModal from './ContactSuccessModal'
 
 interface ContactFormData {
   name: string
@@ -17,8 +18,8 @@ interface ContactFormData {
 
 export default function ContactForm() {
   const [isLoading, setIsLoading] = useState(false)
-  const [isSuccess, setIsSuccess] = useState(false)
-  const [isError, setIsError] = useState(false)
+  const [showSuccessModal, setShowSuccessModal] = useState(false)
+  const [hasError, setHasError] = useState(false)
 
   const {
     resetForm,
@@ -37,8 +38,8 @@ export default function ContactForm() {
   const handleValid = useCallback(
     async (data: ContactFormData) => {
       setIsLoading(true)
-      setIsSuccess(false)
-      setIsError(false)
+      setShowSuccessModal(false)
+      setHasError(false)
 
       try {
         await fetcher('/api/email/contact', {
@@ -50,10 +51,10 @@ export default function ContactForm() {
           body: JSON.stringify(data),
         })
 
-        setIsSuccess(true)
+        setShowSuccessModal(true)
         resetForm()
       } catch (error) {
-        setIsError(true)
+        setHasError(true)
       } finally {
         setIsLoading(false)
       }
@@ -66,21 +67,7 @@ export default function ContactForm() {
       className="flex flex-col items-center space-y-3 border border-zinc-800 p-4"
       onSubmit={handleSubmit(handleValid)}
     >
-      {isSuccess && (
-        <Alert variant="primary">
-          <Paragraph size="xs">
-            Gracias por contactarnos. Te responderemos lo antes posible.
-          </Paragraph>
-        </Alert>
-      )}
-      {isError && (
-        <Alert variant="danger">
-          <Paragraph size="xs">
-            Ha ocurrido un error, por favor inténtelo de nuevo más tarde
-          </Paragraph>
-        </Alert>
-      )}
-      <Paragraph size="sm">
+      <Paragraph size="sm" centered>
         Si tienes alguna duda, por favor escríbenos un mensaje y te
         responderemos lo antes posible.
       </Paragraph>
@@ -92,7 +79,7 @@ export default function ContactForm() {
           <TextField
             {...field}
             id="name"
-            label="Name *"
+            label="Nombre *"
             error={!!formErrors.name}
             helperText={formErrors.name?.message}
           />
@@ -106,7 +93,7 @@ export default function ContactForm() {
           <TextField
             {...field}
             id="email"
-            label="Email *"
+            label="Correo electrónico *"
             autoComplete="off"
             error={!!formErrors.email}
             helperText={formErrors.email?.message}
@@ -121,7 +108,8 @@ export default function ContactForm() {
           <TextField
             {...field}
             id="phone"
-            label="Phone *"
+            label="Número de teléfono *"
+            type="tel"
             error={!!formErrors.phone}
             helperText={formErrors.phone?.message}
           />
@@ -135,7 +123,7 @@ export default function ContactForm() {
           <TextField
             {...field}
             id="message"
-            label="Message *"
+            label="Comentario *"
             error={!!formErrors.message}
             helperText={formErrors.message?.message}
             rows={10}
@@ -143,9 +131,20 @@ export default function ContactForm() {
           />
         )}
       />
+      {hasError && (
+        <Alert variant="danger">
+          <Paragraph size="xs" centered>
+            Ha ocurrido un error, por favor inténtelo de nuevo más tarde
+          </Paragraph>
+        </Alert>
+      )}
       <Button type="submit" className="w-full md:w-2/5" disabled={isLoading}>
         Enviar
       </Button>
+      <ContactSuccessModal
+        show={showSuccessModal}
+        onHide={() => setShowSuccessModal(false)}
+      />
     </form>
   )
 }
