@@ -12,11 +12,12 @@ import {
   findVariantByShortId,
 } from 'lib/shopify/core/variant'
 import { Variant, Variants } from 'lib/shopify/types/variant'
-import Button from '@/common/components/Button'
-import Paragraph from '@/common/components/Paragraph'
 import ProductPrice from './ProductPrice'
 import ShippingInfo from '@/common/components/ShippingInfo'
+import ProductBuyNowButton from './ProductBuyNowButton'
+import ProductSoldOutButton from './ProductSoldOutButton'
 import ProductSizeFormControl from './ProductSizeFormControl'
+import ProductAddtoCartButton from './ProductAddToCartButton'
 
 interface ProductFormProps extends React.ComponentPropsWithoutRef<'form'> {
   url: string
@@ -111,9 +112,6 @@ export default function ProductForm({
           )}
         </div>
         <ShippingInfo />
-        <Paragraph size="xs" weight="medium">
-          <strong>Size:</strong>
-        </Paragraph>
         <ProductSizeFormControl
           id="variantId"
           name="variantId"
@@ -125,26 +123,14 @@ export default function ProductForm({
       <div className="flex flex-col space-y-2">
         {variant?.availableForSale ? (
           <>
-            <Button
-              type="button"
-              variant="dark"
-              size="lg"
+            <ProductAddtoCartButton
               disabled={isLoading}
               onClick={handleAddToCart}
-            >
-              Add to my cart
-            </Button>
-            <Button
-              type="button"
-              variant="primary"
-              size="lg"
-              disabled={isLoading}
-            >
-              Buy now
-            </Button>
+            />
+            <ProductBuyNowButton disabled={isLoading} />
           </>
         ) : (
-          <span className="btn btn-dark btn-lg disabled">Agotado</span>
+          <ProductSoldOutButton disabled />
         )}
       </div>
     </form>

@@ -27,16 +27,21 @@ const ProductSizeFormControl = React.forwardRef<
   )
 
   return (
-    <SizeFormControl
-      {...props}
-      ref={ref}
-      groupClassName="flex flex-nowrap gap-2"
-      availableClassName="btn btn-md w-20 hover:bg-tertiary-200"
-      activeAvailableClassName="bg-tertiary-200"
-      unavailableClassName="btn btn-md w-20 bg-zinc-50 hover:bg-zinc-200 opacity-40"
-      activeUnavailableClassName="!bg-tertiary-200"
-      options={options}
-    />
+    <fieldset className="flex flex-col space-y-2">
+      <legend className="tracking-tight text-xs font-bold uppercase">
+        Talla:
+      </legend>
+      <SizeFormControl
+        {...props}
+        ref={ref}
+        groupClassName="flex flex-nowrap gap-2"
+        availableClassName="btn btn-md w-20 hover:bg-tertiary-200"
+        activeAvailableClassName="bg-tertiary-200"
+        unavailableClassName="btn btn-md w-20 bg-zinc-50 hover:bg-zinc-200 opacity-40"
+        activeUnavailableClassName="!bg-tertiary-200"
+        options={options}
+      />
+    </fieldset>
   )
 })
 

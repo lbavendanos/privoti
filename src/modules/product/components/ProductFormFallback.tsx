@@ -1,13 +1,15 @@
+'use client'
+
 import { cn } from 'lib/utils/helpers'
-import {
-  getDefaultVariant,
-  getShortVariantTitle,
-} from 'lib/shopify/core/variant'
+import { useState } from 'react'
+import { getDefaultVariant } from 'lib/shopify/core/variant'
 import { Variants } from 'lib/shopify/types/variant'
-import Button from '@/common/components/Button'
-import Paragraph from '@/common/components/Paragraph'
 import ShippingInfo from '@/common/components/ShippingInfo'
 import ProductPrice from './ProductPrice'
+import ProductBuyNowButton from './ProductBuyNowButton'
+import ProductSoldOutButton from './ProductSoldOutButton'
+import ProductSizeFormControl from './ProductSizeFormControl'
+import ProductAddtoCartButton from './ProductAddToCartButton'
 
 interface ProductFormFallbackProps
   extends React.ComponentPropsWithoutRef<'form'> {
@@ -21,6 +23,8 @@ export default function ProductFormFallback({
   className,
   ...props
 }: ProductFormFallbackProps) {
+  const [variantId, setVariantId] = useState<string | undefined>()
+
   const variant = getDefaultVariant(variants, availableForSale)
   const isOnSale =
     variant?.compareAtPrice?.amount && variant.compareAtPrice.amount > 0
@@ -43,34 +47,22 @@ export default function ProductFormFallback({
           )}
         </div>
         <ShippingInfo />
-        <Paragraph size="xs" weight="medium">
-          <strong>Size:</strong>
-        </Paragraph>
-        {variants.edges && variants.edges.length > 0 && (
-          <div className="flex flex-nowrap gap-2">
-            {variants.edges.map(({ node }) => (
-              <div
-                key={node?.id}
-                className="btn btn-md w-20 pointer-events-none"
-              >
-                {getShortVariantTitle(node?.title!)}
-              </div>
-            ))}
-          </div>
-        )}
+        <ProductSizeFormControl
+          id="variantId"
+          name="variantId"
+          value={variantId}
+          variants={variants}
+          onChange={(e) => setVariantId(e.target.value)}
+        />
       </div>
       <div className="flex flex-col space-y-2">
         {variant?.availableForSale ? (
           <>
-            <Button type="submit" variant="dark" size="lg" disabled>
-              Add to my cart
-            </Button>
-            <Button type="button" variant="primary" size="lg" disabled>
-              Buy now
-            </Button>
+            <ProductAddtoCartButton disabled />
+            <ProductBuyNowButton disabled />
           </>
         ) : (
-          <span className="btn btn-dark btn-lg disabled">Agotado</span>
+          <ProductSoldOutButton disabled />
         )}
       </div>
     </form>
