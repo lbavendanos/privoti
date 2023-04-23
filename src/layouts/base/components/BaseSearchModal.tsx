@@ -51,7 +51,7 @@ export default function BaseSearchModal({
                 id="search"
                 type="search"
                 name="search"
-                placeholder="Enter search"
+                placeholder="Búsqueda"
                 className="shrink border-r-0"
                 autoComplete="off"
                 onChange={handleChange}

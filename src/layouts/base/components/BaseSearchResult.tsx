@@ -36,12 +36,12 @@ export default function BaseSearchResult({
               href="/"
               className="uppercase tracking-tight font-semibold w-fit text-xs hover:underline"
             >
-              Show all result for <strong>{`"${query}"`}</strong>
+              Mostrar todos los resultados para <strong>{`"${query}"`}</strong>
             </Link>
           )}
           {!hasProducts && (
             <Paragraph size="xs" weight="semibold">
-              No results for <strong>{`"${query}"`}</strong>
+              Sin resultados para <strong>{`"${query}"`}</strong>
             </Paragraph>
           )}
         </div>
