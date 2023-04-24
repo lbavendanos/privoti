@@ -138,7 +138,12 @@ export default function ContactForm() {
           </Paragraph>
         </Alert>
       )}
-      <Button type="submit" className="w-full md:w-2/5" disabled={isLoading}>
+      <Button
+        type="submit"
+        size="lg"
+        className="w-full md:w-2/5"
+        disabled={isLoading}
+      >
         Enviar
       </Button>
       <ContactSuccessModal

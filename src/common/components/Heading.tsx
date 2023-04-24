@@ -9,8 +9,7 @@ const Heading = React.forwardRef<HTMLHeadingElement, HeadingProps>(
   ({ className, as = 'h1', ...props }, ref) => {
     const Component = as
 
-    const headingClassName =
-      'uppercase font-semibold tracking-tight text-zinc-800'
+    const headingClassName = 'uppercase font-semibold text-zinc-800'
 
     return (
       <Component

@@ -22,7 +22,7 @@ export default function BaseNavbarMobile({
       <OffcanvasBody>
         <BaseNavbar
           menuClassName="flex flex-col space-y-2"
-          linkClassName="font-normal uppercase tracking-tight text-base"
+          linkClassName="font-normal uppercase text-base"
           onChange={onHide}
         />
       </OffcanvasBody>

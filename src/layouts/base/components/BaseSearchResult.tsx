@@ -34,7 +34,7 @@ export default function BaseSearchResult({
           {hasProducts && (
             <Link
               href="/"
-              className="uppercase tracking-tight font-semibold w-fit text-xs hover:underline"
+              className="uppercase font-semibold w-fit text-xs hover:underline"
             >
               Mostrar todos los resultados para <strong>{`"${query}"`}</strong>
             </Link>

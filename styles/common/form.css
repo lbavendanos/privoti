@@ -4,19 +4,19 @@
   }
 
   .form-label {
-    @apply uppercase font-medium text-sm text-zinc-800 tracking-tight;
+    @apply uppercase font-medium text-sm text-zinc-800;
   }
 
   .form-control {
     @apply w-full h-auto p-2.5;
     @apply border border-zinc-800 outline-none rounded-none;
     @apply bg-white appearance-none;
-    @apply text-xs text-zinc-800 tracking-tight;
-    @apply placeholder:uppercase placeholder:text-zinc-500 placeholder:tracking-tight;
+    @apply text-xs text-zinc-800;
+    @apply placeholder:uppercase placeholder:text-zinc-500;
   }
 
   .form-helper-text {
-    @apply tracking-tight text-xs font-normal uppercase px-3;
+    @apply text-xs font-normal uppercase px-3;
   }
 
   .form-group-error > .form-label {

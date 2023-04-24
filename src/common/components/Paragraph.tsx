@@ -25,7 +25,6 @@ const Paragraph = React.forwardRef<HTMLParagraphElement, ParagraphProps>(
         {...props}
         ref={ref}
         className={cn(
-          'tracking-tight',
           size === 'xs' && 'text-xs',
           size === 'sm' && 'text-sm',
           size === 'md' && 'text-base',

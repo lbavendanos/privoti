@@ -38,7 +38,7 @@ export default function BaseCart({ onHide, ...props }: BaseCartProps) {
         </Link>
         <Link
           href="/cart"
-          className="text-base uppercase font-semibold tracking-tight hover:underline"
+          className="text-base uppercase font-semibold hover:underline"
           onClick={onHide}
         >
           Carrito de compras

@@ -14,7 +14,7 @@ export default function BaseNavbarDesktop({
       menuClassName="flex justify-between items-center"
       linkClassName={cn(
         'px-3 py-2',
-        'font-normal hover:font-semibold text-sm uppercase tracking-tight'
+        'font-normal hover:font-semibold text-sm uppercase'
       )}
     />
   )

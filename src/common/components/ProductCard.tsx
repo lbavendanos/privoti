@@ -54,7 +54,7 @@ export default function ProductCard({
               availableForSale && isOnSale && 'text-zinc-800 bg-primary-100'
             )}
           >
-            <span className="uppercase tracking-wider leading-none text-xs">
+            <span className="uppercase leading-none text-xs">
               {!availableForSale && 'Agotado'}
               {availableForSale && isOnSale && 'Oferta'}
             </span>

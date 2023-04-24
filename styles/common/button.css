@@ -2,7 +2,7 @@
   .btn {
     @apply inline-block align-middle;
     @apply cursor-pointer select-none outline-none shadow-none;
-    @apply uppercase font-normal tracking-tight text-center no-underline;
+    @apply uppercase font-normal text-center no-underline;
     @apply border border-zinc-800 rounded-none;
   }
 

@@ -113,7 +113,7 @@ export default function CartItem({
           <div className="flex flex-col space-y-1 w-8/12 shrink-0 grow-0">
             <Link
               href={merchandiseUrl}
-              className="uppercase tracking-tight font-medium w-fit text-xs md:text-sm hover:underline"
+              className="uppercase font-medium w-fit text-xs md:text-sm hover:underline"
               onClick={onClick as any}
             >
               {product?.title}
@@ -138,7 +138,7 @@ export default function CartItem({
               />
             )}
             <button
-              className="w-fit uppercase tracking-tight font-light text-xs hover:underline hover:font-normal"
+              className="w-fit uppercase font-light text-xs hover:underline hover:font-normal"
               disabled={isLoading}
               onClick={handleRemove}
             >
@@ -169,7 +169,7 @@ export default function CartItem({
         <div className="w-full lg:w-6/12 flex flex-col space-y-1">
           <Link
             href={merchandiseUrl}
-            className="uppercase tracking-tight font-medium text-sm lg:text-base w-fit hover:underline"
+            className="uppercase font-medium text-sm lg:text-base w-fit hover:underline"
             onClick={onClick as any}
           >
             {product?.title}
@@ -182,7 +182,7 @@ export default function CartItem({
           <button
             className={cn(
               'hidden lg:block',
-              'w-fit uppercase tracking-tight font-light text-xs hover:underline hover:font-normal'
+              'w-fit uppercase font-light text-xs hover:underline hover:font-normal'
             )}
             disabled={isLoading}
             onClick={handleRemove}
@@ -209,7 +209,7 @@ export default function CartItem({
         )}
         <div className="w-full block lg:hidden">
           <button
-            className="w-fit uppercase tracking-tight font-light text-xs hover:underline hover:font-normal"
+            className="w-fit uppercase font-light text-xs hover:underline hover:font-normal"
             disabled={isLoading}
             onClick={handleRemove}
           >

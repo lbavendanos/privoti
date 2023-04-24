@@ -28,7 +28,7 @@ export default function BaseSearchItem({
   return (
     <li
       {...props}
-      className={cn('flex px-4 py-2 hover:bg-secondary-50', className)}
+      className={cn('flex px-4 py-2 hover:bg-primary-50', className)}
     >
       {product.handle && (
         <Link

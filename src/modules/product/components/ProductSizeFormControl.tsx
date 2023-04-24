@@ -28,9 +28,7 @@ const ProductSizeFormControl = React.forwardRef<
 
   return (
     <fieldset className="flex flex-col space-y-2">
-      <legend className="tracking-tight text-xs font-bold uppercase">
-        Talla:
-      </legend>
+      <legend className="text-xs font-bold uppercase">Talla:</legend>
       <SizeFormControl
         {...props}
         ref={ref}

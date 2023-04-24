@@ -10,11 +10,7 @@ export default function BaseLogo({ className, ...props }: BaseLogoProps) {
     <Link
       {...props}
       href="/"
-      className={cn(
-        'text-xl uppercase tracking-tight font-medium',
-        'md:text-2xl',
-        className
-      )}
+      className={cn('text-xl uppercase font-medium', 'md:text-2xl', className)}
     >
       {appName}
     </Link>
