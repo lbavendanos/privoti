@@ -74,7 +74,7 @@ export default function ContactForm() {
       <FormController
         name="name"
         control={formControl}
-        rules={{ required: 'The name field is required.' }}
+        rules={{ required: 'El nombre es obligatorio.' }}
         render={({ field }) => (
           <TextField
             {...field}
@@ -88,7 +88,7 @@ export default function ContactForm() {
       <FormController
         name="email"
         control={formControl}
-        rules={{ required: 'The email field is required.' }}
+        rules={{ required: 'El correo electrónico es obligatorio.' }}
         render={({ field }) => (
           <TextField
             {...field}
@@ -103,7 +103,7 @@ export default function ContactForm() {
       <FormController
         name="phone"
         control={formControl}
-        rules={{ required: 'The phone field is required.' }}
+        rules={{ required: 'El teléfono es obligatorio.' }}
         render={({ field }) => (
           <TextField
             {...field}
@@ -118,7 +118,7 @@ export default function ContactForm() {
       <FormController
         name="message"
         control={formControl}
-        rules={{ required: 'The message field is required.' }}
+        rules={{ required: 'El comentario es obligatorio.' }}
         render={({ field }) => (
           <TextField
             {...field}
