@@ -24,9 +24,7 @@ export default function ProductRelatedRecommendations({
 
   return (
     <div className="flex flex-col space-y-4">
-      <Heading as="h2" className="text-center">
-        También te puede interesar
-      </Heading>
+      <Heading as="h2">También te puede interesar</Heading>
       <div
         className={cn(
           'flex flex-row flex-nowrap',
