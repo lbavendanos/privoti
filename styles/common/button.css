@@ -24,6 +24,10 @@
     @apply text-zinc-800 bg-tertiary-200 hover:bg-tertiary-300 active:bg-tertiary-300 focus-visible:bg-tertiary-300;
   }
 
+  .btn-light {
+    @apply text-zinc-800 bg-white hover:bg-zinc-200 active:bg-zinc-200 focus-visible:bg-zinc-200;
+  }
+
   .btn-dark {
     @apply text-white bg-zinc-800 hover:bg-zinc-900 active:bg-zinc-900 focus-visible:bg-zinc-900;
   }
@@ -41,6 +45,11 @@
   .btn-tertiary.active,
   .btn-tertiary.show {
     @apply bg-tertiary-300;
+  }
+
+  .btn-light.active,
+  .btn-light.show {
+    @apply bg-zinc-200;
   }
 
   .btn-dark.active,

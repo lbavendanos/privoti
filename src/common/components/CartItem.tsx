@@ -120,7 +120,7 @@ export default function CartItem({
             </Link>
             {merchandise?.title && (
               <Paragraph size="xs" weight="light" uppercase>
-                Size: <strong>{merchandise.title}</strong>
+                Talla: <strong>{merchandise.title}</strong>
               </Paragraph>
             )}
           </div>
@@ -142,7 +142,7 @@ export default function CartItem({
               disabled={isLoading}
               onClick={handleRemove}
             >
-              Remove
+              Eliminar
             </button>
           </div>
         </div>
@@ -176,7 +176,7 @@ export default function CartItem({
           </Link>
           {merchandise?.title && (
             <Paragraph size="xs" weight="light" uppercase>
-              Size: <strong>{merchandise.title}</strong>
+              Talla: <strong>{merchandise.title}</strong>
             </Paragraph>
           )}
           <button
@@ -187,7 +187,7 @@ export default function CartItem({
             disabled={isLoading}
             onClick={handleRemove}
           >
-            Remove
+            Eliminar
           </button>
         </div>
         {node?.quantity && (
@@ -213,7 +213,7 @@ export default function CartItem({
             disabled={isLoading}
             onClick={handleRemove}
           >
-            Remove
+            Eliminar
           </button>
         </div>
       </div>

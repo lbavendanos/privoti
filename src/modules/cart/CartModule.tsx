@@ -10,14 +10,14 @@ export default function CartModule() {
     <Container className="my-6 md:my-10">
       <div className="flex flex-col space-y-10">
         <div className="flex flex-col space-y-4">
-          <Heading as="h1">Cart</Heading>
+          <Heading as="h1">Tu carrito</Heading>
           <CartOrder />
         </div>
         <div className="flex flex-col space-y-3">
           <div className="flex justify-between">
-            <Heading as="h2">Featured collection</Heading>
+            <Heading as="h2">Colección destacada</Heading>
             <Button variant="tertiary" size="sm">
-              See more
+              Ver más
             </Button>
           </div>
           <div

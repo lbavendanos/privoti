@@ -41,7 +41,7 @@ export default function CartSummary({
       <div className="flex flex-col space-y-0.5">
         <div className="flex justify-between">
           <Paragraph size="sm" weight="light" uppercase>
-            Total items
+            Total de productos
           </Paragraph>
           <Paragraph size="sm" weight="semibold">
             {cart.totalQuantity}
@@ -57,11 +57,12 @@ export default function CartSummary({
       <ShippingInfo />
       <Button
         type="button"
+        variant="dark"
         size="lg"
         disabled={isLoading}
         onClick={handleClick}
       >
-        Checkout
+        Finalizar compra
       </Button>
     </div>
   )

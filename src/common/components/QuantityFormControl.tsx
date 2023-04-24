@@ -73,7 +73,7 @@ const QuantityFormControl = React.forwardRef<
   return (
     <div className={cn('flex', groupClassName)}>
       <Button
-        variant="secondary"
+        variant="light"
         size="sm"
         className="flex-1 flex justify-center items-center border-r-0"
         onClick={handleDecrease}
@@ -91,7 +91,7 @@ const QuantityFormControl = React.forwardRef<
         readOnly
       />
       <Button
-        variant="secondary"
+        variant="light"
         size="sm"
         className="flex-1 flex justify-center items-center border-l-0"
         onClick={handleIncrease}

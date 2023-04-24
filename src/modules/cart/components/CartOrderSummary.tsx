@@ -22,7 +22,7 @@ export default function CartOrderSummary({
       )}
     >
       <Heading as="h3" className="text-center">
-        Order summary
+        Resumen de la compra
       </Heading>
       <CartSummary cart={cart} />
     </aside>

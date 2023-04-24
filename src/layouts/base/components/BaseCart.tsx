@@ -29,7 +29,7 @@ export default function BaseCart({ onHide, ...props }: BaseCartProps) {
       placement="end"
       className="w-[85%] md:w-[480px]"
     >
-      <OffcanvasHeader>
+      <OffcanvasHeader className="bg-primary-100 border-b border-zinc-800">
         <Link href="/cart" onClick={onHide}>
           <CartShoppingInfo
             quantityClassName="text-xs mt-[4px]"
@@ -38,14 +38,13 @@ export default function BaseCart({ onHide, ...props }: BaseCartProps) {
         </Link>
         <Link
           href="/cart"
-          className="text-sm md:text-base uppercase font-semibold tracking-tight hover:underline"
+          className="text-base uppercase font-semibold tracking-tight hover:underline"
           onClick={onHide}
         >
-          Cart
+          Carrito de compras
         </Link>
         <CloseButton onClick={onHide} />
       </OffcanvasHeader>
-      <Separator />
       <OffcanvasBody className="pb-0">
         {lines && lines.length > 0 ? (
           <div className="flex flex-col space-y-4">

@@ -13,7 +13,7 @@ export default async function HomeModule() {
       <HomeBanner />
       <Container className="my-10">
         <div className="flex flex-col space-y-3">
-          <Heading as="h2">Featured products</Heading>
+          <Heading as="h2">Productos destacados</Heading>
           <div
             className={cn(
               'grid grid-cols-2 gap-4',
