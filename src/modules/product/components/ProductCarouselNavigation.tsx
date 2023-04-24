@@ -12,7 +12,7 @@ export default function ProdutCarouselNavigation() {
   const swiper = useSwiper()
 
   const btnClassName = cn(
-    'btn btn-secondary btn-xs rounded-full',
+    'btn btn-primary btn-xs rounded-full',
     'absolute top-1/2 transform -translate-y-1/2',
     'z-10',
     'opacity-0',
