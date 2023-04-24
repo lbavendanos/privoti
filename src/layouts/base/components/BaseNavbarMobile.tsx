@@ -1,7 +1,6 @@
 'use client'
 
 import BaseLogo from './BaseLogo'
-import Separator from '@/common/components/Separator'
 import BaseNavbar from './BaseNavbar'
 import OffcanvasBody from '@/common/components/OffcanvasBody'
 import OffcanvasHeader from '@/common/components/OffcanvasHeader'
@@ -15,10 +14,12 @@ export default function BaseNavbarMobile({
 }: BaseNavbarMobileProps) {
   return (
     <Offcanvas {...props} onHide={onHide} className="w-[85%] max-w-[480px]">
-      <OffcanvasHeader closeButton>
+      <OffcanvasHeader
+        className="bg-primary-100 border-b border-zinc-800"
+        closeButton
+      >
         <BaseLogo onClick={onHide} />
       </OffcanvasHeader>
-      <Separator />
       <OffcanvasBody>
         <BaseNavbar
           menuClassName="flex flex-col space-y-2"
