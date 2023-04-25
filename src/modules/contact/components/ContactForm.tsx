@@ -79,6 +79,7 @@ export default function ContactForm() {
           <TextField
             {...field}
             id="name"
+            type="text"
             label="Nombre *"
             error={!!formErrors.name}
             helperText={formErrors.name?.message}
@@ -93,6 +94,7 @@ export default function ContactForm() {
           <TextField
             {...field}
             id="email"
+            type="email"
             label="Correo electrónico *"
             autoComplete="off"
             error={!!formErrors.email}
@@ -108,8 +110,8 @@ export default function ContactForm() {
           <TextField
             {...field}
             id="phone"
-            label="Número de teléfono *"
             type="tel"
+            label="Número de teléfono *"
             error={!!formErrors.phone}
             helperText={formErrors.phone?.message}
           />
