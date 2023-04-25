@@ -33,15 +33,10 @@ export default function ProductFormFallback({
     <form {...props} className={cn('flex flex-col space-y-6', className)}>
       <div className="flex flex-col gap-y-2">
         <div className="flex flex-row space-x-2">
-          {variant?.price && (
-            <ProductPrice
-              className={cn(isOnSale && 'text-red-500')}
-              {...variant.price}
-            />
-          )}
+          {variant?.price && <ProductPrice {...variant.price} />}
           {isOnSale && (
             <ProductPrice
-              className="line-through"
+              className="line-through opacity-40"
               {...variant?.compareAtPrice}
             />
           )}

@@ -69,16 +69,12 @@ export default function ProductCard({
         )}
         <div className="flex flex-row space-x-2">
           {priceRange?.minVariantPrice && (
-            <Price
-              size="xs"
-              className={cn(isOnSale && 'text-red-500')}
-              {...priceRange?.minVariantPrice}
-            />
+            <Price size="xs" {...priceRange?.minVariantPrice} />
           )}
           {isOnSale && (
             <Price
               size="xs"
-              className="line-through"
+              className="line-through opacity-40"
               {...compareAtPriceRange?.minVariantPrice}
             />
           )}

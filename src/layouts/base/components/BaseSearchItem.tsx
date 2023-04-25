@@ -55,16 +55,12 @@ export default function BaseSearchItem({
             )}
             <div className="flex flex-row space-x-2">
               {product.priceRange?.minVariantPrice && (
-                <Price
-                  size="xs"
-                  className={cn(isOnSale && 'text-red-500')}
-                  {...product.priceRange.minVariantPrice}
-                />
+                <Price size="xs" {...product.priceRange.minVariantPrice} />
               )}
               {isOnSale && (
                 <Price
                   size="xs"
-                  className="line-through"
+                  className="line-through opacity-40"
                   {...product.compareAtPriceRange?.minVariantPrice}
                 />
               )}
