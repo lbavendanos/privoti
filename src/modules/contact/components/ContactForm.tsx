@@ -42,7 +42,7 @@ export default function ContactForm() {
       setHasError(false)
 
       try {
-        await fetcher('/api/email/contact', {
+        await fetcher('/api/emails/contact', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
