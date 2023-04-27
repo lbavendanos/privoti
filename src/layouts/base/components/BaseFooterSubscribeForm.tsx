@@ -1,5 +1,6 @@
 'use client'
 
+import { fetcher } from 'lib/utils/http'
 import { useCallback, useState } from 'react'
 import { useForm, FormController } from 'lib/utils/form'
 import { KeyboardArrowRightIcon } from '@/common/components/Icons'
@@ -34,7 +35,7 @@ export default function BaseFooterSubscribeForm() {
       setHasError(false)
 
       try {
-        // await fetcher('/api/email/contact', {
+        // await fetcher('/api/customers/subscribe', {
         //   method: 'POST',
         //   headers: {
         //     'Content-Type': 'application/json',
