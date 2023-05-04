@@ -4,7 +4,7 @@ const mail = {
   password: process.env.MAIL_PASSWORD || '',
   from: {
     address: process.env.MAIL_FROM_ADDRESS || 'info@privoti.com',
-    name: process.env.MAIL_FROM_NAME || 'Privoti',
+    name: process.env.MAIL_FROM_NAME || 'App',
   },
 }
 
