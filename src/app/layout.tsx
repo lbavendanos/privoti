@@ -55,9 +55,6 @@ export async function generateMetadata(): Promise<Metadata> {
       initialScale: 1,
       maximumScale: 1,
     },
-    icons: {
-      icon: '/favicon.ico',
-    },
   }
 }
 
