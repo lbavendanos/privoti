@@ -2,7 +2,7 @@ import { Metadata } from 'next'
 import CartModule from '@/modules/cart/CartModule'
 
 export async function generateMetadata(): Promise<Metadata> {
-  return { title: 'Cart' }
+  return { title: 'Carrito' }
 }
 
 export default function CartPage() {
