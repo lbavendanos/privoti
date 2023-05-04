@@ -1,6 +1,6 @@
-import { Cart } from 'lib/shopify/types/cart'
-import { ADD_LINE, CREATE_CART, REMOVE_LINE, UPDATE_LINE } from './queries'
 import { shopifyFetcher } from 'lib/shopify/utils'
+import { ADD_LINE, CREATE_CART, REMOVE_LINE, UPDATE_LINE } from './queries'
+import { Cart } from 'lib/shopify/types/cart'
 
 export async function createCart(
   merchandiseId: string,

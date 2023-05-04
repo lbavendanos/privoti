@@ -1,8 +1,10 @@
 'use client'
 
 import { cn } from 'lib/utils/helpers'
+import { redirect } from 'next/navigation'
 import { useGetCart } from 'lib/shopify/core/cart/hooks'
 import { useCartStore } from 'lib/store/cart'
+import { createCheckout } from 'lib/shopify/core/checkout'
 import { addLineToCart, createCart } from 'lib/shopify/core/cart'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useCallback, useEffect, useMemo, useState } from 'react'
@@ -82,6 +84,22 @@ export default function ProductForm({
     setIsLoading(false)
   }, [variantId, variants, cartId, updateCart, mutate])
 
+  const handleCheckout = useCallback(async () => {
+    setIsLoading(true)
+
+    const merchandiseId = variantId
+      ? findVariantByShortId(variantId, variants)?.id
+      : null
+
+    if (merchandiseId) {
+      const checkout = await createCheckout({
+        lineItems: [{ variantId: merchandiseId, quantity: 1 }],
+      })
+
+      router.push(checkout.webUrl!)
+    }
+  }, [variantId, variants, router])
+
   useEffect(() => {
     const queryVariant = searchParams.get('variant')
     const variant = queryVariant
@@ -124,7 +142,10 @@ export default function ProductForm({
               disabled={isLoading}
               onClick={handleAddToCart}
             />
-            <ProductBuyNowButton disabled={isLoading} />
+            <ProductBuyNowButton
+              disabled={isLoading}
+              onClick={handleCheckout}
+            />
           </>
         ) : (
           <ProductSoldOutButton disabled />
