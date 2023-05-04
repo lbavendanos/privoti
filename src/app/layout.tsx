@@ -65,8 +65,10 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  const appLocale = config<string>('app.locale')
+
   return (
-    <html lang="en" className={roboto.className}>
+    <html lang={appLocale} className={roboto.className}>
       <body className="flex flex-col min-h-screen bg-white text-zinc-800">
         <SSRProvider>
           <header className="border-b border-zinc-800 py-3 md:py-2">
