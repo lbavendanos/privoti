@@ -1,4 +1,3 @@
-import { url } from 'lib/utils/url'
 import { config } from 'lib/utils/helpers'
 import { Metadata } from 'next'
 import { Roboto_Mono } from 'next/font/google'
@@ -18,10 +17,12 @@ const roboto = Roboto_Mono({
 })
 
 export async function generateMetadata(): Promise<Metadata> {
-  const appName = config('app.name')
-  const description = `Welcome to ${appName}`
+  const appName = config<string>('app.name')
+  const appUrl = config<string>('app.url')
+  const description = `${appName} es una boutique de moda en línea de Perú para mujer. Encuentra calzado, ropa y accesorios de marcas exclusivas y modelos de edición limitada.`
 
   return {
+    metadataBase: new URL(appUrl),
     title: {
       default: appName,
       template: `%s | ${appName}`,
@@ -34,7 +35,7 @@ export async function generateMetadata(): Promise<Metadata> {
       },
       description: description,
       type: 'website',
-      url: url(),
+      url: '/',
     },
     robots: {
       index: false,
