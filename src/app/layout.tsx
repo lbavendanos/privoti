@@ -1,7 +1,7 @@
 import { url } from 'lib/utils/url'
 import { config } from 'lib/utils/helpers'
 import { Metadata } from 'next'
-import { Roboto_Mono } from '@next/font/google'
+import { Roboto_Mono } from 'next/font/google'
 import BaseLogo from '@/layouts/base/components/BaseLogo'
 import Container from '@/common/components/Container'
 import Separator from '@/common/components/Separator'
