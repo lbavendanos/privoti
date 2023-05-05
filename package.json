@@ -15,6 +15,7 @@
     "@react-email/section": "0.0.9",
     "@restart/hooks": "^0.4.9",
     "@restart/ui": "^1.6.3",
+    "@shopify/hydrogen": "^2023.4.0",
     "clsx": "^1.2.1",
     "dom-helpers": "^5.2.1",
     "graphql": "^16.6.0",
