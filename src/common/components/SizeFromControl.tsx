@@ -20,6 +20,7 @@ const SizeFormControl = React.forwardRef<
   (
     {
       value,
+      id: idProp,
       name: nameProp,
       options,
       availableClassName,
@@ -32,14 +33,15 @@ const SizeFormControl = React.forwardRef<
     },
     ref
   ) => {
+    const id = idProp || 'size'
     const name = nameProp || 'size'
 
     return (
-      <div {...props} className={groupClassName}>
+      <div {...props} id={id} className={groupClassName}>
         {options?.map((option) => (
           <React.Fragment key={option.value}>
             <label
-              htmlFor={`${name}-${option.name}`}
+              htmlFor={`${id}-${option.name}`}
               className={cn(
                 option.available
                   ? [
@@ -56,7 +58,7 @@ const SizeFormControl = React.forwardRef<
             </label>
             <input
               ref={ref}
-              id={`${name}-${option.name}`}
+              id={`${id}-${option.name}`}
               type="radio"
               name={name}
               value={option.value}

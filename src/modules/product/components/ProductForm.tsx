@@ -54,7 +54,7 @@ export default function ProductForm({
       const value = e.target.value
 
       setVariantId(value)
-      router.replace(`${url}?variant=${value}`)
+      router.replace(`/products/${url}?variant=${value}`)
     },
     [router, url]
   )
@@ -128,8 +128,8 @@ export default function ProductForm({
         </div>
         <ShippingInfo />
         <ProductSizeFormControl
-          id="variantId"
-          name="variantId"
+          id="product-variant"
+          name="variant"
           value={variantId}
           variants={variants}
           onChange={handleSizeChange}

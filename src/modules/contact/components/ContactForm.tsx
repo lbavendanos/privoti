@@ -78,7 +78,7 @@ export default function ContactForm() {
         render={({ field }) => (
           <TextField
             {...field}
-            id="name"
+            id="contact-name"
             type="text"
             label="Nombre *"
             error={!!formErrors.name}
@@ -93,7 +93,7 @@ export default function ContactForm() {
         render={({ field }) => (
           <TextField
             {...field}
-            id="email"
+            id="contact-email"
             type="email"
             label="Correo electrónico *"
             autoComplete="off"
@@ -109,7 +109,7 @@ export default function ContactForm() {
         render={({ field }) => (
           <TextField
             {...field}
-            id="phone"
+            id="contact-phone"
             type="tel"
             label="Número de teléfono *"
             error={!!formErrors.phone}
@@ -124,7 +124,7 @@ export default function ContactForm() {
         render={({ field }) => (
           <TextField
             {...field}
-            id="message"
+            id="contact-message"
             label="Comentario *"
             error={!!formErrors.message}
             helperText={formErrors.message?.message}

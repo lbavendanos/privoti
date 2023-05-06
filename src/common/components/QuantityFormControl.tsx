@@ -76,8 +76,9 @@ const QuantityFormControl = React.forwardRef<
         variant="light"
         size="sm"
         className="flex-1 flex justify-center items-center border-r-0"
-        onClick={handleDecrease}
+        aria-label="Decrease quantity"
         disabled={decreaseDisabled}
+        onClick={handleDecrease}
       >
         <LineIcon className="w-3 h-3" />
       </Button>
@@ -88,14 +89,16 @@ const QuantityFormControl = React.forwardRef<
         min={min}
         max={max}
         className="flex-1 text-center"
+        aria-label="quantity"
         readOnly
       />
       <Button
         variant="light"
         size="sm"
         className="flex-1 flex justify-center items-center border-l-0"
-        onClick={handleIncrease}
+        aria-label="Increase quantity"
         disabled={increaseDisabled}
+        onClick={handleIncrease}
       >
         <PlusIcon className="w-3 h-3" />
       </Button>

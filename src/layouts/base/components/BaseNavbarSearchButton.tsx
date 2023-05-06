@@ -16,7 +16,12 @@ export default function BaseNavbarSearchButton() {
 
   return (
     <>
-      <button type="button" className="text-zinc-800" onClick={handleShow}>
+      <button
+        type="button"
+        className="text-zinc-800"
+        aria-label="Search"
+        onClick={handleShow}
+      >
         <SearchIcon className="w-6 h-6" />
       </button>
       <BaseSearchModal show={show} onHide={handleClose} />

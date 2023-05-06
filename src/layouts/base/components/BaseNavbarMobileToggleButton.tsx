@@ -28,7 +28,7 @@ export default function BaseNavbarMobileToggleButton(
 
   return (
     <>
-      <button {...props} type="button" onClick={handleShow}>
+      <button {...props} type="button" aria-label="Menu" onClick={handleShow}>
         <MenuIcon className="w-6 h-6" />
       </button>
       {isMounted && isMobile && (

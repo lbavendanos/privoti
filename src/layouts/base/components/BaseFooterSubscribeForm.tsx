@@ -68,7 +68,7 @@ export default function BaseFooterSubscribeForm() {
           render={({ field }) => (
             <FormControl
               {...field}
-              id="email"
+              id="subscribe-email"
               type="email"
               className="shrink py-2 max-w-[350px] border-r-0"
               placeholder="Correo electrónico"
@@ -76,7 +76,7 @@ export default function BaseFooterSubscribeForm() {
             />
           )}
         />
-        <Button type="submit" disabled={isLoading}>
+        <Button type="submit" disabled={isLoading} aria-label="Subscribe">
           <KeyboardArrowRightIcon />
         </Button>
       </div>
