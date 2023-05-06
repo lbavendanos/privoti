@@ -3,9 +3,9 @@
 import { cn } from 'lib/utils/helpers'
 import { useMemo } from 'react'
 import { Product } from 'lib/shopify/types/product'
-import Link from 'next/link'
 import Price from '@/common/components/Price'
 import Paragraph from '@/common/components/Paragraph'
+import ProductLink from '@/common/components/ProductLink'
 import ProductImage from '@/common/components/ProductImage'
 
 export interface BaseSearchItemProps
@@ -31,7 +31,7 @@ export default function BaseSearchItem({
       className={cn('flex px-4 py-2 hover:bg-primary-50', className)}
     >
       {product.handle && (
-        <Link
+        <ProductLink
           href={product.handle}
           className="flex gap-x-4 items-center w-full"
         >
@@ -66,7 +66,7 @@ export default function BaseSearchItem({
               )}
             </div>
           </div>
-        </Link>
+        </ProductLink>
       )}
     </li>
   )

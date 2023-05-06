@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: any): Promise<Metadata> {
   }
 }
 
-export default async function SlugPage({ params }: any) {
+export default async function ProductPage({ params }: any) {
   /* @ts-expect-error Async Server Component */
   return <ProductModule slug={params.slug} />
 }

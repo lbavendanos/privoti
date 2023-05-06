@@ -8,9 +8,9 @@ import { useDebouncedCallback } from 'lib/hooks'
 import { removeLineFromCart, updateLineFromCart } from 'lib/shopify/core/cart'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { CartLine } from 'lib/shopify/types/cart'
-import Link from 'next/link'
 import Price from './Price'
 import Paragraph from './Paragraph'
+import ProductLink from './ProductLink'
 import ProductImage from './ProductImage'
 import QuantityFormControl from './QuantityFormControl'
 
@@ -95,7 +95,7 @@ export default function CartItem({
   if (variant === 'minimal')
     return (
       <div {...props} className={cn('flex flex-nowrap space-x-4', className)}>
-        <Link
+        <ProductLink
           href={merchandiseUrl}
           className="w-2/6 sm:w-1/5 grow-0 shrink-0"
           onClick={onClick as any}
@@ -108,16 +108,16 @@ export default function CartItem({
               height={product.images.edges.at(0)?.node?.height}
             />
           )}
-        </Link>
+        </ProductLink>
         <div className="w-full flex flex-col md:flex-row space-y-2">
           <div className="flex flex-col space-y-1 w-8/12 shrink-0 grow-0">
-            <Link
+            <ProductLink
               href={merchandiseUrl}
               className="uppercase font-medium w-fit text-xs md:text-sm hover:underline"
               onClick={onClick as any}
             >
               {product?.title}
-            </Link>
+            </ProductLink>
             {merchandise?.title && (
               <Paragraph size="xs" weight="light" uppercase>
                 Talla: <strong>{merchandise.title}</strong>
@@ -151,7 +151,7 @@ export default function CartItem({
 
   return (
     <div {...props} className={cn('flex flex-nowrap space-x-4', className)}>
-      <Link
+      <ProductLink
         href={merchandiseUrl}
         className="w-[110px] lg:w-[150px] grow-0 shrink-0"
         onClick={onClick as any}
@@ -164,16 +164,16 @@ export default function CartItem({
             height={product.images.edges.at(0)?.node?.height}
           />
         )}
-      </Link>
+      </ProductLink>
       <div className="w-full flex flex-col lg:flex-row justify-center items-start lg:items-center space-y-2">
         <div className="w-full lg:w-6/12 flex flex-col space-y-1">
-          <Link
+          <ProductLink
             href={merchandiseUrl}
             className="uppercase font-medium text-sm lg:text-base w-fit hover:underline"
             onClick={onClick as any}
           >
             {product?.title}
-          </Link>
+          </ProductLink>
           {merchandise?.title && (
             <Paragraph size="xs" weight="light" uppercase>
               Talla: <strong>{merchandise.title}</strong>

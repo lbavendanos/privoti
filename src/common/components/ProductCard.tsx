@@ -1,8 +1,8 @@
 import { cn } from 'lib/utils/helpers'
 import { Product } from 'lib/shopify/types/product'
-import Link from 'next/link'
 import Price from './Price'
 import Paragraph from './Paragraph'
+import ProductLink from './ProductLink'
 import ProductImage from './ProductImage'
 
 interface ProductCardProps extends React.ComponentPropsWithoutRef<'a'> {
@@ -30,7 +30,7 @@ export default function ProductCard({
   if (!handle || !title) return null
 
   return (
-    <Link
+    <ProductLink
       {...props}
       href={handle}
       className={cn('flex flex-col gap-y-1', className)}
@@ -80,6 +80,6 @@ export default function ProductCard({
           )}
         </div>
       </div>
-    </Link>
+    </ProductLink>
   )
 }
