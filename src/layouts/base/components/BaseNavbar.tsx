@@ -24,11 +24,11 @@ export default function BaseNavbar({
         </li>
         <li>
           <BaseNavbarLink
-            href="/catalog"
+            href="/collections"
             className={linkClassName}
             onClick={onChange}
           >
-            Catálogo
+            Colecciones
           </BaseNavbarLink>
         </li>
         <li>
