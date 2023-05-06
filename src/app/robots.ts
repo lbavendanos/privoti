@@ -8,12 +8,12 @@ export default function Robots(): MetadataRoute.Robots {
         userAgent: '*',
         disallow: [
           '/admin',
-          '/cart',
+          '/account',
           '/orders',
+          '/cart',
+          '/carts',
           '/checkouts/',
           '/checkout',
-          '/carts',
-          '/account',
         ],
       },
       {
