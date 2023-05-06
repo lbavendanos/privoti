@@ -76,9 +76,18 @@ export default async function Sitemap(): Promise<MetadataRoute.Sitemap> {
   const pagesSitemap: MetadataRoute.Sitemap = response.pages.nodes
     .filter((node) => node.onlineStoreUrl)
     .map((node) => ({
-      url: url(`/pages/${node.handle}`),
+      url: url(node.handle),
       lastModified: node.updatedAt,
     }))
 
-  return [...productsSitemap, ...collectionsSitemap, ...pagesSitemap]
+  const homeSitemap: MetadataRoute.Sitemap = [
+    { url: url(), lastModified: new Date() },
+  ]
+
+  return [
+    ...productsSitemap,
+    ...collectionsSitemap,
+    ...pagesSitemap,
+    ...homeSitemap,
+  ]
 }
