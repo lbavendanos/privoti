@@ -70,7 +70,7 @@ export default function BaseFooterSubscribeForm() {
               {...field}
               id="subscribe-email"
               type="email"
-              className="shrink py-2 max-w-[350px] border-r-0"
+              className="shrink max-w-[350px] border-r-0"
               placeholder="Correo electrónico"
               autoComplete="off"
             />

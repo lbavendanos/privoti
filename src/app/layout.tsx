@@ -1,6 +1,6 @@
 import { config } from 'lib/utils/helpers'
 import { Metadata } from 'next'
-import { Roboto_Mono } from 'next/font/google'
+import { Inter } from 'next/font/google'
 import BaseLogo from '@/layouts/base/components/BaseLogo'
 import Container from '@/common/components/Container'
 import Separator from '@/common/components/Separator'
@@ -11,7 +11,7 @@ import BaseNavbarDesktop from '@/layouts/base/components/BaseNavbarDesktop'
 import BaseNavbarMobileToggleButton from '@/layouts/base/components/BaseNavbarMobileToggleButton'
 import 'styles/app.css'
 
-const roboto = Roboto_Mono({
+const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
 })
@@ -61,17 +61,17 @@ export default function RootLayout({
   const appLocale = config<string>('app.locale')
 
   return (
-    <html lang={appLocale} className={roboto.className}>
+    <html lang={appLocale} className={inter.className}>
       <body className="flex flex-col min-h-screen bg-white text-zinc-800">
         <SSRProvider>
           <header className="border-b border-zinc-800 py-3 md:py-2">
             <Container>
-              <div className="grid grid-cols-3 md:grid-cols-2 items-center">
-                <BaseNavbarMobileToggleButton className="block md:hidden justify-self-start" />
-                <div className="flex items-center space-x-8 justify-self-center md:justify-self-start">
-                  <BaseLogo />
-                  <BaseNavbarDesktop className="hidden md:block" />
+              <div className="grid grid-cols-3 items-center">
+                <div className="justify-self-start">
+                  <BaseNavbarMobileToggleButton className="block md:hidden" />
+                  <BaseNavbarDesktop className="hidden md:block " />
                 </div>
+                <BaseLogo className="justify-self-center" />
                 <BaseNavbarOptions className="justify-self-end" />
               </div>
             </Container>

@@ -1,6 +1,5 @@
 'use client'
 
-import BaseLogo from './BaseLogo'
 import BaseNavbar from './BaseNavbar'
 import OffcanvasBody from '@/common/components/OffcanvasBody'
 import OffcanvasHeader from '@/common/components/OffcanvasHeader'
@@ -18,12 +17,12 @@ export default function BaseNavbarMobile({
         className="bg-primary-100 border-b border-zinc-800"
         closeButton
       >
-        <BaseLogo onClick={onHide} />
+        <h2 className="text-base uppercase font-semibold">Menú</h2>
       </OffcanvasHeader>
       <OffcanvasBody>
         <BaseNavbar
           menuClassName="flex flex-col space-y-2"
-          linkClassName="font-normal uppercase text-base"
+          linkClassName="font-medium uppercase text-sm"
           onChange={onHide}
         />
       </OffcanvasBody>

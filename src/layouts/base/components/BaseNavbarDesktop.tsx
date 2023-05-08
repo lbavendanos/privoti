@@ -11,11 +11,8 @@ export default function BaseNavbarDesktop({
     <BaseNavbar
       {...props}
       className={cn('w-full py-4', className)}
-      menuClassName="flex justify-between items-center"
-      linkClassName={cn(
-        'px-3 py-2',
-        'font-normal hover:font-semibold text-sm uppercase'
-      )}
+      menuClassName="flex flex-row"
+      linkClassName={cn('px-3 py-4', 'uppercase font-medium text-sm')}
     />
   )
 }
