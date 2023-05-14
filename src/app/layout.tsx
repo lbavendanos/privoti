@@ -1,6 +1,6 @@
 import { config } from 'lib/utils/helpers'
 import { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Roboto_Mono } from 'next/font/google'
 import BaseLogo from '@/layouts/base/components/BaseLogo'
 import Container from '@/common/components/Container'
 import Separator from '@/common/components/Separator'
@@ -11,7 +11,7 @@ import BaseNavbarDesktop from '@/layouts/base/components/BaseNavbarDesktop'
 import BaseNavbarMobileToggleButton from '@/layouts/base/components/BaseNavbarMobileToggleButton'
 import 'styles/app.css'
 
-const inter = Inter({
+const roboto = Roboto_Mono({
   subsets: ['latin'],
   display: 'swap',
 })
@@ -61,7 +61,7 @@ export default function RootLayout({
   const appLocale = config<string>('app.locale')
 
   return (
-    <html lang={appLocale} className={inter.className}>
+    <html lang={appLocale} className={roboto.className}>
       <body className="flex flex-col min-h-screen bg-white text-zinc-800">
         <SSRProvider>
           <header className="border-b border-zinc-800 py-3 md:py-2">
